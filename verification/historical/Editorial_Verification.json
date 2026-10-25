@@ -1,0 +1,982 @@
+{
+  "checks": [
+    {
+      "name": "landing",
+      "sourcesOpen": false,
+      "starters": 3,
+      "vertices": 12877
+    },
+    {
+      "name": "curated connection",
+      "title": "From Turnpike south / shared road",
+      "note": "At Exit 129, this shared connection with the Turnpike stretches about 2.2 miles.",
+      "technicalOpen": false
+    },
+    {
+      "name": "original notes retained",
+      "present": true
+    },
+    {
+      "name": "loop starter",
+      "category": "indirect"
+    },
+    {
+      "name": "ranking",
+      "category": "longest",
+      "title": "Longest ramps and connections",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "3962",
+          "value": 11570.88723151094,
+          "rank": 1
+        },
+        {
+          "id": "5686",
+          "value": 9264.655688576433,
+          "rank": 2
+        },
+        {
+          "id": "5703",
+          "value": 8415.369364256829,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 6726.252905218325,
+          "rank": 4
+        },
+        {
+          "id": "5690",
+          "value": 5774.67922996609,
+          "rank": 5
+        },
+        {
+          "id": "50632",
+          "value": 5451.563497619952,
+          "rank": 6
+        },
+        {
+          "id": "99282",
+          "value": 5354.747795077595,
+          "rank": 7
+        },
+        {
+          "id": "5602",
+          "value": 5273.968307603582,
+          "rank": 8
+        },
+        {
+          "id": "5759",
+          "value": 5243.212336265694,
+          "rank": 9
+        },
+        {
+          "id": "5614",
+          "value": 5073.422980646892,
+          "rank": 10
+        }
+      ],
+      "display": "11,571ft",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "shortest",
+      "title": "Shortest pieces",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "5631",
+          "value": 106.46992103769583,
+          "rank": 1
+        },
+        {
+          "id": "5788",
+          "value": 109.02019219954661,
+          "rank": 2
+        },
+        {
+          "id": "5529",
+          "value": 119.61501025180186,
+          "rank": 3
+        },
+        {
+          "id": "5639",
+          "value": 127.15352396130456,
+          "rank": 4
+        },
+        {
+          "id": "5509",
+          "value": 148.35424447176968,
+          "rank": 5
+        },
+        {
+          "id": "5958",
+          "value": 156.21661649179933,
+          "rank": 6
+        },
+        {
+          "id": "5730",
+          "value": 157.07261323647745,
+          "rank": 7
+        },
+        {
+          "id": "5729",
+          "value": 184.254351565021,
+          "rank": 8
+        },
+        {
+          "id": "5508",
+          "value": 209.96162512949743,
+          "rank": 9
+        },
+        {
+          "id": "105854",
+          "value": 211.54665061949743,
+          "rank": 10
+        }
+      ],
+      "display": "106ft",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "turning",
+      "title": "Most twists and turns",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "3962",
+          "value": 465.0559656565088,
+          "rank": 1
+        },
+        {
+          "id": "5626",
+          "value": 415.0150839752978,
+          "rank": 2
+        },
+        {
+          "id": "5918",
+          "value": 403.90619235790774,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 374.62194875205745,
+          "rank": 4
+        },
+        {
+          "id": "5638",
+          "value": 358.7903052587046,
+          "rank": 5
+        },
+        {
+          "id": "50632",
+          "value": 351.23716305193886,
+          "rank": 6
+        },
+        {
+          "id": "5683",
+          "value": 346.8148880962106,
+          "rank": 7
+        },
+        {
+          "id": "105602",
+          "value": 343.5516229080494,
+          "rank": 8
+        },
+        {
+          "id": "5488",
+          "value": 339.3776613132701,
+          "rank": 9
+        },
+        {
+          "id": "5920",
+          "value": 336.43979978509384,
+          "rank": 10
+        }
+      ],
+      "display": "465.1°",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "density",
+      "title": "Most winding",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "5639",
+          "value": 81.268107771347,
+          "rank": 1
+        },
+        {
+          "id": "5631",
+          "value": 63.18295239956677,
+          "rank": 2
+        },
+        {
+          "id": "5958",
+          "value": 57.92451805906046,
+          "rank": 3
+        },
+        {
+          "id": "5738",
+          "value": 55.87947024855201,
+          "rank": 4
+        },
+        {
+          "id": "105854",
+          "value": 41.21767445649646,
+          "rank": 5
+        },
+        {
+          "id": "5508",
+          "value": 39.79923841548338,
+          "rank": 6
+        },
+        {
+          "id": "5730",
+          "value": 38.192744130533725,
+          "rank": 7
+        },
+        {
+          "id": "5509",
+          "value": 37.606724331351224,
+          "rank": 8
+        },
+        {
+          "id": "105002",
+          "value": 31.308538550261545,
+          "rank": 9
+        },
+        {
+          "id": "5627",
+          "value": 28.754444898546073,
+          "rank": 10
+        }
+      ],
+      "display": "81.3° / 100 ft",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "bend",
+      "title": "Tightest curves",
+      "pool": 358,
+      "rows": [
+        {
+          "id": "5488",
+          "value": 49.27547110690289,
+          "rank": 1
+        },
+        {
+          "id": "5957",
+          "value": 50.40126464055052,
+          "rank": 2
+        },
+        {
+          "id": "5958",
+          "value": 51.732085439846344,
+          "rank": 3
+        },
+        {
+          "id": "5639",
+          "value": 55.00236050564893,
+          "rank": 4
+        },
+        {
+          "id": "5738",
+          "value": 62.614078435831786,
+          "rank": 5
+        },
+        {
+          "id": "5523",
+          "value": 62.894328671491586,
+          "rank": 6
+        },
+        {
+          "id": "105854",
+          "value": 64.10833614017184,
+          "rank": 7
+        },
+        {
+          "id": "5930",
+          "value": 64.86731991320332,
+          "rank": 8
+        },
+        {
+          "id": "5741",
+          "value": 65.50232455783464,
+          "rank": 9
+        },
+        {
+          "id": "5638",
+          "value": 65.91084344827291,
+          "rank": 10
+        }
+      ],
+      "display": "≈ 49ft radius",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "indirect",
+      "title": "The long way around",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "5687",
+          "value": 97.34824469605486,
+          "rank": 1
+        },
+        {
+          "id": "5928",
+          "value": 89.78501225338175,
+          "rank": 2
+        },
+        {
+          "id": "5760",
+          "value": 82.44081864634096,
+          "rank": 3
+        },
+        {
+          "id": "5668",
+          "value": 35.90452960933799,
+          "rank": 4
+        },
+        {
+          "id": "5661",
+          "value": 34.64951060650405,
+          "rank": 5
+        },
+        {
+          "id": "5680",
+          "value": 33.61111691570355,
+          "rank": 6
+        },
+        {
+          "id": "5659",
+          "value": 26.18725563033218,
+          "rank": 7
+        },
+        {
+          "id": "5600",
+          "value": 23.454429570578032,
+          "rank": 8
+        },
+        {
+          "id": "5567",
+          "value": 22.61247000620733,
+          "rank": 9
+        },
+        {
+          "id": "5670",
+          "value": 19.767537289471303,
+          "rank": 10
+        }
+      ],
+      "display": "97.35× the direct distance",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "broadest",
+      "title": "Widest shapes",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "5690",
+          "value": 2529.1582371539002,
+          "rank": 1
+        },
+        {
+          "id": "3962",
+          "value": 2458.2781705316324,
+          "rank": 2
+        },
+        {
+          "id": "5626",
+          "value": 2001.9780589891182,
+          "rank": 3
+        },
+        {
+          "id": "5683",
+          "value": 1750.6724235114539,
+          "rank": 4
+        },
+        {
+          "id": "102309",
+          "value": 1703.208935119285,
+          "rank": 5
+        },
+        {
+          "id": "5592",
+          "value": 1661.7002851106133,
+          "rank": 6
+        },
+        {
+          "id": "5914",
+          "value": 1451.9261821852692,
+          "rank": 7
+        },
+        {
+          "id": "5703",
+          "value": 1329.1279559070315,
+          "rank": 8
+        },
+        {
+          "id": "5697",
+          "value": 1320.9276975416599,
+          "rank": 9
+        },
+        {
+          "id": "5505",
+          "value": 1246.660516556744,
+          "rank": 10
+        }
+      ],
+      "display": "2,529ft",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "tallest",
+      "title": "Longest spans",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "5686",
+          "value": 8870.180843033068,
+          "rank": 1
+        },
+        {
+          "id": "3962",
+          "value": 8416.548343376066,
+          "rank": 2
+        },
+        {
+          "id": "5703",
+          "value": 7875.475786193,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 5342.918527660414,
+          "rank": 4
+        },
+        {
+          "id": "5602",
+          "value": 5066.574636481384,
+          "rank": 5
+        },
+        {
+          "id": "5759",
+          "value": 4650.467630996358,
+          "rank": 6
+        },
+        {
+          "id": "5568",
+          "value": 4472.013113247147,
+          "rank": 7
+        },
+        {
+          "id": "5694",
+          "value": 4450.106958469503,
+          "rank": 8
+        },
+        {
+          "id": "5911",
+          "value": 4150.022437552869,
+          "rank": 9
+        },
+        {
+          "id": "99282",
+          "value": 4054.8963573878164,
+          "rank": 10
+        }
+      ],
+      "display": "8,870ft",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "area",
+      "title": "Biggest footprints",
+      "pool": 359,
+      "rows": [
+        {
+          "id": "3962",
+          "value": 474.982026256785,
+          "rank": 1
+        },
+        {
+          "id": "5703",
+          "value": 240.30107974054235,
+          "rank": 2
+        },
+        {
+          "id": "5690",
+          "value": 204.45293140352663,
+          "rank": 3
+        },
+        {
+          "id": "5686",
+          "value": 189.13569026710147,
+          "rank": 4
+        },
+        {
+          "id": "5759",
+          "value": 125.81069235019743,
+          "rank": 5
+        },
+        {
+          "id": "5592",
+          "value": 118.97788843254763,
+          "rank": 6
+        },
+        {
+          "id": "5626",
+          "value": 115.17126728278215,
+          "rank": 7
+        },
+        {
+          "id": "5568",
+          "value": 105.90900000709453,
+          "rank": 8
+        },
+        {
+          "id": "5914",
+          "value": 103.21324287270977,
+          "rank": 9
+        },
+        {
+          "id": "50633",
+          "value": 101.01557287953263,
+          "rank": 10
+        }
+      ],
+      "display": "475.0acres",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "straightest",
+      "title": "Straightest stretches",
+      "pool": 339,
+      "rows": [
+        {
+          "id": "5496",
+          "value": 1.0003459110093873,
+          "rank": 1
+        },
+        {
+          "id": "105161",
+          "value": 1.0004819851799014,
+          "rank": 2
+        },
+        {
+          "id": "5945",
+          "value": 1.000594995077428,
+          "rank": 3
+        },
+        {
+          "id": "5552",
+          "value": 1.0007380254105547,
+          "rank": 4
+        },
+        {
+          "id": "5620",
+          "value": 1.0007391634306066,
+          "rank": 5
+        },
+        {
+          "id": "5616",
+          "value": 1.000852550159911,
+          "rank": 6
+        },
+        {
+          "id": "5715",
+          "value": 1.0008582392692467,
+          "rank": 7
+        },
+        {
+          "id": "105172",
+          "value": 1.000879385390401,
+          "rank": 8
+        },
+        {
+          "id": "5718",
+          "value": 1.000990878482527,
+          "rank": 9
+        },
+        {
+          "id": "105162",
+          "value": 1.0010992190929935,
+          "rank": 10
+        }
+      ],
+      "display": "0.035% extra distance",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "branches",
+      "title": "Most ramp shapes",
+      "pool": 84,
+      "rows": [
+        {
+          "id": "g89",
+          "value": 11,
+          "rank": 1
+        },
+        {
+          "id": "g100",
+          "value": 10,
+          "rank": 2
+        },
+        {
+          "id": "g98",
+          "value": 9,
+          "rank": 3
+        },
+        {
+          "id": "g63",
+          "value": 9,
+          "rank": 3
+        },
+        {
+          "id": "g165",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g82",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g38",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g4",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g143",
+          "value": 7,
+          "rank": 9
+        },
+        {
+          "id": "g142",
+          "value": 7,
+          "rank": 9
+        }
+      ],
+      "display": "11drawings",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "traffic",
+      "title": "Most traffic · 2024",
+      "pool": 277,
+      "rows": [
+        {
+          "id": "3786",
+          "value": 31674,
+          "rank": 1
+        },
+        {
+          "id": "5600",
+          "value": 29838,
+          "rank": 2
+        },
+        {
+          "id": "5492",
+          "value": 29553,
+          "rank": 3
+        },
+        {
+          "id": "5489",
+          "value": 25678,
+          "rank": 4
+        },
+        {
+          "id": "5603",
+          "value": 22518,
+          "rank": 5
+        },
+        {
+          "id": "5703",
+          "value": 22129,
+          "rank": 6
+        },
+        {
+          "id": "102308",
+          "value": 21156,
+          "rank": 7
+        },
+        {
+          "id": "5935",
+          "value": 21095,
+          "rank": 8
+        },
+        {
+          "id": "5707",
+          "value": 20575,
+          "rank": 9
+        },
+        {
+          "id": "5634",
+          "value": 19971,
+          "rank": 10
+        }
+      ],
+      "display": "31,674vehicles a day",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "quietest",
+      "title": "Least traffic · 2024",
+      "pool": 277,
+      "rows": [
+        {
+          "id": "5571",
+          "value": 339,
+          "rank": 1
+        },
+        {
+          "id": "5672",
+          "value": 569,
+          "rank": 2
+        },
+        {
+          "id": "5918",
+          "value": 625,
+          "rank": 3
+        },
+        {
+          "id": "5462",
+          "value": 745,
+          "rank": 4
+        },
+        {
+          "id": "2636",
+          "value": 745,
+          "rank": 4
+        },
+        {
+          "id": "5908",
+          "value": 757,
+          "rank": 6
+        },
+        {
+          "id": "5764",
+          "value": 761,
+          "rank": 7
+        },
+        {
+          "id": "5467",
+          "value": 773,
+          "rank": 8
+        },
+        {
+          "id": "5563",
+          "value": 894,
+          "rank": 9
+        },
+        {
+          "id": "5694",
+          "value": 1027,
+          "rank": 10
+        }
+      ],
+      "display": "339vehicles a day",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "tolledtraffic",
+      "title": "Busiest connections with tolls · 2024",
+      "pool": 47,
+      "rows": [
+        {
+          "id": "5938",
+          "value": 16474,
+          "rank": 1
+        },
+        {
+          "id": "5939",
+          "value": 14676,
+          "rank": 2
+        },
+        {
+          "id": "105182",
+          "value": 10942,
+          "rank": 3
+        },
+        {
+          "id": "5495",
+          "value": 10801,
+          "rank": 4
+        },
+        {
+          "id": "5576",
+          "value": 9828,
+          "rank": 5
+        },
+        {
+          "id": "5594",
+          "value": 9610,
+          "rank": 6
+        },
+        {
+          "id": "5676",
+          "value": 9103,
+          "rank": 7
+        },
+        {
+          "id": "5623",
+          "value": 9089,
+          "rank": 8
+        },
+        {
+          "id": "5593",
+          "value": 8963,
+          "rank": 9
+        },
+        {
+          "id": "5691",
+          "value": 8719,
+          "rank": 10
+        }
+      ],
+      "display": "16,474vehicles a day",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking",
+      "category": "quiettolled",
+      "title": "Quietest connections with tolls · 2024",
+      "pool": 47,
+      "rows": [
+        {
+          "id": "5753",
+          "value": 1200,
+          "rank": 1
+        },
+        {
+          "id": "99812",
+          "value": 2085,
+          "rank": 2
+        },
+        {
+          "id": "5776",
+          "value": 2686,
+          "rank": 3
+        },
+        {
+          "id": "5697",
+          "value": 2687,
+          "rank": 4
+        },
+        {
+          "id": "5698",
+          "value": 2849,
+          "rank": 5
+        },
+        {
+          "id": "99813",
+          "value": 2989,
+          "rank": 6
+        },
+        {
+          "id": "5524",
+          "value": 3304,
+          "rank": 7
+        },
+        {
+          "id": "5523",
+          "value": 3305,
+          "rank": 8
+        },
+        {
+          "id": "5557",
+          "value": 3316,
+          "rank": 9
+        },
+        {
+          "id": "5595",
+          "value": 3415,
+          "rank": 10
+        }
+      ],
+      "display": "1,200vehicles a day",
+      "invalidSVG": false
+    },
+    {
+      "name": "ranking explanation",
+      "lead": "These rankings compare the 359 ramp and connecting-road drawings included in Parkway Unfolded. Choose a stretch of road or filter for entrances and exits to change the comparison.",
+      "open": true
+    },
+    {
+      "name": "unfold starter",
+      "workspace": "atlas",
+      "collection": "featured",
+      "morph": 1,
+      "cards": 39
+    },
+    {
+      "name": "county",
+      "startersHidden": true
+    },
+    {
+      "name": "toll detail",
+      "text": "Vehicle / plan\nPassenger car · standard\nPassenger car · enrolled Senior plan\nPassenger car · enrolled Green Pass\nHeavy truck · Class 2\nHeavy truck · Class 3\nHeavy truck · Class 4\nHeavy truck · Class 5\nHeavy truck · Class 6\nBus · 2 axles (B2)\nBus · 3 axles (B3)\nCash · all times\n$2.40\nNJ E-ZPass · peak\n$2.25\nNJ E-ZPass · off-peak\n$2.25\n\nPeak: weekdays 7–9 a.m. and 4:30–6:30 p.m.; all day Saturday and Sunday. All other times are off-peak. Eastern time. Regular passenger-car fares stay the same throughout the day. Enrolled Senior and Green Pass users can receive off-peak discounts.\n\nWhere you pay\n\nSouthbound\n\nExpress E-ZPass bypass lanes are listed here by NJTA.\n\nLocation on the map\n\nThe marker shows the general toll-plaza area.\n\nNearby exits\n\nChoose an exit to explore the roads near this toll.\n\nExit 124\nMain Street / Sayreville\nExit 125\nChevalier Avenue & Main Street\nExit 123\nUS 9\nAbout these rates and locations"
+    },
+    {
+      "name": "traffic directory",
+      "rows": 359,
+      "sort": "Vehicles per day ↓"
+    },
+    {
+      "name": "traffic ascending",
+      "sort": "Vehicles per day ↑"
+    },
+    {
+      "name": "comparison",
+      "text": "Choose two drawings to compare their shapes and lengths."
+    },
+    {
+      "name": "responsive map",
+      "width": 390,
+      "docWidth": 390
+    },
+    {
+      "name": "responsive rankings",
+      "width": 390,
+      "docWidth": 390
+    },
+    {
+      "name": "responsive map",
+      "width": 768,
+      "docWidth": 768
+    },
+    {
+      "name": "responsive rankings",
+      "width": 768,
+      "docWidth": 768
+    },
+    {
+      "name": "optional sources",
+      "open": true
+    }
+  ],
+  "errors": []
+}

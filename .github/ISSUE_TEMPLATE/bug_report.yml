@@ -1,0 +1,18 @@
+name: Bug report
+description: Something in the page does not work as expected.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the exit, movement, view and steps to reproduce.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?

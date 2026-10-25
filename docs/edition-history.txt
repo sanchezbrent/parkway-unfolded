@@ -1,0 +1,95 @@
+PARKWAY UNFOLDED — COMPLETE PARKWAY ATLAS
+Updated October 23, 2026
+
+Open GSP_Parkway_County_Refined.html in a browser. It is one self-contained
+offline page: overview, interchanges, shape collection, comparison and Top 10s.
+No separate pages, external fonts, scripts or data downloads are required.
+
+CHANGES
+One integrated Traffic/Tolls toggle group in the navigation; toll badges on
+54 selected shapes associated with a listed charged movement; the prior toll
+anatomy illustration is removed. Top 10s has 15 categories: 11 shape and 4 traffic comparisons.
+County scope is shared across the atlas. Toll-price superlatives are removed.
+Traffic includes most/least positive AADT and busiest/quietest tolled movements.
+Equal values share a rank. Ten rows are shown even if a tie crosses the cutoff.
+Toll pricing remains available in the map layer and directory.
+
+PRICING
+The directory and location details show cash (all times), NJ E-ZPass peak and
+NJ E-ZPass off-peak together. Ten vehicle/plan profiles use official 2026 fares.
+Standard Class 1 passenger-car Parkway fares are the same at peak and off-peak.
+Eligible NJ E-ZPass truck/bus and enrolled Senior/Green Pass discounts differ.
+Peak is weekdays 7–9 a.m. and 4:30–6:30 p.m., plus all Saturday/Sunday (Eastern).
+Heavy trucks are prohibited north of interchange 105. Sayreville does not
+accept cash. Trailer and truck-volume plans are not applied. See the official
+source schedules and eligibility links in each location's source disclosure.
+
+SCOPE
+359 selected paths at 84 interchange groups; 12,877 original vertices remain.
+Geometry: stored NJDOT snapshot, August 21, 2025. Traffic: FHWA HPMS 2024 annual
+average vehicles/day; 277 paths have positive linked estimates, 82 unavailable.
+47 of the 54 paths associated with a tolled movement have usable traffic data.
+These are source-road estimates, not unique people, toll transactions or live
+congestion. Counts on shared roads are not added. The toll directory has 34 named tariff entries; these are not a count of
+physical booths or entire trips.
+Map toll markers are approximate references; booth/lane counts are unavailable.
+
+SIGNAGE — HELD
+Public NJTA inspection material describes sign structures and an AssetWise
+database, but the sources reviewed did not provide a complete, current,
+publicly usable sign-panel text/legend inventory for character-count rankings.
+No character-count feature is included. A verified sign-text export, with
+panel IDs, wording, date and coverage, would be needed to add it reliably.
+Research: NJTA bridge/sign inspection notifications; OPS P3937/P3938 sign
+structure inspection scope; current sign design standards. Checked Oct 22, 2026.
+
+FILES
+The complete HTML is the only file needed to use the atlas. JSON/CSV/GeoJSON
+files provide inspectable source data and matches. Pricing CSV has 340 profile
+and tariff combinations. Default Top 10 CSV has the 15 shape/traffic categories. Interactive
+ranking exports use the current stretch of road and movement; pricing exports
+use the directory’s selected vehicle profile.
+Source/rebuild_page.py rebuilds the same HTML from the included template and
+editable modules. Verification JSON files record the actual browser/data checks.
+
+Navigation refinement: icons on all five workspace buttons, gold Top 10s emphasis, and Stretch of road scope label. Project title: Parkway Unfolded.
+
+EDITORIAL EDITION — OCTOBER 22, 2026
+The public copy addresses everyday Parkway drivers. Technical terms have been
+replaced or explained in navigation, ramp details, rankings, traffic and tolls.
+Three optional starting points introduce the unfolding view, a 2.2-mile shared
+connection at Exit 129, and the looping shapes. Long source/verification notes
+are collapsed under About the data. Original records remain available there
+and inside each drawing’s data notes. Dates, partial drawings, missing traffic
+estimates and uncertain labels remain explicit.
+
+Straightest stretches displays percent extra distance over a straight line.
+Ranking CSVs export that percentage plus separate raw-value/raw-unit columns.
+All original coordinates, raw measurements, traffic counts and toll prices are
+retained. Editorial_Verification.json records this edition’s browser checks.
+Screenshots used for review are not part of the deliverable.
+
+VISUAL EDITION — OCTOBER 23, 2026
+White and charcoal surfaces replace the warm palette. All headings use Arial /
+Helvetica. Supporting text and controls are at least 14 px; inputs stay 16 px
+on small screens. Flat navigation and plain section rules replace nested frames,
+rounded cards, inset accents and decorative effects. Gold keeps Top 10s distinct.
+Green identifies the Parkway and road signs; neutral fills show selected controls.
+The System / Light / Dark control defaults to the system preference, follows
+system changes and remembers an explicit choice. Map surfaces and drawings use
+the same theme. The Top 10 hero drawing adapts to its actual display width so
+scale labels remain readable. Public editorial copy and all data are retained.
+Source/visual_styles.css and Source/visual_module.js own the visual refinement;
+rebuild_page.py includes them. Visual_Verification.json documents this edition.
+
+TITLE LETTERING — OCTOBER 23, 2026
+The P in Parkway is a looped ramp; the U in Unfolded is a hairpin curve.
+They use the amber/teal drawing colors, with theme-aware contrast. These are
+decorative letterforms; no road data or rankings changed. The full heading
+name remains accessible. Assets/Parkway_Unfolded_Wordmark.svg is a reusable
+vector title; the PNG is a white-background preview. Title_Verification.json
+records the focused checks. Source/rebuild_page.py reproduces the HTML.
+
+MASTHEAD LOGO
+The stylized Parkway Unfolded wordmark is now the sole logo at the top of
+the page. The preceding stacked GSP badge is removed.

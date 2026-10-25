@@ -1,0 +1,11 @@
+{
+  "records_checked": 359,
+  "vertices_checked": 12877,
+  "unique_source_fids": 358,
+  "all_xy_exact": true,
+  "complete_feature_count": 355,
+  "contiguous_excerpt_count": 4,
+  "all_sri_identifiers_match": true,
+  "source_zip_sha256": "3854f90dbeb9f0bba1535f7021340c19c8b373461b756f56b1895c8485d832b2",
+  "scope": "Exact source-coordinate comparison, not current-condition or sign verification."
+}

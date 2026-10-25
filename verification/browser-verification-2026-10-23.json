@@ -1,0 +1,280 @@
+{
+  "date": "2026-10-23",
+  "target": "unchanged handoff index.html, local preview",
+  "matrices": [
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "system",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "system",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "system",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "system",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "light",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "light",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "light",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "light",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "dark",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "dark",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "dark",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "phone",
+      "width": 390,
+      "theme": "dark",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "system",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "system",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "system",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "system",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "light",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "light",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "light",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "light",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "dark",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "dark",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "dark",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "tablet",
+      "width": 768,
+      "theme": "dark",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "system",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "system",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "system",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "system",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "view": "top10s",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "dark",
+      "view": "map",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "dark",
+      "view": "exits",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "dark",
+      "view": "shapes",
+      "horizontal_overflow": false
+    },
+    {
+      "size": "desktop",
+      "width": 1440,
+      "theme": "dark",
+      "view": "top10s",
+      "horizontal_overflow": false
+    }
+  ],
+  "checks": [
+    "phone: system theme reacts; manual theme remembered; comparison and toll dialogs work in all themes",
+    "tablet: system theme reacts; manual theme remembered; comparison and toll dialogs work in all themes",
+    "desktop: system theme reacts; manual theme remembered; comparison and toll dialogs work in all themes",
+    "All 10 county scopes plus full Parkway persist across all four views",
+    "Exit 129 search selects the matching interchange by keyboard",
+    "Traffic/toll toggle states synchronize and ramp unfolding completes",
+    "All 15 ranking categories render; gallery/shared scale and CSV/SVG downloads work",
+    "All 10 toll profiles render; ordinary-car peak/off-peak equality and Sayreville cash restriction retained; pricing CSV downloads"
+  ],
+  "downloads": [
+    "GSP_Top_10_quiettolled.csv",
+    "GSP_quiettolled_4_5753.svg",
+    "GSP_Tolls_2026_car.csv",
+    "GSP_full_parkway_overview.svg",
+    "GSP_Compare_165B_159_fit_scale.svg"
+  ],
+  "errors": [],
+  "passed": true,
+  "index_html_sha256": "a747fd9eedd92bbf004be081859cfea6f7f05adbaf2992006487febe26cb8b38",
+  "screenshots_directory": "verification/current-browser",
+  "browser": "Installed Google Chrome, isolated temporary headless profile; Playwright bundled runtime"
+}

@@ -1,0 +1,19 @@
+name: Suggest an improvement
+description: Propose a useful addition or a clearer way to explore the Parkway.
+body:
+  - type: textarea
+    id: reader_need
+    attributes:
+      label: What would this help someone do?
+      description: Describe the reader's question or difficulty, with an exit or view if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sources or examples
+      description: For a new data feature, include a reliable source and its coverage.

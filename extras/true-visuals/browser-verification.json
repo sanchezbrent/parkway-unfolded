@@ -1,0 +1,211 @@
+{
+  "errors": [],
+  "overlay_anchors": [
+    {
+      "anchor": "start",
+      "paths": 359,
+      "max_common_anchor_gap_px": 2.3437142008433856e-13,
+      "one_scale": true
+    },
+    {
+      "anchor": "end",
+      "paths": 359,
+      "max_common_anchor_gap_px": 1.6077746776921858e-13,
+      "one_scale": true
+    },
+    {
+      "anchor": "parkway",
+      "paths": 359,
+      "max_common_anchor_gap_px": 1.6077746776921858e-13,
+      "one_scale": true
+    },
+    {
+      "anchor": "mid",
+      "paths": 359,
+      "max_common_anchor_gap_px": 1.6077746776921858e-13,
+      "one_scale": true
+    }
+  ],
+  "unfold_poses": [
+    {
+      "time": 0,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    },
+    {
+      "time": 0.1,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    },
+    {
+      "time": 0.26,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    },
+    {
+      "time": 0.4,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 8.526512829121202e-14
+    },
+    {
+      "time": 0.5,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 8.526512829121202e-14
+    },
+    {
+      "time": 0.6,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 8.526512829121202e-14
+    },
+    {
+      "time": 0.76,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    },
+    {
+      "time": 0.9,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    },
+    {
+      "time": 1,
+      "paths": 359,
+      "maximum_endpoint_transform_error": 0
+    }
+  ],
+  "filters": [
+    {
+      "county": "bergen",
+      "mode": "overlay",
+      "paths": 34
+    },
+    {
+      "county": "bergen",
+      "mode": "unfold",
+      "paths": 34
+    },
+    {
+      "county": "passaic",
+      "mode": "overlay",
+      "paths": 16
+    },
+    {
+      "county": "passaic",
+      "mode": "unfold",
+      "paths": 16
+    },
+    {
+      "county": "essex",
+      "mode": "overlay",
+      "paths": 36
+    },
+    {
+      "county": "essex",
+      "mode": "unfold",
+      "paths": 36
+    },
+    {
+      "county": "union",
+      "mode": "overlay",
+      "paths": 36
+    },
+    {
+      "county": "union",
+      "mode": "unfold",
+      "paths": 36
+    },
+    {
+      "county": "middlesex",
+      "mode": "overlay",
+      "paths": 38
+    },
+    {
+      "county": "middlesex",
+      "mode": "unfold",
+      "paths": 38
+    },
+    {
+      "county": "monmouth",
+      "mode": "overlay",
+      "paths": 50
+    },
+    {
+      "county": "monmouth",
+      "mode": "unfold",
+      "paths": 50
+    },
+    {
+      "county": "ocean",
+      "mode": "overlay",
+      "paths": 70
+    },
+    {
+      "county": "ocean",
+      "mode": "unfold",
+      "paths": 70
+    },
+    {
+      "county": "burlington",
+      "mode": "overlay",
+      "paths": 6
+    },
+    {
+      "county": "burlington",
+      "mode": "unfold",
+      "paths": 6
+    },
+    {
+      "county": "atlantic",
+      "mode": "overlay",
+      "paths": 35
+    },
+    {
+      "county": "atlantic",
+      "mode": "unfold",
+      "paths": 35
+    },
+    {
+      "county": "cape-may",
+      "mode": "overlay",
+      "paths": 45
+    },
+    {
+      "county": "cape-may",
+      "mode": "unfold",
+      "paths": 45
+    }
+  ],
+  "responsive": [
+    {
+      "width": 320,
+      "body_width": 320,
+      "no_autoplay": true,
+      "controls_checked": true
+    },
+    {
+      "width": 390,
+      "body_width": 390,
+      "no_autoplay": true,
+      "controls_checked": true
+    },
+    {
+      "width": 768,
+      "body_width": 768,
+      "no_autoplay": true,
+      "controls_checked": true
+    },
+    {
+      "width": 1512,
+      "body_width": 1512,
+      "no_autoplay": true,
+      "controls_checked": true
+    }
+  ],
+  "fixed_polyline_geometry": {
+    "paths": 359,
+    "vertices": 12877,
+    "max_inversion_error_feet": 0,
+    "commands": "M and L only"
+  },
+  "inspectors_checked": 359
+}

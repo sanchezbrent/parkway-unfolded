@@ -1,0 +1,28 @@
+{
+  "project": "Parkway Unfolded",
+  "edition": "2026-10-23",
+  "canonical_html_sha256": "2639da8b80e2b1bd2270e7d86c8c88ab8c8f1260c0fc500e223c65f244d5ae71",
+  "embedded_data_sha256": {
+    "traffic-data": "d971d06c6792643a38a8e6e4ea51864818c38438bc717cb941bf613a5a334265",
+    "study-data": "0ecce575e8974c54d831114a427c0776c8d42bafa57fe3bda82d9b40063cda24",
+    "county-data": "347788ad0178d4608cff6aeb3542cb063e8b3872b57be811a2df479f920b7295",
+    "toll-data": "ecbff318d4d51df9e032a98743cc9adfd474a7ec1b094d40e6a9e6cc633449d7",
+    "superlatives-data": "c70cf8976e8a5add9f820376b5f7b4d0a63a95c8320171f51559f436bf9fc39c"
+  },
+  "data_files": {
+    "traffic-data": "traffic-data.json",
+    "study-data": "study-data.json",
+    "county-data": "county-data.json",
+    "toll-data": "GSP_Tolls_2026.json",
+    "superlatives-data": "GSP_Superlatives_Data.json"
+  },
+  "preservation": {
+    "selected_paths": 359,
+    "source_vertices": 12877,
+    "interchange_groups": 84,
+    "ranking_categories": 15,
+    "traffic_estimates_available": 277,
+    "tolled_paths": 54,
+    "tariff_entries": 34
+  }
+}

@@ -1,0 +1,28 @@
+PARKWAY UNFOLDED — EDITORIAL CONVENTIONS
+Audience: everyday New Jersey drivers.
+Use exits, ramps, connecting roads, drawings, curves and vehicles a day.
+Explain each comparison beside its number. Keep technical formulas and road
+identifiers in optional data notes. A drawing can show a whole ramp, a fork or
+part of a shared road; do not turn the drawing count into a count of physical
+ramps. Traffic counts are vehicles, not people or live congestion. Missing data
+stays unavailable. An estimated curve is not an engineering or safety finding.
+Curiosity should lead to a specific, supported view. Avoid claims about why a
+road was designed a certain way unless a reliable source supports them.
+
+Examples of revised language:
+Road-section AADT -> vehicles a day, on average.
+Selected source path -> ramp drawing or the road shown.
+Principal-axis bounding box -> a box around the shape.
+Charged movement -> where you pay.
+Source record and verification -> about this drawing: data and notes.
+
+Suggested upkeep for future editions:
+Retain a visible year for every layer. Review published toll schedules when
+rates change, traffic when a newer annual release is verified, and road shapes
+when a new mapping source has been reviewed. Preserve previous editions and
+source definitions. The page does not promise a live feed or automatic updates.
+
+Visual convention, October 23, 2026: flat white/charcoal surfaces, Arial/Helvetica,
+14 px minimum supporting UI type, neutral selected controls, meaningful road/data
+colors, no decorative card stripes, shadows, gradients, blur, or reveal effects.
+Top 10s keeps its trophy icon and gold emphasis. Preserve the actual road geometry.

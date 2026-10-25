@@ -1,0 +1,18 @@
+{
+  "selected_paths": 359,
+  "exported_pngs": 359,
+  "interchange_groups": 84,
+  "original_vertices": 12877,
+  "transparent_backgrounds": true,
+  "all_files_have_nonempty_unclipped_alpha": true,
+  "grid_north_up": true,
+  "smoothing": false,
+  "independently_stretched_axes": false,
+  "max_coordinate_reconstruction_error_ft": 2.9103830456733704e-11,
+  "source_data_sha256": "41ae118123fc5a47ebf206d17a144ba10ceb418e21d9116107c229d464845a1a",
+  "snapshot": "2025-08-21",
+  "types": {
+    "Exit": 181,
+    "Entrance": 178
+  }
+}
