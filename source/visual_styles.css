@@ -100,6 +100,7 @@ body.night .overview-county.is-active{fill:#314c42;stroke:var(--green)}
 .method-grid p{display:inline;font-size:16px;line-height:1.6}
 .method-title h2{font-size:28px}
 .project-about .method-grid{max-width:76ch;gap:24px}
+.project-about .method-grid article{display:block}
 .project-about .method-grid h3{display:block;margin:0 0 7px}
 .project-about .method-grid p{display:block;margin:0;font-size:16px;line-height:1.65}
 .project-about .method-grid .about-intro{font-size:18px;line-height:1.6}
