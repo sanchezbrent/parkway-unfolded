@@ -5,6 +5,7 @@ import csv,hashlib,json,re,subprocess,sys,tempfile
 from png_checks import inspect_shape_png
 
 ROOT=Path(__file__).resolve().parent.parent
+subprocess.run(['node',str(ROOT/'scripts/test_rendering.js')],check=True)
 subprocess.run([sys.executable,'-m','unittest','discover','-s',str(ROOT/'scripts'),'-p','test_png_checks.py'],check=True)
 sha=lambda b:hashlib.sha256(b).hexdigest()
 baseline=json.loads((ROOT/'verification/release-baseline.json').read_text())

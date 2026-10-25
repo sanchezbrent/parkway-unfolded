@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-25 — Safer data rendering
+
+- Escape data labels and SVG colors before inserting page markup in the atlas,
+  rankings and supporting tools; treat selection identifiers as numbers.
+- Download supporting SVG text with an inert file type, retaining its SVG bytes.
+- Add regression checks using hostile labels, colors and source identifiers.
+- Keep all five canonical datasets and all drawing coordinates unchanged.
+
 ## 2026-10-24 — GitHub project setup
 
 - Prepared the complete source, data, repaired media and documentation for GitHub.

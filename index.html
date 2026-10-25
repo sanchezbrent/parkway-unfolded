@@ -680,7 +680,7 @@ function setGroup(g,{fromTour=false,scrollNav=false,drawAtlas:refreshAtlas=true,
   $('groupSummary').textContent=[ex?`${ex} selected ${ex===1?'exit':'exits'}`:'',en?`${en} ${en===1?'entrance':'entrances'}`:''].filter(Boolean).join(' · ');
   $('groupBranchCount').textContent=`Choose a ramp · ${list.length}`;$('groupPosition').textContent=String(groupOrder.indexOf(g)+1);$('groupTotal').textContent=scopedGroups().length;$('groupPosition').textContent=String(scopedGroups().indexOf(g)+1);
   $('sidebarStatus').textContent='Road shapes from NJDOT’s map';$('mapTooltip').hidden=true;
-  $('branchList').innerHTML=list.map(r=>`<button class="branch-row" data-fid="${r.fid}" aria-pressed="${state.selected===r.fid}" style="--branch-color:${color(r,true)}"><span class="branch-dot" aria-hidden="true"></span><span><strong><b>${esc(r.number)}</b><span>${esc(movement(r))}</span></strong><small>${esc(publicRoad(r.road))}</small></span><span class="row-arrow" aria-hidden="true">↗</span></button>`).join('');
+  $('branchList').innerHTML=list.map(r=>`<button class="branch-row" data-fid="${Number(r.fid)}" aria-pressed="${state.selected===r.fid}" style="--branch-color:${color(r,true)}"><span class="branch-dot" aria-hidden="true"></span><span><strong><b>${esc(r.number)}</b><span>${esc(movement(r))}</span></strong><small>${esc(publicRoad(r.road))}</small></span><span class="row-arrow" aria-hidden="true">↗</span></button>`).join('');
   $('branchList').querySelectorAll('button').forEach(b=>{b.addEventListener('click',()=>selectBranch(Number(b.dataset.fid)));b.addEventListener('pointerenter',()=>{state.hover=Number(b.dataset.fid);updateHighlight();});b.addEventListener('pointerleave',()=>{state.hover=null;updateHighlight();});b.addEventListener('focus',()=>{state.hover=Number(b.dataset.fid);updateHighlight();});b.addEventListener('blur',()=>{state.hover=null;updateHighlight();});});
   renderExitNav();refreshSharedControls();drawLocator();setSelectionDisplay();drawMain();atlasDirty=true;
   if(refreshAtlas&&state.workspace==='atlas')drawAtlas();
@@ -855,7 +855,7 @@ function tick(timestamp) {
   requestAnimationFrame(tick);
 }
 function init() {
-  $('sectionSelect').innerHTML='<option value="">Full Parkway · 172–0</option>'+countySections.map(c=>`<option value="${c.id}">${c.label}</option>`).join('');$('sectionSelect').addEventListener('change',()=>setSharedSection($('sectionSelect').value));
+  $('sectionSelect').innerHTML='<option value="">Full Parkway · 172–0</option>'+countySections.map(c=>`<option value="${esc(c.id)}">${esc(c.label)}</option>`).join('');$('sectionSelect').addEventListener('change',()=>setSharedSection($('sectionSelect').value));
   document.querySelectorAll('[data-workspace]').forEach(b=>b.addEventListener('click',()=>switchWorkspace(b.dataset.workspace)));
   document.querySelectorAll('a[href="#explore"],a[href="#atlas"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();switchWorkspace(a.getAttribute('href')==='#atlas'?'atlas':'explore',{scroll:true});}));
   $('currentExitLink').addEventListener('click',()=>switchWorkspace('explore'));
@@ -1028,9 +1028,9 @@ function drawBoundaryBackdrop(svg,project,{selected=state.section,land=true}={})
 function renderExitNav(){
   const restoreFocus=$('exitNav').contains(document.activeElement)&&document.activeElement?.matches('[data-group]');
   const gs=scopedGroups();$('navDirection').innerHTML=`<b>${esc(state.section?countyById.get(state.section).name:'172–0')}</b>North → south`;
-  $('exitNav').innerHTML=gs.map(g=>`<button data-group="${g}" aria-pressed="${g===state.group}" title="${esc(groupNames[g])}" aria-label="${groupLabel(g)}, ${esc(groupNames[g])}">${g}</button>`).join('');
+  $('exitNav').innerHTML=gs.map(g=>`<button data-group="${esc(g)}" aria-pressed="${g===state.group}" title="${esc(groupNames[g])}" aria-label="${esc(groupLabel(g))}, ${esc(groupNames[g])}">${esc(g)}</button>`).join('');
   $('exitNav').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setGroup(b.dataset.group)));
-  $('exitJump').innerHTML=gs.map(g=>`<option value="${g}">${groupLabel(g)} · ${esc(groupNames[g])}</option>`).join('');$('exitJump').value=state.group;
+  $('exitJump').innerHTML=gs.map(g=>`<option value="${esc(g)}">${esc(groupLabel(g))} · ${esc(groupNames[g])}</option>`).join('');$('exitJump').value=state.group;
   centerExitNav(false);
   if(restoreFocus)$('exitNav').querySelector(`[data-group="${state.group}"]`)?.focus({preventScroll:true});
 }
@@ -1046,7 +1046,7 @@ function refreshSharedControls(){
   const counts={all:rs.length,featured:rs.filter(r=>FEATURED_FIDS.has(r.fid)).length,signature:rs.filter(r=>r.overview_order!==null).length};
   document.querySelectorAll('[data-collection]').forEach(b=>{const k=b.dataset.collection;b.textContent=k==='all'?`All ${counts[k]} drawings`:`${counts[k]} ${k==='featured'?'handpicked shapes':'more shapes'}`;b.title=`Available in ${areaLabel()} before the direction, interchange and ramp-type filters`;});
   $('currentExitLink').textContent=`${groupLabel(state.group)} · ${groupNames[state.group]}`;
-  $('filterGroup').innerHTML='<option value="">All exits on this stretch</option>'+gs.map(g=>`<option value="${g}">${g} · ${esc(groupNames[g])}</option>`).join('');
+  $('filterGroup').innerHTML='<option value="">All exits on this stretch</option>'+gs.map(g=>`<option value="${esc(g)}">${esc(g)} · ${esc(groupNames[g])}</option>`).join('');
   $('filterGroup').value=state.filters.group;$('filterDirection').value=state.filters.direction;$('filterKind').value=state.filters.kind;
   const index=gs.indexOf(state.group),canStep=state.workspace==='explore';
   document.querySelector('.corridor-steps').hidden=!canStep;
@@ -1098,14 +1098,14 @@ function drawOverview(){
  if(!c){
   for(const county of countySections){
    const b=document.createElement('button');b.className='county-directory-row';b.dataset.county=county.id;
-   b.innerHTML=`<span><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${county.record_count} ramp drawings</small></span><span class="directory-range">${county.groups[0]}–${county.groups.at(-1)} <span aria-hidden="true">→</span></span>`;
+   b.innerHTML=`<span><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${Number(county.record_count)} ramp drawings</small></span><span class="directory-range">${esc(county.groups[0])}–${esc(county.groups.at(-1))} <span aria-hidden="true">→</span></span>`;
    b.addEventListener('click',()=>setSharedSection(county.id));directory.append(b);
   }
  }else{
   for(const g of gs){
    const b=document.createElement('button');b.className='county-directory-row interchange-directory-row';b.dataset.overviewGroup=g;
    const names=groupCounties(g);
-   b.innerHTML=`<span class="directory-number">${g}</span><span><strong>${esc(groupNames[g])}</strong><small>${g==='12'?'Entrance-only access · ':''}${DATA.groups[g].fids.length} ramp drawings${names.length>1?' · '+names.join(' / '):''}</small></span><span aria-hidden="true">→</span>`;
+   b.innerHTML=`<span class="directory-number">${esc(g)}</span><span><strong>${esc(groupNames[g])}</strong><small>${g==='12'?'Entrance-only access · ':''}${DATA.groups[g].fids.length} ramp drawings${names.length>1?' · '+esc(names.join(' / ')):''}</small></span><span aria-hidden="true">→</span>`;
    b.addEventListener('click',()=>openOverviewGroup(g));directory.append(b);
   }
  }
@@ -1166,7 +1166,7 @@ function drawCollectionLocator(){
  for(const g of groupOrder){const q=p(DATA.groups[g].center);append(svg,'circle',{cx:q[0],cy:q[1],r:g===state.group?3.8:2,fill:g===state.group?'#ffbd40':seen.has(g)?'#d7e6dc':'#71887e',stroke:token('--stage'),'stroke-width':.8});}
  for(const [g,label] of [[groupOrder[0],groupOrder[0]],[groupOrder.at(-1),groupOrder.at(-1)]]){const q=p(DATA.groups[g].center);append(svg,'rect',{x:q[0]-19,y:g==='172'?q[1]-27:q[1]+7,width:38,height:20,rx:3,fill:'#064d3d',stroke:'#d7e5dc','stroke-width':1});append(svg,'text',{x:q[0],y:g==='172'?q[1]-13:q[1]+21,'text-anchor':'middle',fill:'#fffefa','font-family':'Arial','font-size':12},label);}
  append(svg,'text',{x:12,y:19,fill:'#e6ede5','font-size':11},'N ↑');
- const secs=$('collectionSections');secs.innerHTML=`<button data-section="" aria-pressed="${!state.section}">Full Parkway <span>172–0</span></button>`+countySections.map(c=>`<button data-section="${c.id}" aria-pressed="${state.section===c.id}">${esc(c.name)} <span>${c.groups.length}</span></button>`).join('');
+ const secs=$('collectionSections');secs.innerHTML=`<button data-section="" aria-pressed="${!state.section}">Full Parkway <span>172–0</span></button>`+countySections.map(c=>`<button data-section="${esc(c.id)}" aria-pressed="${state.section===c.id}">${esc(c.name)} <span>${c.groups.length}</span></button>`).join('');
  secs.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setSharedSection(b.dataset.section)));
 }
 function switchWorkspace(view,{scroll=false}={}){
@@ -1180,7 +1180,7 @@ function switchWorkspace(view,{scroll=false}={}){
  updateComparisonUI();document.dispatchEvent(new CustomEvent('gspworkspace',{detail:view}));if(scroll)$('workspace').scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
 }
 function comparisonOptionHTML(){
- return '<option value="">Choose a ramp…</option>'+countySections.map(c=>`<optgroup label="${c.label}">${records.filter(r=>COUNTY.by_group[r.group].primary===c.name).map(r=>`<option value="${r.fid}">${esc(r.number+' · '+movement(r)+' · '+publicRoad(r.road))}</option>`).join('')}</optgroup>`).join('');
+ return '<option value="">Choose a ramp…</option>'+countySections.map(c=>`<optgroup label="${esc(c.label)}">${records.filter(r=>COUNTY.by_group[r.group].primary===c.name).map(r=>`<option value="${Number(r.fid)}">${esc(r.number+' · '+movement(r)+' · '+publicRoad(r.road))}</option>`).join('')}</optgroup>`).join('');
 }
 function toggleTour(force){
  state.tour=typeof force==='boolean'?force:!state.tour;state.tourElapsed=0;
@@ -1298,7 +1298,7 @@ function trafficRenderTable(){ $('trafficSort').textContent='Vehicles per day '+
  const rs=trafficRows(),positive=rs.filter(r=>trafficById.get(r.fid)?.aadt>0).length;
  $('trafficDialogScope').textContent=`${areaLabel()} · 2024 daily averages`;
  $('trafficTableCount').textContent=`${rs.length} drawings · ${positive} with an estimate · ${rs.length-positive} unavailable`;
- $('trafficRows').innerHTML=rs.map(r=>{const m=trafficById.get(r.fid);return `<tr><td>${esc(r.number)}</td><td>${esc(publicRoad(r.road))}<small>${esc(r.direction)} ${esc(r.kind.toLowerCase())}</small></td><td>${m?.aadt>0?fmt(m.aadt):'Not available'}</td><td><button data-traffic-inspect="${r.fid}">See ramp</button></td></tr>`;}).join('');
+ $('trafficRows').innerHTML=rs.map(r=>{const m=trafficById.get(r.fid);return `<tr><td>${esc(r.number)}</td><td>${esc(publicRoad(r.road))}<small>${esc(r.direction)} ${esc(r.kind.toLowerCase())}</small></td><td>${m?.aadt>0?fmt(m.aadt):'Not available'}</td><td><button data-traffic-inspect="${Number(r.fid)}">See ramp</button></td></tr>`;}).join('');
  $('trafficRows').querySelectorAll('[data-traffic-inspect]').forEach(b=>b.addEventListener('click',()=>{const id=Number(b.dataset.trafficInspect),ids=trafficRows().map(r=>r.fid);$('trafficDialog').close();openDetail(id,ids);}));
  $('trafficAadtHeading').setAttribute('aria-sort',trafficDescending?'descending':'ascending');
  $('trafficSort').textContent=`Vehicles per day ${trafficDescending?'↓':'↑'}`;
@@ -1563,8 +1563,8 @@ function shapeSVG(item,w,h,{hero=false,forcedScale=null,animate=false,exportMode
  if(hero&&['indirect','straightest'].includes(c.id)){
   const xy=item.records[0].source_xy;content+=`<path d="${pathD([xy[0],xy[xy.length-1]],project)}" fill="none" stroke="${muted}" stroke-width="1.5" stroke-dasharray="5 5"/>`;
  }
- content+=item.records.map(r=>`<path class="trace${animate?' playing':''}" pathLength="1" d="${pathD(r.source_xy,project)}" fill="none" stroke="${accent}" stroke-linecap="round" stroke-linejoin="round" stroke-width="${hero?(item.records.length>1?3.5:5):2.6}" vector-effect="non-scaling-stroke"/>`).join('');
- if(hero&&item.records.length===1){const xy=item.records[0].source_xy;for(const p of [xy[0],xy[xy.length-1]]){const q=project(p);content+=`<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="${exportMode?'white':'var(--stage)'}" stroke="${accent}" stroke-width="1.8"/>`;}}
+ content+=item.records.map(r=>`<path class="trace${animate?' playing':''}" pathLength="1" d="${pathD(r.source_xy,project)}" fill="none" stroke="${esc(accent)}" stroke-linecap="round" stroke-linejoin="round" stroke-width="${hero?(item.records.length>1?3.5:5):2.6}" vector-effect="non-scaling-stroke"/>`).join('');
+ if(hero&&item.records.length===1){const xy=item.records[0].source_xy;for(const p of [xy[0],xy[xy.length-1]]){const q=project(p);content+=`<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="${exportMode?'white':'var(--stage)'}" stroke="${esc(accent)}" stroke-width="1.8"/>`;}}
  if(hero){
   const maxFt=78/scale,ten=10**Math.floor(Math.log10(maxFt)),unit=[1,2,5,10].map(x=>x*ten).filter(x=>x<=maxFt).pop()||ten/2;
   const px=unit*scale;
@@ -1577,11 +1577,11 @@ function histogram(item){
  const vals=population.map(x=>comparisonValue(x,c)),max=Math.max(...vals,1e-9),bins=Math.min(26,Math.max(10,population.length)),counts=Array(bins).fill(0);
  vals.forEach(v=>counts[Math.min(bins-1,Math.floor(v/max*bins))]++);
  const high=Math.max(...counts,1),w=340,plotW=326,step=plotW/bins,accent=state.theme==='dark'?c.night:c.color;
- const bars=counts.map((n,i)=>`<rect x="${7+i*step}" y="${47-n/high*38}" width="${Math.max(1,step-1)}" height="${n/high*38}" fill="${accent}" opacity=".38"/>`).join('');
+ const bars=counts.map((n,i)=>`<rect x="${7+i*step}" y="${47-n/high*38}" width="${Math.max(1,step-1)}" height="${n/high*38}" fill="${esc(accent)}" opacity=".38"/>`).join('');
  const x=7+comparisonValue(item,c)/max*plotW;
  const endLabel=c.unit==='usd'?'$'+number(max,2):c.id==='straightest'?number(max,3)+'%':(c.unit==='ratio'?number(max,1)+'×':c.unit==='acres'?number(max,1):number(max));
  $('distributionTitle').textContent=c.id==='straightest'?`Extra distance among these ${population.length} drawings (%)`:`Across ${number(population.length)} eligible ${c.grain==='group'?'exit areas':'drawings'}`;
- $('distributionChart').innerHTML=`<svg viewBox="0 0 ${w} 75" role="img" aria-label="${esc(`Distribution of ${population.length} drawings compared. The selected value is ${compact(item.value,c)}. Domain begins at zero and ends at ${endLabel}.`)}"><path d="M7 49H333" stroke="var(--line)"/>${bars}<path d="M${x} 3V52" stroke="${accent}" stroke-width="2.3"/><circle cx="${x}" cy="3" r="3" fill="${accent}"/><g fill="var(--muted)" font-family="Arial,Helvetica,sans-serif" font-size="14"><text x="7" y="70">${c.unit==='usd'?'$0':'0'}${c.id==='straightest'?'%':''}</text><text x="333" y="70" text-anchor="end">${esc(endLabel)}</text></g></svg>`;
+ $('distributionChart').innerHTML=`<svg viewBox="0 0 ${w} 75" role="img" aria-label="${esc(`Distribution of ${population.length} drawings compared. The selected value is ${compact(item.value,c)}. Domain begins at zero and ends at ${endLabel}.`)}"><path d="M7 49H333" stroke="var(--line)"/>${bars}<path d="M${x} 3V52" stroke="${esc(accent)}" stroke-width="2.3"/><circle cx="${x}" cy="3" r="3" fill="${esc(accent)}"/><g fill="var(--muted)" font-family="Arial,Helvetica,sans-serif" font-size="14"><text x="7" y="70">${c.unit==='usd'?'$0':'0'}${c.id==='straightest'?'%':''}</text><text x="333" y="70" text-anchor="end">${esc(endLabel)}</text></g></svg>`;
 }
 function renderHero(animate=false){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected)||currentTop[0];if(!item)return;state.selected=item.id;
@@ -1619,7 +1619,7 @@ function renderRankings(){
   const shape=`<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span>`;
   const info=`<span class="row-info"><span class="row-number">${esc(r.number)}</span><span class="row-road">${esc(r.road)}</span><span class="row-meta">${esc(r.movement)}<br>${esc(r.counties.join(' / '))}</span></span>`;
   const metric=`<span class="row-metric"><span class="row-value">${value}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="display:block;width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span>`;
-  return `<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. Exit ${r.number}, ${r.movement}, ${r.road}, ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${r.rank}</span>${shape}${info}${metric}</button>`;
+  return `<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. Exit ${r.number}, ${r.movement}, ${r.road}, ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${Number(r.rank)}</span>${shape}${info}${metric}</button>`;
  }).join('');
  $('rankings').querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{
   state.selected=b.dataset.id;renderHero(true);renderRankings();syncHash();
@@ -1650,16 +1650,16 @@ function csvCell(s){return '"'+String(s??'').replace(/"/g,'""')+'"';}
 function exportCSV(){
  const c=getCategory(),unitNames={ft:'ft',radius:'ft',deg:'degrees',density:'degrees / 100 ft',ratio:'ratio',preciseRatio:'ratio',acres:'acres',paths:'road drawings',aadt:'vehicles/day'},rows=[['category','rank','interchange','selection_id','movement','road','counties','metric','value','unit','eligible_count','county_filter','movement_filter','geometry_snapshot','traffic_year']];
  currentTop.forEach(r=>rows.push([c.title,r.rank,r.number,r.id,r.movement,r.road,r.counties.join(' / '),c.metric,r.value,unitNames[c.unit],currentPool.length,state.county,state.kind,DATA.geometry_snapshot,c.id==='traffic'?2024:'']));
- save(`GSP_Top_10_${c.id}_${state.county.replace(/\s/g,'_')}.csv`,rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');
+ save(`GSP_Top_10_${esc(c.id)}_${state.county.replace(/\s/g,'_')}.csv`,rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');
 }
 function sourceDetailsPath(){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected);if(!item)return;
  $('detailTitle').textContent=`Exit ${item.number}`;
- $('detailContent').innerHTML=`<p>${esc(item.road)} · ${esc(item.movement)}</p><dl><dt>County</dt><dd>${esc(item.counties.join(' / '))}</dd><dt>Category</dt><dd>${esc(c.title)}</dd><dt>Rank</dt><dd>${item.rank} of ${currentPool.length} drawings compared</dd><dt>Value</dt><dd>${esc(pretty(item.value,c))}</dd></dl><p>${esc(c.definition)}</p><p>${esc(c.note)}</p>`;
+ $('detailContent').innerHTML=`<p>${esc(item.road)} · ${esc(item.movement)}</p><dl><dt>County</dt><dd>${esc(item.counties.join(' / '))}</dd><dt>Category</dt><dd>${esc(c.title)}</dd><dt>Rank</dt><dd>${Number(item.rank)} of ${currentPool.length} drawings compared</dd><dt>Value</dt><dd>${esc(pretty(item.value,c))}</dd></dl><p>${esc(c.definition)}</p><p>${esc(c.note)}</p>`;
  $('detailDialog').showModal();
 }
 
-$('categories').innerHTML=DATA.categories.map(c=>`<button class="category-button" data-category="${c.id}" style="--category-light:${c.color};--category-day-soft:${c.soft};--category-night:${c.night}" aria-current="false"><span class="category-symbol">${icon(c.icon)}</span><span>${esc(c.short)}</span></button>`).join('');
+$('categories').innerHTML=DATA.categories.map(c=>`<button class="category-button" data-category="${esc(c.id)}" style="--category-light:${esc(c.color)};--category-day-soft:${esc(c.soft)};--category-night:${esc(c.night)}" aria-current="false"><span class="category-symbol">${icon(c.icon)}</span><span>${esc(c.short)}</span></button>`).join('');
 $('categories').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{state.category=b.dataset.category;render(true);}));
 const counties=[...new Set(DATA.records.flatMap(r=>r.counties))].sort();
 $('countyFilter').innerHTML+=counties.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
@@ -1676,7 +1676,7 @@ $('scaleSelect').addEventListener('change',e=>{state.scale=e.target.value;render
 
 $('replayBtn').addEventListener('click',()=>renderHero(true));
 $('csvBtn').addEventListener('click',exportCSV);
-$('svgBtn').addEventListener('click',()=>{const item=currentTop.find(x=>x.id===state.selected),c=getCategory();if(!item)return;const svg=shapeSVG(item,1000,760,{hero:true,exportMode:true}).replace('<title>',`<metadata>${esc(JSON.stringify({category:c.title,value:item.value,unit:c.unit,selection_ids:item.records.map(r=>r.fid),geometry_snapshot:DATA.geometry_snapshot,method:item.plaza?'Original corridor centerlines; approximate tariff reference marker; north up.':'Original vertices, translation and uniform scaling only; north up.'}))}</metadata><title>`);save(`GSP_${c.id}_${item.number}_${item.id}.svg`,svg,'image/svg+xml;charset=utf-8');});
+$('svgBtn').addEventListener('click',()=>{const item=currentTop.find(x=>x.id===state.selected),c=getCategory();if(!item)return;const svg=shapeSVG(item,1000,760,{hero:true,exportMode:true}).replace('<title>',`<metadata>${esc(JSON.stringify({category:c.title,value:item.value,unit:c.unit,selection_ids:item.records.map(r=>r.fid),geometry_snapshot:DATA.geometry_snapshot,method:item.plaza?'Original corridor centerlines; approximate tariff reference marker; north up.':'Original vertices, translation and uniform scaling only; north up.'}))}</metadata><title>`);save(`GSP_${esc(c.id)}_${item.number}_${item.id}.svg`,svg,'image/svg+xml;charset=utf-8');});
 $('detailBtn').addEventListener('click',sourceDetails);$('methodBtn').addEventListener('click',methods);
 document.querySelectorAll('[data-super-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.superClose).close()));
 for(const id of ['detailDialog','methodDialog'])$(id).addEventListener('click',e=>{const d=$(id),r=d.getBoundingClientRect();if(e.target===d&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))d.close();});
@@ -1708,7 +1708,7 @@ function plazaSVG(item,w,h,exportMode=false){
  const p=item.plaza,c=getCategory(),accent=exportMode?c.color:state.theme==='dark'?c.night:c.color;
  const bounds=ATLAS.corridor_bounds,{project}=fitProjection(bounds,w,h,15),dot=project(p.anchor_xy);
  const lines=ATLAS.corridor_mainlines.map(l=>`<path d="${pathD(l.xy,project)}" fill="none" stroke="${state.theme==='dark'?'#94aaa5':'#a0b1a7'}" stroke-width="1.4" stroke-linejoin="round"/>`).join('');
- return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(p.name)} on the Parkway. Approximate reference location, north up."><title>${esc(p.name)} · schedule milepost ${p.milepost}</title>${lines}<circle cx="${dot[0]}" cy="${dot[1]}" r="${h>250?8:5}" fill="${accent}" stroke="${exportMode?'white':'var(--stage)'}" stroke-width="2"/><text x="${w-14}" y="22" text-anchor="end" fill="${accent}" font-family="Arial" font-size="14">N ↑</text></svg>`;
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(p.name)} on the Parkway. Approximate reference location, north up."><title>${esc(p.name)} · schedule milepost ${Number(p.milepost)}</title>${lines}<circle cx="${dot[0]}" cy="${dot[1]}" r="${h>250?8:5}" fill="${esc(accent)}" stroke="${exportMode?'white':'var(--stage)'}" stroke-width="2"/><text x="${w-14}" y="22" text-anchor="end" fill="${esc(accent)}" font-family="Arial" font-size="14">N ↑</text></svg>`;
 }
 function renderHero(animate=false){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected)||currentTop[0];if(!item)return;state.selected=item.id;
@@ -1744,7 +1744,7 @@ function renderRankings(){
  $('rankings').className=isGallery?'rank-gallery':'rank-list';$('listHeader').hidden=isGallery;
  $('listView').setAttribute('aria-pressed',String(!isGallery));$('galleryView').setAttribute('aria-pressed',String(isGallery));
  $('barLabel').textContent=c.family==='tolls'?'2026 USD':c.id==='straightest'?'Extra distance (%)':c.family==='traffic'?'2024 vehicles/day':c.unit;
- $('rankings').innerHTML=currentTop.map(r=>`<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. ${r.plaza?r.road:'Interchange '+r.number+', '+r.movement+', '+r.road}. ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${r.rank}</span>${badge(r)}<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span><span class="row-info"><span class="row-number">${esc(r.plaza?r.road:r.number)}</span>${!r.plaza?`<span class="row-road">${esc(r.road)}</span>`:''}<span class="row-meta">${esc(r.movement)}${r.plaza?' · MP '+r.number:''}<br>${esc(r.counties.join(' / '))}</span></span><span class="row-metric"><span class="row-value">${esc(compact(r.value,c))}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span></button>`).join('');
+ $('rankings').innerHTML=currentTop.map(r=>`<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. ${r.plaza?r.road:'Interchange '+r.number+', '+r.movement+', '+r.road}. ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${Number(r.rank)}</span>${badge(r)}<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span><span class="row-info"><span class="row-number">${esc(r.plaza?r.road:r.number)}</span>${!r.plaza?`<span class="row-road">${esc(r.road)}</span>`:''}<span class="row-meta">${esc(r.movement)}${r.plaza?' · MP '+esc(r.number):''}<br>${esc(r.counties.join(' / '))}</span></span><span class="row-metric"><span class="row-value">${esc(compact(r.value,c))}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span></button>`).join('');
  $('rankings').querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{state.selected=b.dataset.id;renderHero(true);renderRankings();syncHash();$('rankings').querySelector(`[data-id="${state.selected}"]`)?.focus({preventScroll:true});$('announcer').textContent='Selected result updated.';}));
  $('topCount').textContent=`${currentTop.length} results`;
  $('rankingFootnote').textContent=(c.grain==='plaza'?'Markers show approximate locations on the same north-up corridor. ':state.scale==='same'?'The drawings use the same scale, so you can compare their sizes. ':'Each drawing is enlarged to fit. ')+(!isGallery?'Bars start at zero. ':'')+`Matching values share a rank. ${currentTop.length} results shown.`;
