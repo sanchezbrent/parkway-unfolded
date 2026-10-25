@@ -122,26 +122,43 @@ function applyTime(){if(state.mode!=='unfold'||!scene)return;let sum=0;for(const
 }
 function updateDraw(){if(state.mode!=='overlay')return;for(const n of nodes){n.shape.setAttribute('stroke-dasharray',state.drawProgress<1?'1 1':'none');n.shape.setAttribute('stroke-dashoffset',1-ease(state.drawProgress));if(n.pointLayer)n.pointLayer.setAttribute('opacity',state.drawProgress<1?0:1)}}
 function render(){list=filtered();if(state.selected!==null&&!list.some(r=>r.fid===state.selected))state.selected=null;state.hover=null;$('count').textContent=`${fmt(list.length)} paths · ${new Set(list.map(r=>r.group)).size} access groups`;$('visual').hidden=!list.length;$('empty').hidden=!!list.length;
- $('inspect').innerHTML='<option value="">All paths</option>'+list.map(r=>`<option value="${r.fid}">${esc(r.number)} · ${r.direction==='Northbound'?'NB':'SB'} ${r.kind.toLowerCase()} · ${esc(r.road)}</option>`).join('');$('inspect').value=state.selected===null?'':state.selected;
+ $('inspect').innerHTML='<option value="">All paths</option>'+list.map(r=>`<option value="${Number(r.fid)}">${esc(r.number)} · ${r.direction==='Northbound'?'NB':'SB'} ${esc(r.kind.toLowerCase())} · ${esc(r.road)}</option>`).join('');$('inspect').value=state.selected===null?'':state.selected;
  if(state.mode==='overlay')drawOverlay();else drawUnfold();updatePlay();
 }
 function choose(fid){state.selected=fid===null||state.selected===fid?null:fid;state.hover=null;$('inspect').value=state.selected===null?'':state.selected;highlight()}
 function highlight(){const active=state.hover??state.selected;for(const n of nodes){const is=n.r.fid===active,has=active!==null;n.g.setAttribute('opacity',state.mode==='overlay'?(has?(is?1:.065):state.opacity):(has?(is?1:.2):1));n.shape.setAttribute('stroke-width',is?3.8:state.mode==='overlay'?1.65:nodes.length>150?1.65:2.35);if(n.caption)n.caption.style.visibility=has&&!is&&state.mode==='unfold'?'hidden':'visible'}
- if(active===null){$('selection').textContent='Hover a line or choose a path to see its exit, connection and source identifier.';return}const r=recordMap.get(active),pr=properties.get(active);$('selection').innerHTML=`<strong>${esc(r.group==='12'?'Access':'Exit')} ${esc(r.number)} · ${r.direction} ${r.kind.toLowerCase()}</strong>${esc(r.road)} · ${fmt(pr.total)} ft<small>${esc(r.sri)} · source FID ${r.source_fid??r.fid} · ${r.source_xy.length} source points${state.mode==='overlay'?' · anchor index '+anchor(r):''}</small><small>${esc(r.note)}</small>`;
+ if(active===null){$('selection').textContent='Hover a line or choose a path to see its exit, connection and source identifier.';return}const r=recordMap.get(active),pr=properties.get(active);$('selection').innerHTML=`<strong>${esc(r.group==='12'?'Access':'Exit')} ${esc(r.number)} · ${esc(r.direction)} ${esc(r.kind.toLowerCase())}</strong>${esc(r.road)} · ${fmt(pr.total)} ft<small>${esc(r.sri)} · source FID ${Number(r.source_fid??r.fid)} · ${r.source_xy.length} source points${state.mode==='overlay'?' · anchor index '+Number(anchor(r)):''}</small><small>${esc(r.note)}</small>`;
 }
 function setMode(m){state.mode=m;state.playing=false;state.drawing=false;state.drawProgress=1;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));$('overlayControls').hidden=m!=='overlay';$('unfoldControls').hidden=m!=='unfold';$('scrubWrap').hidden=m!=='unfold';render()}
 function updatePlay(){$('play').textContent=state.playing?'Pause':state.time>0&&state.time<1?'Resume sequence':'Play full sequence';$('play').setAttribute('aria-pressed',state.playing);$('draw').textContent=state.drawing?'Stop drawing':'Draw the paths'}
 function play(){if(state.playing)state.playing=false;else{if(state.time>=1)state.time=0;state.playing=true}updatePlay()}
 function reset(){['collection','county','kind','direction'].forEach(id=>{state[id]=id==='collection'?'all':'';$(id).value=state[id]});state.selected=null;state.time=0;state.playing=false;render()}
 function notify(s){clearTimeout(toastTimer);$('toast').textContent=s;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3400)}
-function save(name,content,type){const u=URL.createObjectURL(content instanceof Blob?content:new Blob([content],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);notify(`Saved ${name}`)}
+function save(name,content,type){const u=URL.createObjectURL(content instanceof Blob?content:new Blob([content],{type:'application/octet-stream'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);notify(`Saved ${name}`)}
+function downloadJSON(value){return JSON.stringify(value,null,2).replace(/[<>&]/g,c=>({'<':'\\u003c','>':'\\u003e','&':'\\u0026'}[c]));}
+function serializeDrawing(node){
+ // Exports contain drawing primitives and escaped text, never active SVG content.
+ const tags=new Map(['svg','g','path','rect','line','circle','text','title','desc','metadata','defs','clipPath'].map(t=>[t,t]));
+ const attributes=['xmlns','viewBox','width','height','x','y','x1','y1','x2','y2','cx','cy','r','rx','d','fill','fill-rule','stroke','stroke-width','stroke-opacity','stroke-linecap','stroke-linejoin','stroke-dasharray','stroke-dashoffset','opacity','transform','pathLength','vector-effect','font-family','font-size','font-weight','letter-spacing','text-anchor','paint-order','id','class','role','aria-label','aria-hidden','clip-path','data-layer','data-selection-id','data-source-fid','data-selection-fid','data-source-sri','data-source-vertices','data-vertex-index'];
+ function serialize(n){
+  if(n.nodeType===3)return esc(n.textContent);
+  if(n.nodeType!==1||n.namespaceURI!==NS)return '';
+  const tag=tags.get(n.localName);if(!tag)return '';
+  let attrs='';for(const name of attributes){if(!n.hasAttribute(name))continue;const value=n.getAttribute(name);
+   if(['fill','stroke','clip-path'].includes(name)&&/url\s*\(/i.test(value)&&!/^url\(#[\w-]+\)$/.test(value))continue;
+   attrs+=` ${name}="${esc(value)}"`;
+  }
+  return `<${tag}${attrs}>${Array.from(n.childNodes,serialize).join('')}</${tag}>`;
+ }
+ return serialize(node);
+}
 function svgString(){const clone=$('visual').cloneNode(true);clone.removeAttribute('hidden');clone.setAttribute('xmlns',NS);clone.setAttribute('width',W);clone.setAttribute('height',H);clone.style.width='';clone.style.minWidth='';clone.querySelectorAll('.hit').forEach(n=>n.remove());
- const md=el('metadata',{},JSON.stringify({source:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,crs:DATA.crs,mode:state.mode,scope:scope(),anchor:state.mode==='overlay'?state.anchor:null,scale:state.mode==='overlay'?state.scale:'common geographic to individual tiles',sequence_position:state.time,records:list,display_transforms:nodes.map(n=>({selection_id:n.r.fid,local_center:[n.prop.cx,n.prop.cy],source_y_inverted_for_screen:true,anchor_index:n.anchorIndex??null,...n.transform}))}));clone.insertBefore(md,clone.firstChild);return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(clone)}
+ const md=el('metadata',{},JSON.stringify({source:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,crs:DATA.crs,mode:state.mode,scope:scope(),anchor:state.mode==='overlay'?state.anchor:null,scale:state.mode==='overlay'?state.scale:'common geographic to individual tiles',sequence_position:state.time,records:list,display_transforms:nodes.map(n=>({selection_id:n.r.fid,local_center:[n.prop.cx,n.prop.cy],source_y_inverted_for_screen:true,anchor_index:n.anchorIndex??null,...n.transform}))}));clone.insertBefore(md,clone.firstChild);return '<?xml version="1.0" encoding="UTF-8"?>\n'+serializeDrawing(clone)}
 async function pngBlob(){const str=svgString(),u=URL.createObjectURL(new Blob([str],{type:'image/svg+xml'}));try{const im=new Image();await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject;im.src=u});const c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(im,0,0);return await new Promise(res=>c.toBlob(res,'image/png'))}finally{URL.revokeObjectURL(u)}}
 function filename(){return `GSP_${state.mode==='overlay'?'Overlay_'+state.anchor+'_'+state.scale:'Unfold_'+Math.round(state.time*100)}_${list.length}_paths`}
 function tick(now){const dt=last?Math.min(.1,(now-last)/1000):0;last=now;if(!document.hidden&&!forceCapture){if(state.playing&&state.mode==='unfold'){state.time+=dt*state.speed/24;if(state.time>=1){if(state.loop)state.time%=1;else{state.time=1;state.playing=false;updatePlay()}}applyTime()}if(state.drawing&&state.mode==='overlay'){state.drawProgress=clamp(state.drawProgress+dt/4);updateDraw();if(state.drawProgress===1){state.drawing=false;updatePlay()}}}requestAnimationFrame(tick)}
 function init(){
- $('county').innerHTML='<option value="">Full Parkway</option>'+COUNTY.counties.map(c=>`<option value="${c.id}">${c.name} County</option>`).join('');
+ $('county').innerHTML='<option value="">Full Parkway</option>'+COUNTY.counties.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} County</option>`).join('');
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
  ['collection','county','kind','direction','anchor','scale','motion'].forEach(id=>$(id).addEventListener('change',()=>{state[id]=$(id).value;state.playing=false;state.drawing=false;state.drawProgress=1;if(!['anchor','scale'].includes(id))state.time=0;render()}));
  $('points').addEventListener('change',()=>{state.points=$('points').checked;render()});$('opacity').addEventListener('input',()=>{state.opacity=Number($('opacity').value)/100;highlight()});
@@ -154,7 +171,7 @@ function init(){
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('visualShell').classList.remove('expanded');state.playing=false;state.drawing=false;state.drawProgress=1;updatePlay();updateDraw()}if(e.code==='Space'&&e.target===document.body&&state.mode==='unfold'){e.preventDefault();play()}});
  $('saveSVG').addEventListener('click',()=>save(filename()+'.svg',svgString(),'image/svg+xml'));
  $('savePNG').addEventListener('click',async()=>{try{save(filename()+'.png',await pngBlob(),'image/png')}catch(e){console.error(e);notify('Image export failed. The SVG export remains available.')}});
- $('saveData').addEventListener('click',()=>save('GSP_original_paths.json',JSON.stringify({crs:DATA.crs,provenance:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,records:DATA.records},null,2),'application/json'));
+ $('saveData').addEventListener('click',()=>save('GSP_original_paths.json',downloadJSON({crs:DATA.crs,provenance:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,records:DATA.records}),'application/json'));
  reduced.addEventListener('change',e=>{if(e.matches){state.playing=false;state.drawing=false;state.drawProgress=1;updateDraw();updatePlay()}});
  const qs=new URLSearchParams(location.search);if(qs.has('capture')){document.body.classList.add('capture');forceCapture=true}
  for(const k of ['collection','county','kind','direction','anchor','scale','motion'])if(qs.has(k)){state[k]=qs.get(k);if($(k))$(k).value=state[k]}

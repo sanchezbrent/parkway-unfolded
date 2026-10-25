@@ -99,8 +99,8 @@ function shapeSVG(item,w,h,{hero=false,forcedScale=null,animate=false,exportMode
  if(hero&&['indirect','straightest'].includes(c.id)){
   const xy=item.records[0].source_xy;content+=`<path d="${pathD([xy[0],xy[xy.length-1]],project)}" fill="none" stroke="${muted}" stroke-width="1.5" stroke-dasharray="5 5"/>`;
  }
- content+=item.records.map(r=>`<path class="trace${animate?' playing':''}" pathLength="1" d="${pathD(r.source_xy,project)}" fill="none" stroke="${accent}" stroke-linecap="round" stroke-linejoin="round" stroke-width="${hero?(item.records.length>1?3.5:5):2.6}" vector-effect="non-scaling-stroke"/>`).join('');
- if(hero&&item.records.length===1){const xy=item.records[0].source_xy;for(const p of [xy[0],xy[xy.length-1]]){const q=project(p);content+=`<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="${exportMode?'white':'var(--stage)'}" stroke="${accent}" stroke-width="1.8"/>`;}}
+ content+=item.records.map(r=>`<path class="trace${animate?' playing':''}" pathLength="1" d="${pathD(r.source_xy,project)}" fill="none" stroke="${esc(accent)}" stroke-linecap="round" stroke-linejoin="round" stroke-width="${hero?(item.records.length>1?3.5:5):2.6}" vector-effect="non-scaling-stroke"/>`).join('');
+ if(hero&&item.records.length===1){const xy=item.records[0].source_xy;for(const p of [xy[0],xy[xy.length-1]]){const q=project(p);content+=`<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="${exportMode?'white':'var(--stage)'}" stroke="${esc(accent)}" stroke-width="1.8"/>`;}}
  if(hero){
   const maxFt=78/scale,ten=10**Math.floor(Math.log10(maxFt)),unit=[1,2,5,10].map(x=>x*ten).filter(x=>x<=maxFt).pop()||ten/2;
   const px=unit*scale;
@@ -113,11 +113,11 @@ function histogram(item){
  const vals=population.map(x=>comparisonValue(x,c)),max=Math.max(...vals,1e-9),bins=Math.min(26,Math.max(10,population.length)),counts=Array(bins).fill(0);
  vals.forEach(v=>counts[Math.min(bins-1,Math.floor(v/max*bins))]++);
  const high=Math.max(...counts,1),w=340,plotW=326,step=plotW/bins,accent=state.theme==='dark'?c.night:c.color;
- const bars=counts.map((n,i)=>`<rect x="${7+i*step}" y="${47-n/high*38}" width="${Math.max(1,step-1)}" height="${n/high*38}" fill="${accent}" opacity=".38"/>`).join('');
+ const bars=counts.map((n,i)=>`<rect x="${7+i*step}" y="${47-n/high*38}" width="${Math.max(1,step-1)}" height="${n/high*38}" fill="${esc(accent)}" opacity=".38"/>`).join('');
  const x=7+comparisonValue(item,c)/max*plotW;
  const endLabel=c.unit==='usd'?'$'+number(max,2):c.id==='straightest'?number(max,3)+'%':(c.unit==='ratio'?number(max,1)+'×':c.unit==='acres'?number(max,1):number(max));
  $('distributionTitle').textContent=c.id==='straightest'?`Extra distance among these ${population.length} drawings (%)`:`Across ${number(population.length)} eligible ${c.grain==='group'?'exit areas':'drawings'}`;
- $('distributionChart').innerHTML=`<svg viewBox="0 0 ${w} 75" role="img" aria-label="${esc(`Distribution of ${population.length} drawings compared. The selected value is ${compact(item.value,c)}. Domain begins at zero and ends at ${endLabel}.`)}"><path d="M7 49H333" stroke="var(--line)"/>${bars}<path d="M${x} 3V52" stroke="${accent}" stroke-width="2.3"/><circle cx="${x}" cy="3" r="3" fill="${accent}"/><g fill="var(--muted)" font-family="Arial,Helvetica,sans-serif" font-size="14"><text x="7" y="70">${c.unit==='usd'?'$0':'0'}${c.id==='straightest'?'%':''}</text><text x="333" y="70" text-anchor="end">${esc(endLabel)}</text></g></svg>`;
+ $('distributionChart').innerHTML=`<svg viewBox="0 0 ${w} 75" role="img" aria-label="${esc(`Distribution of ${population.length} drawings compared. The selected value is ${compact(item.value,c)}. Domain begins at zero and ends at ${endLabel}.`)}"><path d="M7 49H333" stroke="var(--line)"/>${bars}<path d="M${x} 3V52" stroke="${esc(accent)}" stroke-width="2.3"/><circle cx="${x}" cy="3" r="3" fill="${esc(accent)}"/><g fill="var(--muted)" font-family="Arial,Helvetica,sans-serif" font-size="14"><text x="7" y="70">${c.unit==='usd'?'$0':'0'}${c.id==='straightest'?'%':''}</text><text x="333" y="70" text-anchor="end">${esc(endLabel)}</text></g></svg>`;
 }
 function renderHero(animate=false){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected)||currentTop[0];if(!item)return;state.selected=item.id;
@@ -155,7 +155,7 @@ function renderRankings(){
   const shape=`<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span>`;
   const info=`<span class="row-info"><span class="row-number">${esc(r.number)}</span><span class="row-road">${esc(r.road)}</span><span class="row-meta">${esc(r.movement)}<br>${esc(r.counties.join(' / '))}</span></span>`;
   const metric=`<span class="row-metric"><span class="row-value">${value}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="display:block;width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span>`;
-  return `<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. Exit ${r.number}, ${r.movement}, ${r.road}, ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${r.rank}</span>${shape}${info}${metric}</button>`;
+  return `<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. Exit ${r.number}, ${r.movement}, ${r.road}, ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${Number(r.rank)}</span>${shape}${info}${metric}</button>`;
  }).join('');
  $('rankings').querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{
   state.selected=b.dataset.id;renderHero(true);renderRankings();syncHash();
@@ -186,16 +186,16 @@ function csvCell(s){return '"'+String(s??'').replace(/"/g,'""')+'"';}
 function exportCSV(){
  const c=getCategory(),unitNames={ft:'ft',radius:'ft',deg:'degrees',density:'degrees / 100 ft',ratio:'ratio',preciseRatio:'ratio',acres:'acres',paths:'road drawings',aadt:'vehicles/day'},rows=[['category','rank','interchange','selection_id','movement','road','counties','metric','value','unit','eligible_count','county_filter','movement_filter','geometry_snapshot','traffic_year']];
  currentTop.forEach(r=>rows.push([c.title,r.rank,r.number,r.id,r.movement,r.road,r.counties.join(' / '),c.metric,r.value,unitNames[c.unit],currentPool.length,state.county,state.kind,DATA.geometry_snapshot,c.id==='traffic'?2024:'']));
- save(`GSP_Top_10_${c.id}_${state.county.replace(/\s/g,'_')}.csv`,rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');
+ save(`GSP_Top_10_${esc(c.id)}_${state.county.replace(/\s/g,'_')}.csv`,rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');
 }
 function sourceDetailsPath(){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected);if(!item)return;
  $('detailTitle').textContent=`Exit ${item.number}`;
- $('detailContent').innerHTML=`<p>${esc(item.road)} · ${esc(item.movement)}</p><dl><dt>County</dt><dd>${esc(item.counties.join(' / '))}</dd><dt>Category</dt><dd>${esc(c.title)}</dd><dt>Rank</dt><dd>${item.rank} of ${currentPool.length} drawings compared</dd><dt>Value</dt><dd>${esc(pretty(item.value,c))}</dd></dl><p>${esc(c.definition)}</p><p>${esc(c.note)}</p>`;
+ $('detailContent').innerHTML=`<p>${esc(item.road)} · ${esc(item.movement)}</p><dl><dt>County</dt><dd>${esc(item.counties.join(' / '))}</dd><dt>Category</dt><dd>${esc(c.title)}</dd><dt>Rank</dt><dd>${Number(item.rank)} of ${currentPool.length} drawings compared</dd><dt>Value</dt><dd>${esc(pretty(item.value,c))}</dd></dl><p>${esc(c.definition)}</p><p>${esc(c.note)}</p>`;
  $('detailDialog').showModal();
 }
 
-$('categories').innerHTML=DATA.categories.map(c=>`<button class="category-button" data-category="${c.id}" style="--category-light:${c.color};--category-day-soft:${c.soft};--category-night:${c.night}" aria-current="false"><span class="category-symbol">${icon(c.icon)}</span><span>${esc(c.short)}</span></button>`).join('');
+$('categories').innerHTML=DATA.categories.map(c=>`<button class="category-button" data-category="${esc(c.id)}" style="--category-light:${esc(c.color)};--category-day-soft:${esc(c.soft)};--category-night:${esc(c.night)}" aria-current="false"><span class="category-symbol">${icon(c.icon)}</span><span>${esc(c.short)}</span></button>`).join('');
 $('categories').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{state.category=b.dataset.category;render(true);}));
 const counties=[...new Set(DATA.records.flatMap(r=>r.counties))].sort();
 $('countyFilter').innerHTML+=counties.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
@@ -212,7 +212,7 @@ $('scaleSelect').addEventListener('change',e=>{state.scale=e.target.value;render
 
 $('replayBtn').addEventListener('click',()=>renderHero(true));
 $('csvBtn').addEventListener('click',exportCSV);
-$('svgBtn').addEventListener('click',()=>{const item=currentTop.find(x=>x.id===state.selected),c=getCategory();if(!item)return;const svg=shapeSVG(item,1000,760,{hero:true,exportMode:true}).replace('<title>',`<metadata>${esc(JSON.stringify({category:c.title,value:item.value,unit:c.unit,selection_ids:item.records.map(r=>r.fid),geometry_snapshot:DATA.geometry_snapshot,method:item.plaza?'Original corridor centerlines; approximate tariff reference marker; north up.':'Original vertices, translation and uniform scaling only; north up.'}))}</metadata><title>`);save(`GSP_${c.id}_${item.number}_${item.id}.svg`,svg,'image/svg+xml;charset=utf-8');});
+$('svgBtn').addEventListener('click',()=>{const item=currentTop.find(x=>x.id===state.selected),c=getCategory();if(!item)return;const svg=shapeSVG(item,1000,760,{hero:true,exportMode:true}).replace('<title>',`<metadata>${esc(JSON.stringify({category:c.title,value:item.value,unit:c.unit,selection_ids:item.records.map(r=>r.fid),geometry_snapshot:DATA.geometry_snapshot,method:item.plaza?'Original corridor centerlines; approximate tariff reference marker; north up.':'Original vertices, translation and uniform scaling only; north up.'}))}</metadata><title>`);save(`GSP_${esc(c.id)}_${item.number}_${item.id}.svg`,svg,'image/svg+xml;charset=utf-8');});
 $('detailBtn').addEventListener('click',sourceDetails);$('methodBtn').addEventListener('click',methods);
 document.querySelectorAll('[data-super-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.superClose).close()));
 for(const id of ['detailDialog','methodDialog'])$(id).addEventListener('click',e=>{const d=$(id),r=d.getBoundingClientRect();if(e.target===d&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))d.close();});
@@ -244,7 +244,7 @@ function plazaSVG(item,w,h,exportMode=false){
  const p=item.plaza,c=getCategory(),accent=exportMode?c.color:state.theme==='dark'?c.night:c.color;
  const bounds=ATLAS.corridor_bounds,{project}=fitProjection(bounds,w,h,15),dot=project(p.anchor_xy);
  const lines=ATLAS.corridor_mainlines.map(l=>`<path d="${pathD(l.xy,project)}" fill="none" stroke="${state.theme==='dark'?'#94aaa5':'#a0b1a7'}" stroke-width="1.4" stroke-linejoin="round"/>`).join('');
- return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(p.name)} on the Parkway. Approximate reference location, north up."><title>${esc(p.name)} · schedule milepost ${p.milepost}</title>${lines}<circle cx="${dot[0]}" cy="${dot[1]}" r="${h>250?8:5}" fill="${accent}" stroke="${exportMode?'white':'var(--stage)'}" stroke-width="2"/><text x="${w-14}" y="22" text-anchor="end" fill="${accent}" font-family="Arial" font-size="14">N ↑</text></svg>`;
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(p.name)} on the Parkway. Approximate reference location, north up."><title>${esc(p.name)} · schedule milepost ${Number(p.milepost)}</title>${lines}<circle cx="${dot[0]}" cy="${dot[1]}" r="${h>250?8:5}" fill="${esc(accent)}" stroke="${exportMode?'white':'var(--stage)'}" stroke-width="2"/><text x="${w-14}" y="22" text-anchor="end" fill="${esc(accent)}" font-family="Arial" font-size="14">N ↑</text></svg>`;
 }
 function renderHero(animate=false){
  const c=getCategory(),item=currentTop.find(x=>x.id===state.selected)||currentTop[0];if(!item)return;state.selected=item.id;
@@ -280,7 +280,7 @@ function renderRankings(){
  $('rankings').className=isGallery?'rank-gallery':'rank-list';$('listHeader').hidden=isGallery;
  $('listView').setAttribute('aria-pressed',String(!isGallery));$('galleryView').setAttribute('aria-pressed',String(isGallery));
  $('barLabel').textContent=c.family==='tolls'?'2026 USD':c.id==='straightest'?'Extra distance (%)':c.family==='traffic'?'2024 vehicles/day':c.unit;
- $('rankings').innerHTML=currentTop.map(r=>`<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. ${r.plaza?r.road:'Interchange '+r.number+', '+r.movement+', '+r.road}. ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${r.rank}</span>${badge(r)}<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span><span class="row-info"><span class="row-number">${esc(r.plaza?r.road:r.number)}</span>${!r.plaza?`<span class="row-road">${esc(r.road)}</span>`:''}<span class="row-meta">${esc(r.movement)}${r.plaza?' · MP '+r.number:''}<br>${esc(r.counties.join(' / '))}</span></span><span class="row-metric"><span class="row-value">${esc(compact(r.value,c))}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span></button>`).join('');
+ $('rankings').innerHTML=currentTop.map(r=>`<button class="${isGallery?'gallery-item':'rank-row'}" data-id="${esc(r.id)}" aria-pressed="${state.selected===r.id}" aria-label="${esc(`Rank ${r.rank}. ${r.plaza?r.road:'Interchange '+r.number+', '+r.movement+', '+r.road}. ${pretty(r.value,c)}. Inspect this result.`)}"><span class="rank-number">${Number(r.rank)}</span>${badge(r)}<span class="row-shape">${shapeSVG(r,w,h,{forcedScale:common})}</span><span class="row-info"><span class="row-number">${esc(r.plaza?r.road:r.number)}</span>${!r.plaza?`<span class="row-road">${esc(r.road)}</span>`:''}<span class="row-meta">${esc(r.movement)}${r.plaza?' · MP '+esc(r.number):''}<br>${esc(r.counties.join(' / '))}</span></span><span class="row-metric"><span class="row-value">${esc(compact(r.value,c))}</span>${!isGallery?`<span class="bar-track"><span class="bar-fill" style="width:${comparisonValue(r,c)/maxBar*100}%"></span></span>`:''}</span></button>`).join('');
  $('rankings').querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{state.selected=b.dataset.id;renderHero(true);renderRankings();syncHash();$('rankings').querySelector(`[data-id="${state.selected}"]`)?.focus({preventScroll:true});$('announcer').textContent='Selected result updated.';}));
  $('topCount').textContent=`${currentTop.length} results`;
  $('rankingFootnote').textContent=(c.grain==='plaza'?'Markers show approximate locations on the same north-up corridor. ':state.scale==='same'?'The drawings use the same scale, so you can compare their sizes. ':'Each drawing is enlarged to fit. ')+(!isGallery?'Bars start at zero. ':'')+`Matching values share a rank. ${currentTop.length} results shown.`;
