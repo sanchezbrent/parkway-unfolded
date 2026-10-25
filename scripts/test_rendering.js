@@ -84,14 +84,19 @@ const exported=vm.runInContext('serializeDrawing(node)',drawing);
 safe(exported);
 assert(!exported.includes('onload='));
 assert(!exported.includes('href='));
-assert(!exported.includes('https://example.com'));
+assert(!exported.includes('fill='));
 assert(exported.includes('d="M0 0L10 10"'));
+vm.runInContext(between(app, 'function downloadJSON(', 'function serializeDrawing('), drawing);
+drawing.value={label:attack,coordinates:[[1,2],[3,4]],quote:'"'};
+const jsonDownload=vm.runInContext('downloadJSON(value)',drawing);
+assert.deepEqual(JSON.parse(jsonDownload),drawing.value);
+assert(!/[<>&]/.test(jsonDownload));
 let downloadBlob;
 const download = vm.createContext({
   Blob, URL:{createObjectURL(blob) {downloadBlob=blob;return 'blob:test';},revokeObjectURL(){}},
   document:{createElement:()=>({click(){}})},setTimeout(){},notify(){},
 });
-vm.runInContext(between(app, 'function save(', 'function serializeDrawing('), download);
+vm.runInContext(between(app, 'function save(', 'function downloadJSON('), download);
 vm.runInContext(`save('test.svg','<svg/>','image/svg+xml')`, download);
 assert.equal(downloadBlob.type,'application/octet-stream');
 console.log('Passed: hostile comparison labels, SVG colors, plaza metadata, analytics labels and inert supporting downloads.');

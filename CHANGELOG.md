@@ -6,6 +6,7 @@
   rankings and supporting tools; treat selection identifiers as numbers.
 - Serialize supporting SVG downloads from allowed drawing elements and attributes,
   escaping all text and attribute values; use an inert download file type.
+- Escape markup characters in JSON downloads using lossless JSON Unicode escapes.
 - Add regression checks using hostile labels, colors and source identifiers.
 - Keep all five canonical datasets and all drawing coordinates unchanged.
 

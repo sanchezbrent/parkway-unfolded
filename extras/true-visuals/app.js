@@ -121,6 +121,7 @@ function play(){if(state.playing)state.playing=false;else{if(state.time>=1)state
 function reset(){['collection','county','kind','direction'].forEach(id=>{state[id]=id==='collection'?'all':'';$(id).value=state[id]});state.selected=null;state.time=0;state.playing=false;render()}
 function notify(s){clearTimeout(toastTimer);$('toast').textContent=s;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3400)}
 function save(name,content,type){const u=URL.createObjectURL(content instanceof Blob?content:new Blob([content],{type:'application/octet-stream'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);notify(`Saved ${name}`)}
+function downloadJSON(value){return JSON.stringify(value,null,2).replace(/[<>&]/g,c=>({'<':'\\u003c','>':'\\u003e','&':'\\u0026'}[c]));}
 function serializeDrawing(node){
  // Exports contain drawing primitives and escaped text, never active SVG content.
  const tags=new Map(['svg','g','path','rect','line','circle','text','title','desc','metadata','defs','clipPath'].map(t=>[t,t]));
@@ -156,7 +157,7 @@ function init(){
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('visualShell').classList.remove('expanded');state.playing=false;state.drawing=false;state.drawProgress=1;updatePlay();updateDraw()}if(e.code==='Space'&&e.target===document.body&&state.mode==='unfold'){e.preventDefault();play()}});
  $('saveSVG').addEventListener('click',()=>save(filename()+'.svg',svgString(),'image/svg+xml'));
  $('savePNG').addEventListener('click',async()=>{try{save(filename()+'.png',await pngBlob(),'image/png')}catch(e){console.error(e);notify('Image export failed. The SVG export remains available.')}});
- $('saveData').addEventListener('click',()=>save('GSP_original_paths.json',JSON.stringify({crs:DATA.crs,provenance:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,records:DATA.records},null,2),'application/json'));
+ $('saveData').addEventListener('click',()=>save('GSP_original_paths.json',downloadJSON({crs:DATA.crs,provenance:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,records:DATA.records}),'application/json'));
  reduced.addEventListener('change',e=>{if(e.matches){state.playing=false;state.drawing=false;state.drawProgress=1;updateDraw();updatePlay()}});
  const qs=new URLSearchParams(location.search);if(qs.has('capture')){document.body.classList.add('capture');forceCapture=true}
  for(const k of ['collection','county','kind','direction','anchor','scale','motion'])if(qs.has(k)){state[k]=qs.get(k);if($(k))$(k).value=state[k]}
