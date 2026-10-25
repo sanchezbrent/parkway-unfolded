@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-25 — A clearer introduction
+
+- Replace the road-name subheader with a concise explanation of the project.
+- Explain Parkway Unfolded, what its road drawings represent and where to begin.
+- Give the About section readable paragraphs and a short guide to the main views.
+- Add an About link in the footer and clearer opening instructions on the map.
+
 ## 2026-10-25 — Safer data rendering
 
 - Escape data labels and SVG colors before inserting page markup in the atlas,
