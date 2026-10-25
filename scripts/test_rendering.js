@@ -68,12 +68,30 @@ safe(elements.get('fingerprintHost').innerHTML);
 
 const app = read('extras/true-visuals/app.js');
 assert(read('extras/true-visuals/GSP_True_Visuals.html').includes(app), 'Supporting app build is stale');
+const drawing = vm.createContext({});
+vm.runInContext(escapeSource + "\nconst NS='http://www.w3.org/2000/svg';", drawing);
+vm.runInContext(between(app, 'function serializeDrawing(', 'function svgString('), drawing);
+function element(tag, attrs={}, children=[]) {
+  return {nodeType:1,namespaceURI:'http://www.w3.org/2000/svg',localName:tag,
+    hasAttribute:name=>Object.hasOwn(attrs,name),getAttribute:name=>attrs[name],childNodes:children};
+}
+drawing.node=element('svg',{viewBox:'0 0 10 10',onload:'alert(1)'},[
+  element('metadata',{},[{nodeType:3,textContent:attack}]),
+  element('script',{},[{nodeType:3,textContent:'alert(1)'}]),
+  element('path',{d:'M0 0L10 10',stroke:attack,href:'javascript:alert(1)',fill:'url(https://example.com/payload)'})
+]);
+const exported=vm.runInContext('serializeDrawing(node)',drawing);
+safe(exported);
+assert(!exported.includes('onload='));
+assert(!exported.includes('href='));
+assert(!exported.includes('https://example.com'));
+assert(exported.includes('d="M0 0L10 10"'));
 let downloadBlob;
 const download = vm.createContext({
   Blob, URL:{createObjectURL(blob) {downloadBlob=blob;return 'blob:test';},revokeObjectURL(){}},
   document:{createElement:()=>({click(){}})},setTimeout(){},notify(){},
 });
-vm.runInContext(between(app, 'function save(', 'function svgString('), download);
+vm.runInContext(between(app, 'function save(', 'function serializeDrawing('), download);
 vm.runInContext(`save('test.svg','<svg/>','image/svg+xml')`, download);
 assert.equal(downloadBlob.type,'application/octet-stream');
 console.log('Passed: hostile comparison labels, SVG colors, plaza metadata, analytics labels and inert supporting downloads.');

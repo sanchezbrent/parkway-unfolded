@@ -135,8 +135,24 @@ function play(){if(state.playing)state.playing=false;else{if(state.time>=1)state
 function reset(){['collection','county','kind','direction'].forEach(id=>{state[id]=id==='collection'?'all':'';$(id).value=state[id]});state.selected=null;state.time=0;state.playing=false;render()}
 function notify(s){clearTimeout(toastTimer);$('toast').textContent=s;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3400)}
 function save(name,content,type){const u=URL.createObjectURL(content instanceof Blob?content:new Blob([content],{type:'application/octet-stream'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);notify(`Saved ${name}`)}
+function serializeDrawing(node){
+ // Exports contain drawing primitives and escaped text, never active SVG content.
+ const tags=new Map(['svg','g','path','rect','line','circle','text','title','desc','metadata','defs','clipPath'].map(t=>[t,t]));
+ const attributes=['xmlns','viewBox','width','height','x','y','x1','y1','x2','y2','cx','cy','r','rx','d','fill','fill-rule','stroke','stroke-width','stroke-opacity','stroke-linecap','stroke-linejoin','stroke-dasharray','stroke-dashoffset','opacity','transform','pathLength','vector-effect','font-family','font-size','font-weight','letter-spacing','text-anchor','paint-order','id','class','role','aria-label','aria-hidden','clip-path','data-layer','data-selection-id','data-source-fid','data-selection-fid','data-source-sri','data-source-vertices','data-vertex-index'];
+ function serialize(n){
+  if(n.nodeType===3)return esc(n.textContent);
+  if(n.nodeType!==1||n.namespaceURI!==NS)return '';
+  const tag=tags.get(n.localName);if(!tag)return '';
+  let attrs='';for(const name of attributes){if(!n.hasAttribute(name))continue;const value=n.getAttribute(name);
+   if(['fill','stroke','clip-path'].includes(name)&&/url\s*\(/i.test(value)&&!/^url\(#[\w-]+\)$/.test(value))continue;
+   attrs+=` ${name}="${esc(value)}"`;
+  }
+  return `<${tag}${attrs}>${Array.from(n.childNodes,serialize).join('')}</${tag}>`;
+ }
+ return serialize(node);
+}
 function svgString(){const clone=$('visual').cloneNode(true);clone.removeAttribute('hidden');clone.setAttribute('xmlns',NS);clone.setAttribute('width',W);clone.setAttribute('height',H);clone.style.width='';clone.style.minWidth='';clone.querySelectorAll('.hit').forEach(n=>n.remove());
- const md=el('metadata',{},JSON.stringify({source:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,crs:DATA.crs,mode:state.mode,scope:scope(),anchor:state.mode==='overlay'?state.anchor:null,scale:state.mode==='overlay'?state.scale:'common geographic to individual tiles',sequence_position:state.time,records:list,display_transforms:nodes.map(n=>({selection_id:n.r.fid,local_center:[n.prop.cx,n.prop.cy],source_y_inverted_for_screen:true,anchor_index:n.anchorIndex??null,...n.transform}))}));clone.insertBefore(md,clone.firstChild);return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(clone)}
+ const md=el('metadata',{},JSON.stringify({source:DATA.visual_provenance,source_zip_sha256:DATA.provenance.official_source_zip_sha256,crs:DATA.crs,mode:state.mode,scope:scope(),anchor:state.mode==='overlay'?state.anchor:null,scale:state.mode==='overlay'?state.scale:'common geographic to individual tiles',sequence_position:state.time,records:list,display_transforms:nodes.map(n=>({selection_id:n.r.fid,local_center:[n.prop.cx,n.prop.cy],source_y_inverted_for_screen:true,anchor_index:n.anchorIndex??null,...n.transform}))}));clone.insertBefore(md,clone.firstChild);return '<?xml version="1.0" encoding="UTF-8"?>\n'+serializeDrawing(clone)}
 async function pngBlob(){const str=svgString(),u=URL.createObjectURL(new Blob([str],{type:'image/svg+xml'}));try{const im=new Image();await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject;im.src=u});const c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(im,0,0);return await new Promise(res=>c.toBlob(res,'image/png'))}finally{URL.revokeObjectURL(u)}}
 function filename(){return `GSP_${state.mode==='overlay'?'Overlay_'+state.anchor+'_'+state.scale:'Unfold_'+Math.round(state.time*100)}_${list.length}_paths`}
 function tick(now){const dt=last?Math.min(.1,(now-last)/1000):0;last=now;if(!document.hidden&&!forceCapture){if(state.playing&&state.mode==='unfold'){state.time+=dt*state.speed/24;if(state.time>=1){if(state.loop)state.time%=1;else{state.time=1;state.playing=false;updatePlay()}}applyTime()}if(state.drawing&&state.mode==='overlay'){state.drawProgress=clamp(state.drawProgress+dt/4);updateDraw();if(state.drawProgress===1){state.drawing=false;updatePlay()}}}requestAnimationFrame(tick)}
