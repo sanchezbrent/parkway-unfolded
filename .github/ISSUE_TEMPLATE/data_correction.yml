@@ -1,0 +1,17 @@
+name: Data correction
+description: Report an apparent issue with a shape, name, count or toll.
+body:
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should change?
+      description: Include the exit, movement, layer and relevant date.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Supporting source
+      description: Link the official record or explain the evidence and its date.
+    validations:
+      required: true

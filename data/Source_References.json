@@ -1,0 +1,112 @@
+{
+  "checked_on": "2026-10-22",
+  "tolls": {
+    "cash_schedule_url": "https://www.njta.gov/document/2026-parkway-cash-rates/",
+    "nj_ezpass_schedule_url": "https://www.njta.gov/document/2026-parkway-nj-e-zpass-rates/",
+    "authority_about_url": "https://www.njta.gov/about/",
+    "camera_reference_url": "https://www.njta.gov/travel-resources/toll-calculator/",
+    "study_geometry_snapshot": "2025-08-21",
+    "ramp_crosswalk_method": "Explicit plaza-name/road/movement crosswalk to study groups; selected record direction and kind must match the published tariff code.",
+    "position_policy": "All 34 markers are approximate browsing references. Ramp markers identify study interchanges. Barrier markers use authority camera mileposts; no individual booths are positioned.",
+    "rates_policy": "Standard Class 1 Garden State Parkway fares do not change by time of day. Enrolled Senior and Green Pass plans have off-peak discounts. Discounts shown require NJ E-ZPass. Senior/Green Pass require enrollment and eligibility. Heavy trucks registered at least 10,000 lb with 6 tires or 3+ axles are prohibited north of interchange 105. Truck volume discounts and trailer plans are not applied.",
+    "counts_policy": "11 mainline and 23 ramp tariff entries; grouped schedule entries are not a count of individual physical plazas, booths or lanes. No booth inventory is claimed.",
+    "cash_sha256": "bcac55781a6cad1d9e6d52dd49cfeba22a2568d7b68a1cbf7876216013171c40",
+    "nj_ezpass_sha256": "ca1bf8896b816c5fe07c350c84c1bfb4ae6d401759f474c02f5da4fbb77594c4",
+    "supporting_crosswalk_sources": [
+      "https://nj.gov/transportation/about/press/2014/010214tg.shtm",
+      "https://www.njta.gov/travel-resources/toll-calculator/",
+      "https://www.state.nj.us/transportation/refdata/sldiag/pdf/00000444__-.pdf"
+    ],
+    "offpeak_schedule_url": "https://www.njta.gov/document/2026-parkway-truck-off-peak-nj-e-zpass/",
+    "special_schedule_url": "https://www.njta.gov/document/2026-parkway-green-senior-class-1-trailer/",
+    "discount_policy_url": "https://www.njta.gov/toll-discounts/"
+  },
+  "pricing": {
+    "default_profile": "car",
+    "default_basis": "peak",
+    "profiles": [
+      {
+        "id": "car",
+        "label": "Passenger car · standard",
+        "key": "class_1",
+        "family": "standard"
+      },
+      {
+        "id": "senior",
+        "label": "Passenger car · enrolled Senior plan",
+        "key": "class_1",
+        "family": "senior"
+      },
+      {
+        "id": "green",
+        "label": "Passenger car · enrolled Green Pass",
+        "key": "class_1",
+        "family": "green"
+      },
+      {
+        "id": "truck2",
+        "label": "Heavy truck · Class 2",
+        "key": "class_2",
+        "family": "truck"
+      },
+      {
+        "id": "truck3",
+        "label": "Heavy truck · Class 3",
+        "key": "class_3",
+        "family": "truck"
+      },
+      {
+        "id": "truck4",
+        "label": "Heavy truck · Class 4",
+        "key": "class_4",
+        "family": "truck"
+      },
+      {
+        "id": "truck5",
+        "label": "Heavy truck · Class 5",
+        "key": "class_5",
+        "family": "truck"
+      },
+      {
+        "id": "truck6",
+        "label": "Heavy truck · Class 6",
+        "key": "class_6",
+        "family": "truck"
+      },
+      {
+        "id": "bus2",
+        "label": "Bus · 2 axles (B2)",
+        "key": "bus_b2",
+        "family": "bus"
+      },
+      {
+        "id": "bus3",
+        "label": "Bus · 3 axles (B3)",
+        "key": "bus_b3",
+        "family": "bus"
+      }
+    ],
+    "periods": "Peak: weekdays 7–9 a.m. and 4:30–6:30 p.m.; all day Saturday and Sunday. All other times are off-peak. Eastern time.",
+    "standard_car_rule": "Regular passenger-car fares stay the same throughout the day. Enrolled Senior and Green Pass users can receive off-peak discounts.",
+    "eligibility": "The discounts shown require an eligible NJ E-ZPass account. Senior and Green Pass users must be enrolled. Heavy trucks cannot travel north of Exit 105. Trailer and truck-volume discounts are not included here.",
+    "source_method": "Authoritative cash/NJ E-ZPass tables retained from prior release; off-peak and Senior/Green Pass tables inspected in full via public PDF reader on 2026-10-22; numeric cells cross-checked by plaza name and published milepost."
+  },
+  "geometry_and_traffic": {
+    "geometry_url": "https://www.nj.gov/transportation/refdata/gis/zip/NJ_Roads_shp.zip",
+    "geometry_sha256": "3854f90dbeb9f0bba1535f7021340c19c8b373461b756f56b1895c8485d832b2",
+    "traffic_url": "https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/HPMS_National_2024_FullJoin_FHWA/FeatureServer",
+    "traffic_item_id": "d903901ec1604ab5a37932b6dbbc2f3a",
+    "traffic_retrieved_at": "2026-10-17T00:44:47.897044+00:00",
+    "analytics_file": "GSP_Parkway_Analytics.html",
+    "analytics_sha256": "47030959d37b80668eac33892c0d59d29845c65f157d5e6d8c02a38f8f42fd72",
+    "county_note": "Generalized county boundaries are suitable for browsing. Near-boundary affiliations are approximate; groups associated with more than one county are available in both and deduplicated in the full collection."
+  },
+  "signage_research": {
+    "decision": "Defer character-count feature: no complete current public sign-text dataset verified.",
+    "references": [
+      "https://www.njta.gov/business-hub/construction-maintenance/bridge-inspection-program-notifications/",
+      "https://www.njta.gov/wp-content/uploads/legacy/7279/b-rfeoi_solicitation_ltr_rev__9-20-22-p3937-p3938.pdf",
+      "https://www.njta.gov/business-hub/professional-services/standard-drawings/"
+    ]
+  }
+}

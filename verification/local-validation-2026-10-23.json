@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-23",
+  "received_manifest_files_verified": 469,
+  "png_count": 359,
+  "independent_pillow_decode_passed": 359,
+  "repaired_pngs": 13,
+  "other_pngs_preserved": 346,
+  "maximum_coordinate_reconstruction_error_ft": 0,
+  "all_repaired_source_vertices_visible": true,
+  "all_source_files_and_canonical_data_unchanged": true,
+  "index_html_sha256": "a747fd9eedd92bbf004be081859cfea6f7f05adbaf2992006487febe26cb8b38",
+  "changed_received_files": [
+    "CHANGELOG.md",
+    "docs/DEVELOPMENT.md",
+    "docs/MEDIA.md",
+    "media/shapes/Exit_11/GSP_11_SB_Entrance_From_Crest_Haven_Road_CR_609_ID105164.png",
+    "media/shapes/Exit_117A/GSP_117A_SB_Entrance_From_Lloyd_Road_southbound_ID5920.png",
+    "media/shapes/Exit_120/GSP_120_SB_Entrance_From_Laurence_Harbor_Road_northbound_ID5921.png",
+    "media/shapes/Exit_132/GSP_132_NB_Entrance_From_NJ_27_southbound_ID5606.png",
+    "media/shapes/Exit_132/GSP_132_SB_Entrance_From_NJ_27_southbound_ID5928.png",
+    "media/shapes/Exit_137/GSP_137_NB_Exit_NJ_28_east_ID5485.png",
+    "media/shapes/Exit_141/GSP_141_SB_Exit_Vauxhall_Road_west_ID5713.png",
+    "media/shapes/Exit_151/GSP_151_NB_Entrance_From_Watchung_Avenue_westbound_ID5622.png",
+    "media/shapes/Exit_157/GSP_157_NB_Entrance_From_US_46_eastbound_ID5625.png",
+    "media/shapes/Exit_157/GSP_157_SB_Exit_US_46_west_ID5724.png",
+    "media/shapes/Exit_36/GSP_36_NB_Exit_CR_651_US_40_322_connection_ID5464.png",
+    "media/shapes/Exit_4/GSP_4B_SB_Exit_NJ_47_north_Rio_Grande_ID5660.png",
+    "media/shapes/Exit_98/GSP_98_SB_Entrance_From_NJ_34_southbound_ID5911.png",
+    "scripts/check.py",
+    "verification/media-integrity.json"
+  ],
+  "build_and_checks": "passed",
+  "github_upload_verified": false,
+  "pages_verified": false,
+  "original_defects_rejected_by_new_validator": [
+    {
+      "file": "media/shapes/Exit_151/GSP_151_NB_Entrance_From_Watchung_Avenue_westbound_ID5622.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_157/GSP_157_NB_Entrance_From_US_46_eastbound_ID5625.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_157/GSP_157_SB_Exit_US_46_west_ID5724.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_120/GSP_120_SB_Entrance_From_Laurence_Harbor_Road_northbound_ID5921.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_117A/GSP_117A_SB_Entrance_From_Lloyd_Road_southbound_ID5920.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_11/GSP_11_SB_Entrance_From_Crest_Haven_Road_CR_609_ID105164.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_132/GSP_132_NB_Entrance_From_NJ_27_southbound_ID5606.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_132/GSP_132_SB_Entrance_From_NJ_27_southbound_ID5928.png",
+      "error": "truncated b'IDAT'"
+    },
+    {
+      "file": "media/shapes/Exit_137/GSP_137_NB_Exit_NJ_28_east_ID5485.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_141/GSP_141_SB_Exit_Vauxhall_Road_west_ID5713.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_4/GSP_4B_SB_Exit_NJ_47_north_Rio_Grande_ID5660.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_36/GSP_36_NB_Exit_CR_651_US_40_322_connection_ID5464.png",
+      "error": "missing PNG signature"
+    },
+    {
+      "file": "media/shapes/Exit_98/GSP_98_SB_Entrance_From_NJ_34_southbound_ID5911.png",
+      "error": "missing PNG signature"
+    }
+  ],
+  "static_pages_staging": "passed: identical index and all 359 current PNG hashes; source and verification excluded",
+  "fresh_browser_verification": "passed: 36 view/theme/screen-size checks and feature/download checks"
+}

@@ -1,0 +1,1164 @@
+{
+  "checks": [
+    {
+      "name": "startup",
+      "workspace": "overview",
+      "super": true,
+      "tolls": true,
+      "anatomy": false,
+      "vertices": 12877,
+      "errors": []
+    },
+    {
+      "name": "layers",
+      "traffic": true,
+      "tolls": true,
+      "markers": 34,
+      "trafficLines": 2275,
+      "pressed": [
+        "true",
+        "true"
+      ]
+    },
+    {
+      "name": "toll badges",
+      "cards": 359,
+      "badges": 54,
+      "expected": 54
+    },
+    {
+      "name": "superlatives",
+      "workspace": "superlatives",
+      "visible": true,
+      "category": "longest",
+      "categories": 15,
+      "top": [
+        {
+          "id": "3962",
+          "value": 11570.88723151094,
+          "rank": 1
+        },
+        {
+          "id": "5686",
+          "value": 9264.655688576433,
+          "rank": 2
+        },
+        {
+          "id": "5703",
+          "value": 8415.369364256829,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 6726.252905218325,
+          "rank": 4
+        },
+        {
+          "id": "5690",
+          "value": 5774.67922996609,
+          "rank": 5
+        },
+        {
+          "id": "50632",
+          "value": 5451.563497619952,
+          "rank": 6
+        },
+        {
+          "id": "99282",
+          "value": 5354.747795077595,
+          "rank": 7
+        },
+        {
+          "id": "5602",
+          "value": 5273.968307603582,
+          "rank": 8
+        },
+        {
+          "id": "5759",
+          "value": 5243.212336265694,
+          "rank": 9
+        },
+        {
+          "id": "5614",
+          "value": 5073.422980646892,
+          "rank": 10
+        }
+      ],
+      "pool": 359
+    },
+    {
+      "name": "category longest",
+      "pool": 359,
+      "top": [
+        {
+          "id": "3962",
+          "value": 11570.88723151094,
+          "rank": 1
+        },
+        {
+          "id": "5686",
+          "value": 9264.655688576433,
+          "rank": 2
+        },
+        {
+          "id": "5703",
+          "value": 8415.369364256829,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 6726.252905218325,
+          "rank": 4
+        },
+        {
+          "id": "5690",
+          "value": 5774.67922996609,
+          "rank": 5
+        },
+        {
+          "id": "50632",
+          "value": 5451.563497619952,
+          "rank": 6
+        },
+        {
+          "id": "99282",
+          "value": 5354.747795077595,
+          "rank": 7
+        },
+        {
+          "id": "5602",
+          "value": 5273.968307603582,
+          "rank": 8
+        },
+        {
+          "id": "5759",
+          "value": 5243.212336265694,
+          "rank": 9
+        },
+        {
+          "id": "5614",
+          "value": 5073.422980646892,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category shortest",
+      "pool": 359,
+      "top": [
+        {
+          "id": "5631",
+          "value": 106.46992103769583,
+          "rank": 1
+        },
+        {
+          "id": "5788",
+          "value": 109.02019219954661,
+          "rank": 2
+        },
+        {
+          "id": "5529",
+          "value": 119.61501025180186,
+          "rank": 3
+        },
+        {
+          "id": "5639",
+          "value": 127.15352396130456,
+          "rank": 4
+        },
+        {
+          "id": "5509",
+          "value": 148.35424447176968,
+          "rank": 5
+        },
+        {
+          "id": "5958",
+          "value": 156.21661649179933,
+          "rank": 6
+        },
+        {
+          "id": "5730",
+          "value": 157.07261323647745,
+          "rank": 7
+        },
+        {
+          "id": "5729",
+          "value": 184.254351565021,
+          "rank": 8
+        },
+        {
+          "id": "5508",
+          "value": 209.96162512949743,
+          "rank": 9
+        },
+        {
+          "id": "105854",
+          "value": 211.54665061949743,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category turning",
+      "pool": 359,
+      "top": [
+        {
+          "id": "3962",
+          "value": 465.0559656565088,
+          "rank": 1
+        },
+        {
+          "id": "5626",
+          "value": 415.0150839752978,
+          "rank": 2
+        },
+        {
+          "id": "5918",
+          "value": 403.90619235790774,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 374.62194875205745,
+          "rank": 4
+        },
+        {
+          "id": "5638",
+          "value": 358.7903052587046,
+          "rank": 5
+        },
+        {
+          "id": "50632",
+          "value": 351.23716305193886,
+          "rank": 6
+        },
+        {
+          "id": "5683",
+          "value": 346.8148880962106,
+          "rank": 7
+        },
+        {
+          "id": "105602",
+          "value": 343.5516229080494,
+          "rank": 8
+        },
+        {
+          "id": "5488",
+          "value": 339.3776613132701,
+          "rank": 9
+        },
+        {
+          "id": "5920",
+          "value": 336.43979978509384,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category density",
+      "pool": 359,
+      "top": [
+        {
+          "id": "5639",
+          "value": 81.268107771347,
+          "rank": 1
+        },
+        {
+          "id": "5631",
+          "value": 63.18295239956677,
+          "rank": 2
+        },
+        {
+          "id": "5958",
+          "value": 57.92451805906046,
+          "rank": 3
+        },
+        {
+          "id": "5738",
+          "value": 55.87947024855201,
+          "rank": 4
+        },
+        {
+          "id": "105854",
+          "value": 41.21767445649646,
+          "rank": 5
+        },
+        {
+          "id": "5508",
+          "value": 39.79923841548338,
+          "rank": 6
+        },
+        {
+          "id": "5730",
+          "value": 38.192744130533725,
+          "rank": 7
+        },
+        {
+          "id": "5509",
+          "value": 37.606724331351224,
+          "rank": 8
+        },
+        {
+          "id": "105002",
+          "value": 31.308538550261545,
+          "rank": 9
+        },
+        {
+          "id": "5627",
+          "value": 28.754444898546073,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category bend",
+      "pool": 358,
+      "top": [
+        {
+          "id": "5488",
+          "value": 49.27547110690289,
+          "rank": 1
+        },
+        {
+          "id": "5957",
+          "value": 50.40126464055052,
+          "rank": 2
+        },
+        {
+          "id": "5958",
+          "value": 51.732085439846344,
+          "rank": 3
+        },
+        {
+          "id": "5639",
+          "value": 55.00236050564893,
+          "rank": 4
+        },
+        {
+          "id": "5738",
+          "value": 62.614078435831786,
+          "rank": 5
+        },
+        {
+          "id": "5523",
+          "value": 62.894328671491586,
+          "rank": 6
+        },
+        {
+          "id": "105854",
+          "value": 64.10833614017184,
+          "rank": 7
+        },
+        {
+          "id": "5930",
+          "value": 64.86731991320332,
+          "rank": 8
+        },
+        {
+          "id": "5741",
+          "value": 65.50232455783464,
+          "rank": 9
+        },
+        {
+          "id": "5638",
+          "value": 65.91084344827291,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category indirect",
+      "pool": 359,
+      "top": [
+        {
+          "id": "5687",
+          "value": 97.34824469605486,
+          "rank": 1
+        },
+        {
+          "id": "5928",
+          "value": 89.78501225338175,
+          "rank": 2
+        },
+        {
+          "id": "5760",
+          "value": 82.44081864634096,
+          "rank": 3
+        },
+        {
+          "id": "5668",
+          "value": 35.90452960933799,
+          "rank": 4
+        },
+        {
+          "id": "5661",
+          "value": 34.64951060650405,
+          "rank": 5
+        },
+        {
+          "id": "5680",
+          "value": 33.61111691570355,
+          "rank": 6
+        },
+        {
+          "id": "5659",
+          "value": 26.18725563033218,
+          "rank": 7
+        },
+        {
+          "id": "5600",
+          "value": 23.454429570578032,
+          "rank": 8
+        },
+        {
+          "id": "5567",
+          "value": 22.61247000620733,
+          "rank": 9
+        },
+        {
+          "id": "5670",
+          "value": 19.767537289471303,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category broadest",
+      "pool": 359,
+      "top": [
+        {
+          "id": "5690",
+          "value": 2529.1582371539002,
+          "rank": 1
+        },
+        {
+          "id": "3962",
+          "value": 2458.2781705316324,
+          "rank": 2
+        },
+        {
+          "id": "5626",
+          "value": 2001.9780589891182,
+          "rank": 3
+        },
+        {
+          "id": "5683",
+          "value": 1750.6724235114539,
+          "rank": 4
+        },
+        {
+          "id": "102309",
+          "value": 1703.208935119285,
+          "rank": 5
+        },
+        {
+          "id": "5592",
+          "value": 1661.7002851106133,
+          "rank": 6
+        },
+        {
+          "id": "5914",
+          "value": 1451.9261821852692,
+          "rank": 7
+        },
+        {
+          "id": "5703",
+          "value": 1329.1279559070315,
+          "rank": 8
+        },
+        {
+          "id": "5697",
+          "value": 1320.9276975416599,
+          "rank": 9
+        },
+        {
+          "id": "5505",
+          "value": 1246.660516556744,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category tallest",
+      "pool": 359,
+      "top": [
+        {
+          "id": "5686",
+          "value": 8870.180843033068,
+          "rank": 1
+        },
+        {
+          "id": "3962",
+          "value": 8416.548343376066,
+          "rank": 2
+        },
+        {
+          "id": "5703",
+          "value": 7875.475786193,
+          "rank": 3
+        },
+        {
+          "id": "5725",
+          "value": 5342.918527660414,
+          "rank": 4
+        },
+        {
+          "id": "5602",
+          "value": 5066.574636481384,
+          "rank": 5
+        },
+        {
+          "id": "5759",
+          "value": 4650.467630996358,
+          "rank": 6
+        },
+        {
+          "id": "5568",
+          "value": 4472.013113247147,
+          "rank": 7
+        },
+        {
+          "id": "5694",
+          "value": 4450.106958469503,
+          "rank": 8
+        },
+        {
+          "id": "5911",
+          "value": 4150.022437552869,
+          "rank": 9
+        },
+        {
+          "id": "99282",
+          "value": 4054.8963573878164,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category area",
+      "pool": 359,
+      "top": [
+        {
+          "id": "3962",
+          "value": 474.982026256785,
+          "rank": 1
+        },
+        {
+          "id": "5703",
+          "value": 240.30107974054235,
+          "rank": 2
+        },
+        {
+          "id": "5690",
+          "value": 204.45293140352663,
+          "rank": 3
+        },
+        {
+          "id": "5686",
+          "value": 189.13569026710147,
+          "rank": 4
+        },
+        {
+          "id": "5759",
+          "value": 125.81069235019743,
+          "rank": 5
+        },
+        {
+          "id": "5592",
+          "value": 118.97788843254763,
+          "rank": 6
+        },
+        {
+          "id": "5626",
+          "value": 115.17126728278215,
+          "rank": 7
+        },
+        {
+          "id": "5568",
+          "value": 105.90900000709453,
+          "rank": 8
+        },
+        {
+          "id": "5914",
+          "value": 103.21324287270977,
+          "rank": 9
+        },
+        {
+          "id": "50633",
+          "value": 101.01557287953263,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category straightest",
+      "pool": 339,
+      "top": [
+        {
+          "id": "5496",
+          "value": 1.0003459110093873,
+          "rank": 1
+        },
+        {
+          "id": "105161",
+          "value": 1.0004819851799014,
+          "rank": 2
+        },
+        {
+          "id": "5945",
+          "value": 1.000594995077428,
+          "rank": 3
+        },
+        {
+          "id": "5552",
+          "value": 1.0007380254105547,
+          "rank": 4
+        },
+        {
+          "id": "5620",
+          "value": 1.0007391634306066,
+          "rank": 5
+        },
+        {
+          "id": "5616",
+          "value": 1.000852550159911,
+          "rank": 6
+        },
+        {
+          "id": "5715",
+          "value": 1.0008582392692467,
+          "rank": 7
+        },
+        {
+          "id": "105172",
+          "value": 1.000879385390401,
+          "rank": 8
+        },
+        {
+          "id": "5718",
+          "value": 1.000990878482527,
+          "rank": 9
+        },
+        {
+          "id": "105162",
+          "value": 1.0010992190929935,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category branches",
+      "pool": 84,
+      "top": [
+        {
+          "id": "g89",
+          "value": 11,
+          "rank": 1
+        },
+        {
+          "id": "g100",
+          "value": 10,
+          "rank": 2
+        },
+        {
+          "id": "g98",
+          "value": 9,
+          "rank": 3
+        },
+        {
+          "id": "g63",
+          "value": 9,
+          "rank": 3
+        },
+        {
+          "id": "g165",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g82",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g38",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g4",
+          "value": 8,
+          "rank": 5
+        },
+        {
+          "id": "g143",
+          "value": 7,
+          "rank": 9
+        },
+        {
+          "id": "g142",
+          "value": 7,
+          "rank": 9
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category traffic",
+      "pool": 277,
+      "top": [
+        {
+          "id": "3786",
+          "value": 31674,
+          "rank": 1
+        },
+        {
+          "id": "5600",
+          "value": 29838,
+          "rank": 2
+        },
+        {
+          "id": "5492",
+          "value": 29553,
+          "rank": 3
+        },
+        {
+          "id": "5489",
+          "value": 25678,
+          "rank": 4
+        },
+        {
+          "id": "5603",
+          "value": 22518,
+          "rank": 5
+        },
+        {
+          "id": "5703",
+          "value": 22129,
+          "rank": 6
+        },
+        {
+          "id": "102308",
+          "value": 21156,
+          "rank": 7
+        },
+        {
+          "id": "5935",
+          "value": 21095,
+          "rank": 8
+        },
+        {
+          "id": "5707",
+          "value": 20575,
+          "rank": 9
+        },
+        {
+          "id": "5634",
+          "value": 19971,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category quietest",
+      "pool": 277,
+      "top": [
+        {
+          "id": "5571",
+          "value": 339,
+          "rank": 1
+        },
+        {
+          "id": "5672",
+          "value": 569,
+          "rank": 2
+        },
+        {
+          "id": "5918",
+          "value": 625,
+          "rank": 3
+        },
+        {
+          "id": "5462",
+          "value": 745,
+          "rank": 4
+        },
+        {
+          "id": "2636",
+          "value": 745,
+          "rank": 4
+        },
+        {
+          "id": "5908",
+          "value": 757,
+          "rank": 6
+        },
+        {
+          "id": "5764",
+          "value": 761,
+          "rank": 7
+        },
+        {
+          "id": "5467",
+          "value": 773,
+          "rank": 8
+        },
+        {
+          "id": "5563",
+          "value": 894,
+          "rank": 9
+        },
+        {
+          "id": "5694",
+          "value": 1027,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category tolledtraffic",
+      "pool": 47,
+      "top": [
+        {
+          "id": "5938",
+          "value": 16474,
+          "rank": 1
+        },
+        {
+          "id": "5939",
+          "value": 14676,
+          "rank": 2
+        },
+        {
+          "id": "105182",
+          "value": 10942,
+          "rank": 3
+        },
+        {
+          "id": "5495",
+          "value": 10801,
+          "rank": 4
+        },
+        {
+          "id": "5576",
+          "value": 9828,
+          "rank": 5
+        },
+        {
+          "id": "5594",
+          "value": 9610,
+          "rank": 6
+        },
+        {
+          "id": "5676",
+          "value": 9103,
+          "rank": 7
+        },
+        {
+          "id": "5623",
+          "value": 9089,
+          "rank": 8
+        },
+        {
+          "id": "5593",
+          "value": 8963,
+          "rank": 9
+        },
+        {
+          "id": "5691",
+          "value": 8719,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "category quiettolled",
+      "pool": 47,
+      "top": [
+        {
+          "id": "5753",
+          "value": 1200,
+          "rank": 1
+        },
+        {
+          "id": "99812",
+          "value": 2085,
+          "rank": 2
+        },
+        {
+          "id": "5776",
+          "value": 2686,
+          "rank": 3
+        },
+        {
+          "id": "5697",
+          "value": 2687,
+          "rank": 4
+        },
+        {
+          "id": "5698",
+          "value": 2849,
+          "rank": 5
+        },
+        {
+          "id": "99813",
+          "value": 2989,
+          "rank": 6
+        },
+        {
+          "id": "5524",
+          "value": 3304,
+          "rank": 7
+        },
+        {
+          "id": "5523",
+          "value": 3305,
+          "rank": 8
+        },
+        {
+          "id": "5557",
+          "value": 3316,
+          "rank": 9
+        },
+        {
+          "id": "5595",
+          "value": 3415,
+          "rank": 10
+        }
+      ],
+      "invalidSVG": false
+    },
+    {
+      "name": "directory",
+      "rows": 34,
+      "columns": 6,
+      "text": "Full Parkway \u00b7 2026 \u00b7 Heavy truck \u00b7 Class 2"
+    },
+    {
+      "name": "cash exception",
+      "row": "SayrevilleRamp toll \u00b7 study interchange 125125.0Southbound exitNot accepted$2.25$2.25Details"
+    },
+    {
+      "name": "plaza",
+      "text": "Vehicle / planPassenger car \u00b7 standardPassenger car \u00b7 enrolled Senior planPassenger car \u00b7 enrolled Green PassHeavy truck \u00b7 Class 2Heavy truck \u00b7 Class 3Heavy truck \u00b7 Class 4Heavy truck \u00b7 Class 5Heavy truck \u00b7 Class 6Bus \u00b7 2 axles (B2)Bus \u00b7 3 axles (B3)E-ZPass only \u00b7 cash is not accepted at this exit.Cash \u00b7 all timesNot acceptedNJ E-ZPass \u00b7 peak$2.25NJ E-ZPass \u00b7 off-peak$2.25Peak: weekdays 7\u20139 a.m. and 4:30\u20136:30 p.m.; all day Saturday and Sunday. All other times are off-peak. Eastern time. Standard Class 1 Garden State Parkway fares do not change by time of day. Enrolled Senior and Green Pass plans have off-peak discounts.Charged movementSouthbound exitMap referenceApproximate interchange reference marker; not a surveyed toll booth position.Study interchange 125 \u00b7 Chevalier Avenue & Main StreetSelected paths for this movementThese forks, feeders and approaches can represent parts of the same charged movement. This does not add a separate toll for each selection.125 \u00b7 Southbound exitChevalier AvenueSources, dates, and location precisionRates: NJTA\u2019s official 2026 schedules, checked 2026-10-22. Mileposts and plaza names are retained as published. Ramp references use a reviewed name/road/movement crosswalk; they are not joined by nearest milepost.Ramp markers identify their interchange. Mainline markers are approximate authority-camera milepost references. Booth and lane counts have not been established by this layer.2026 cash schedule \u00b7 2026 NJ E-ZPass schedule \u00b7 2026 truck / bus off-peak schedule \u00b7 Senior / Green Pass schedule \u00b7 NJTA toll informationReviewed plaza-name/road connection and charged-movement crosswalk to the existing study group; no automatic nearest-milepost ramp join."
+    },
+    {
+      "name": "quiet traffic",
+      "winner": "339vehicles/day",
+      "source": "Vehicles per day on the linked source road; this is not a count of people or toll transactions."
+    },
+    {
+      "name": "mobile 390",
+      "width": 390,
+      "docWidth": 390,
+      "headerWidth": 362,
+      "superWidth": 362,
+      "rows": 10,
+      "offenders": [
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "cls": "category-button",
+          "right": 456.6875,
+          "width": 157.03125
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "cls": "",
+          "right": 446.6875,
+          "width": 104.03125
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "cls": "category-button",
+          "right": 622.765625,
+          "width": 162.078125
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "cls": "category-symbol",
+          "right": 493.6875,
+          "width": 23
+        },
+        {
+          "tag": "svg",
+          "id": "",
+          "cls": "",
+          "right": 493.6875,
+          "width": 23
+        },
+        {
+          "tag": "path",
+          "id": "",
+          "cls": "",
+          "right": 491.53125,
+          "width": 18.6875
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "cls": "",
+          "right": 612.765625,
+          "width": 109.078125
+        },
+        {
+          "tag": "TABLE",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "THEAD",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "cls": "",
+          "right": 446.734375,
+          "width": 86.1875
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 83.390625
+        },
+        {
+          "tag": "TBODY",
+          "id": "sourceTable",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "cls": "",
+          "right": 446.734375,
+          "width": 86.1875
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "right": 432.15625,
+          "width": 59.609375
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 83.390625
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "cls": "",
+          "right": 518.125,
+          "width": 59.390625
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "cls": "",
+          "right": 446.734375,
+          "width": 86.1875
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "right": 432.15625,
+          "width": 59.609375
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 83.390625
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "cls": "",
+          "right": 518.125,
+          "width": 59.390625
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "cls": "",
+          "right": 530.125,
+          "width": 516.125
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "cls": "",
+          "right": 446.734375,
+          "width": 86.1875
+        }
+      ]
+    },
+    {
+      "name": "mobile 768",
+      "width": 768,
+      "docWidth": 768,
+      "headerWidth": 724,
+      "superWidth": 724,
+      "rows": 10,
+      "offenders": []
+    },
+    {
+      "name": "runtime",
+      "errors": []
+    }
+  ],
+  "errors": [],
+  "note": "Retained prior data-layer checks; current title/category removal checks are in Revision_Verification.json."
+}

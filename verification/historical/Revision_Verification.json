@@ -1,0 +1,57 @@
+{
+  "revision": "Parkway Unfolded title; toll-price superlatives removed",
+  "results": [
+    {
+      "title": "Parkway Unfolded · Parkway ramp atlas",
+      "heading": "Parkway Unfolded",
+      "workspace": "superlatives",
+      "category": "longest",
+      "categories": 15,
+      "tollCategories": 0,
+      "families": [
+        "Shapes",
+        "Traffic"
+      ],
+      "pricingControls": false
+    },
+    {
+      "trafficOptions": [
+        "Most traffic",
+        "Least traffic",
+        "Busiest tolled",
+        "Quietest tolled"
+      ],
+      "trafficPool": 277
+    },
+    {
+      "sourceHasTollRanking": false
+    },
+    {
+      "markers": 34,
+      "tollLayer": true
+    },
+    {
+      "directoryRows": 34
+    },
+    {
+      "profile": "senior",
+      "raritan": {
+        "cash": 2.4,
+        "peak": 2.25,
+        "offpeak": 2.03,
+        "blocked": false
+      }
+    },
+    {
+      "width": 1440,
+      "documentWidth": 1440,
+      "heading": "Parkway Unfolded"
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "heading": "Parkway Unfolded"
+    }
+  ],
+  "errors": []
+}

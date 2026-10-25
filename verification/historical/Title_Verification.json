@@ -1,0 +1,39 @@
+{
+  "edition": "Ramp-shaped title initials, October 23, 2026",
+  "html_sha256": "10e86fc2bcf9da9d96e9e3bc3683a7846fdd41206cdd545e4781d1817d509c8f",
+  "title": "Parkway Unfolded",
+  "letterforms": {
+    "P": "Looped ramp, exit amber",
+    "U": "Hairpin, entrance teal"
+  },
+  "accessibility": "Full heading aria-label; textual P/U alternatives; decorative SVGs hidden from assistive technology",
+  "data_and_behavior": {
+    "all_five_embedded_datasets_byte_identical": true,
+    "all_javascript_byte_identical": true,
+    "rebuild_byte_identical": true
+  },
+  "browser_checks": {
+    "desktop_light": {
+      "title_width": 339.578125,
+      "page_overflow": false
+    },
+    "desktop_dark": {
+      "P": "#ffc363",
+      "U": "#79d8c1",
+      "page_overflow": false
+    },
+    "mobile_390": {
+      "content_width": 375,
+      "page_width": 375,
+      "title_width": 244.84375,
+      "font_px": 29
+    },
+    "mobile_320": {
+      "content_width": 305,
+      "page_width": 305,
+      "title_width": 224.03125,
+      "font_px": 26
+    }
+  },
+  "note": "Letterforms are decorative branding. The ramp drawings and source coordinates were not modified."
+}

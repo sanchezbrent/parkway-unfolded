@@ -1,0 +1,16 @@
+{
+  "checked_date": "2026-10-23",
+  "repository": "https://github.com/sanchezbrent/parkway-unfolded",
+  "default_branch": "main",
+  "root_files": [
+    "README.md"
+  ],
+  "has_pages": false,
+  "homepage": null,
+  "auto_merge_enabled": false,
+  "handoff_commit_present": false,
+  "index_html_present": false,
+  "maintenance_guide_present": false,
+  "branch_protection_and_security_settings": "Not inspected in this local repair",
+  "remote_writes_performed": false
+}

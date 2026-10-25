@@ -1,0 +1,24 @@
+{
+  "method": "Chromium screenshots of the same immutable SVG polylines used by the standalone HTML. No generative frames.",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration_seconds": 24,
+  "movies": [
+    {
+      "file": "GSP_Unfold_All_359.mp4",
+      "selected_paths": 359,
+      "vertices": 12877,
+      "frames": 720,
+      "render_seconds": 46.53
+    },
+    {
+      "file": "GSP_Unfold_Featured_39.mp4",
+      "selected_paths": 39,
+      "vertices": 2151,
+      "frames": 720,
+      "render_seconds": 40.28
+    }
+  ],
+  "browser_errors": []
+}

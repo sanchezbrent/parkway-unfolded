@@ -1,0 +1,382 @@
+{
+  "checks": [
+    {
+      "name": "study-data unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "county-data unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "traffic-data unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Anatomy removed from current HTML",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unique HTML IDs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "All 359 original shapes retained in rankings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12,877 source vertices retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Browser runtime",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Both layers coexist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exactly 54 associated-shape badges",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category longest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category shortest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category turning has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category density has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category bend has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category indirect has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category broadest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category tallest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category area has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category straightest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category branches has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category traffic has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category quietest has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category tolledtraffic has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category quiettolled has finite SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile 390 contains viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile 768 contains viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All 340 UI pricing combinations match dataset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Asbury Park published truck fares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Toms River published truck fares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Belmar/Wall published truck fares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Somers Point published truck fares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Senior / Green plan schedule cells",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Standard passenger fares equal in both periods",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "longest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "shortest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "turning ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "density ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bend ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "indirect ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "broadest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tallest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "area ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "straightest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "branches ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "traffic ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "quietest ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tolledtraffic ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "quiettolled ranking agrees independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Portable source round trip reproduces exact HTML",
+      "passed": true
+    }
+  ],
+  "passed": 50,
+  "failed": 0,
+  "html_sha256": "2639da8b80e2b1bd2270e7d86c8c88ab8c8f1260c0fc500e223c65f244d5ae71",
+  "navigation_revision": "Icons on all five view buttons; Top 10s gold emphasis in both themes; Stretch of road label. Data scripts unchanged.",
+  "project_title": "Parkway Unfolded",
+  "ranking_categories": 15,
+  "toll_price_superlatives": "removed",
+  "editorial_checks": [
+    {
+      "name": "study-data exact source preserved",
+      "passed": true
+    },
+    {
+      "name": "county-data exact source preserved",
+      "passed": true
+    },
+    {
+      "name": "traffic-data exact source preserved",
+      "passed": true
+    },
+    {
+      "name": "All original drawing coordinates and measurements retained",
+      "passed": true
+    },
+    {
+      "name": "All toll prices and plaza records retained",
+      "passed": true
+    },
+    {
+      "name": "longest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "shortest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "turning ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "density ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "bend ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "indirect ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "broadest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "tallest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "area ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "straightest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "branches ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "traffic ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "quietest ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "tolledtraffic ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "quiettolled ordering and raw values unchanged",
+      "passed": true
+    },
+    {
+      "name": "Browser has no runtime errors",
+      "passed": true
+    },
+    {
+      "name": "Map and rankings fit phone/tablet viewports",
+      "passed": true
+    },
+    {
+      "name": "Featured unfolding completes",
+      "passed": true
+    },
+    {
+      "name": "Technical notes remain available",
+      "passed": true
+    },
+    {
+      "name": "Straightest download matches the displayed percentage",
+      "passed": true
+    },
+    {
+      "name": "Portable rebuild reproduces exact page",
+      "passed": true
+    }
+  ],
+  "editorial_passed": 26,
+  "editorial_notes": "Copy, introductions, discovery links and display units revised; original geometry, measurements and rates preserved.",
+  "visual_revision": {
+    "passed": true,
+    "details": "Visual_Verification.json",
+    "all_embedded_data_byte_identical": true
+  },
+  "title_revision": {
+    "passed": true,
+    "details": "Title_Verification.json"
+  },
+  "masthead_revision": {
+    "old_GSP_badge_removed": true,
+    "stylized_wordmark_is_sole_logo": true,
+    "all_other_html_byte_identical_to_title_edition": true
+  }
+}

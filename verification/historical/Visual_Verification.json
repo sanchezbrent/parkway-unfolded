@@ -1,0 +1,76 @@
+{
+  "edition": "Visual refinement, October 23, 2026",
+  "html_sha256": "58cc80e465d1e85b69523f7925fc2cb40a458531911538b72f188c81a6d76abd",
+  "data_checks": {
+    "all_5_embedded_datasets_byte_identical": true,
+    "unchanged_data_files": [
+      "GSP_All_Top_10s_Default_Context.csv",
+      "GSP_Toll_Reference_Markers_2026.geojson",
+      "Editorial_Verification.json",
+      "Source_References.json",
+      "GSP_Toll_Prices_All_Profiles_2026.csv",
+      "GSP_Superlatives_Data.json",
+      "Revision_Verification.json",
+      "Data_Verification.json",
+      "GSP_Ramp_Toll_Matches_2026.csv",
+      "Extra_Verification.json",
+      "GSP_Tolls_2026.json",
+      "Navigation_Verification.json",
+      "Browser_Verification.json",
+      "Source/GSP_Superlatives_Data.json",
+      "Source/GSP_Tolls_2026.json"
+    ],
+    "embedded_sha256": {
+      "traffic-data": "d971d06c6792643a38a8e6e4ea51864818c38438bc717cb941bf613a5a334265",
+      "study-data": "0ecce575e8974c54d831114a427c0776c8d42bafa57fe3bda82d9b40063cda24",
+      "county-data": "347788ad0178d4608cff6aeb3542cb063e8b3872b57be811a2df479f920b7295",
+      "toll-data": "ecbff318d4d51df9e032a98743cc9adfd474a7ec1b094d40e6a9e6cc633449d7",
+      "superlatives-data": "c70cf8976e8a5add9f820376b5f7b4d0a63a95c8320171f51559f436bf9fc39c"
+    },
+    "rebuild_byte_identical": true,
+    "javascript_syntax": "passed"
+  },
+  "browser_checks": {
+    "environment": "Isolated internal cloud preview; no personal browser used",
+    "desktop": {
+      "content_width": 1348,
+      "document_scroll_width": 1348,
+      "map_light_and_dark": "rendered",
+      "rankings_dark": "rendered",
+      "ramp_detail_with_both_layers": "rendered",
+      "toll_directory": "34 rows; cash, peak and off-peak columns retained",
+      "navigation_font_px": 14,
+      "title_font": "Arial, Helvetica, sans-serif"
+    },
+    "mobile": {
+      "iframe_width": 390,
+      "content_width": 375,
+      "document_scroll_width": 375,
+      "unfolding": "39 featured drawings; completed; no invalid paths",
+      "top_10": "10 gallery rows, no invalid paths",
+      "comparison": "2 drawings; no page overflow",
+      "hero_svg_viewbox": "0 0 317 270",
+      "hero_svg_display_width": 317
+    },
+    "tablet": {
+      "iframe_width": 768,
+      "content_width": 753,
+      "document_scroll_width": 753,
+      "map_and_top_10": "no page overflow"
+    },
+    "theme": {
+      "initial_default": "system",
+      "simulated_system_dark": true,
+      "simulated_system_light": true,
+      "manual_override_persists": true,
+      "note": "System change events were exercised in an internal fixture; the operating-system preference was not modified."
+    },
+    "console": "No application errors observed. Cloud-browser extension metadata warnings excluded."
+  },
+  "review_notes": [
+    "Road geometry, traffic values, toll rates, categories and ranking calculations unchanged.",
+    "Previous verification JSON files describe prior editions; this file covers the visual revision.",
+    "Functional unfolding and tracing are retained; decorative glow and backdrop blur removed.",
+    "Internal layout fixtures and screenshots are excluded from the portable kit."
+  ]
+}

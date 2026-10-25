@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "name": "sources",
+      "open": true,
+      "hasTollSources": true
+    },
+    {
+      "name": "keyboard toggle",
+      "pressed": "true"
+    },
+    {
+      "name": "path source",
+      "open": true,
+      "text": "New Jersey Turnpike / shared connector \u00b7 Northbound exitCategoryMost traffic \u00b7 2024Current rank1 of 277 eligible resultsValue31,674 vehicles/dayDefinition2024 FHWA HPMS AADT linked"
+    },
+    {
+      "name": "runtime",
+      "errors": []
+    }
+  ],
+  "errors": [],
+  "note": "Obsolete toll-ranking route checks removed; current fallback is verified in Revision_Verification.json."
+}

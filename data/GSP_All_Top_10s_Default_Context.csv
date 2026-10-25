@@ -1,0 +1,151 @@
+category,rank,entry_id,value,unit,eligible_count,category_title,raw_value,raw_unit
+longest,1,3962,11570.88723151094,ft,359,Longest ramps and connections,11570.88723151094,ft
+longest,2,5686,9264.655688576433,ft,359,Longest ramps and connections,9264.655688576433,ft
+longest,3,5703,8415.369364256829,ft,359,Longest ramps and connections,8415.369364256829,ft
+longest,4,5725,6726.252905218325,ft,359,Longest ramps and connections,6726.252905218325,ft
+longest,5,5690,5774.67922996609,ft,359,Longest ramps and connections,5774.67922996609,ft
+longest,6,50632,5451.563497619952,ft,359,Longest ramps and connections,5451.563497619952,ft
+longest,7,99282,5354.747795077595,ft,359,Longest ramps and connections,5354.747795077595,ft
+longest,8,5602,5273.968307603582,ft,359,Longest ramps and connections,5273.968307603582,ft
+longest,9,5759,5243.212336265694,ft,359,Longest ramps and connections,5243.212336265694,ft
+longest,10,5614,5073.422980646892,ft,359,Longest ramps and connections,5073.422980646892,ft
+shortest,1,5631,106.46992103769583,ft,359,Shortest pieces,106.46992103769583,ft
+shortest,2,5788,109.02019219954661,ft,359,Shortest pieces,109.02019219954661,ft
+shortest,3,5529,119.61501025180186,ft,359,Shortest pieces,119.61501025180186,ft
+shortest,4,5639,127.15352396130456,ft,359,Shortest pieces,127.15352396130456,ft
+shortest,5,5509,148.35424447176968,ft,359,Shortest pieces,148.35424447176968,ft
+shortest,6,5958,156.21661649179933,ft,359,Shortest pieces,156.21661649179933,ft
+shortest,7,5730,157.07261323647745,ft,359,Shortest pieces,157.07261323647745,ft
+shortest,8,5729,184.254351565021,ft,359,Shortest pieces,184.254351565021,ft
+shortest,9,5508,209.96162512949743,ft,359,Shortest pieces,209.96162512949743,ft
+shortest,10,105854,211.54665061949743,ft,359,Shortest pieces,211.54665061949743,ft
+turning,1,3962,465.0559656565088,deg,359,Most twists and turns,465.0559656565088,deg
+turning,2,5626,415.0150839752978,deg,359,Most twists and turns,415.0150839752978,deg
+turning,3,5918,403.90619235790774,deg,359,Most twists and turns,403.90619235790774,deg
+turning,4,5725,374.62194875205745,deg,359,Most twists and turns,374.62194875205745,deg
+turning,5,5638,358.7903052587046,deg,359,Most twists and turns,358.7903052587046,deg
+turning,6,50632,351.23716305193886,deg,359,Most twists and turns,351.23716305193886,deg
+turning,7,5683,346.8148880962106,deg,359,Most twists and turns,346.8148880962106,deg
+turning,8,105602,343.5516229080494,deg,359,Most twists and turns,343.5516229080494,deg
+turning,9,5488,339.3776613132701,deg,359,Most twists and turns,339.3776613132701,deg
+turning,10,5920,336.43979978509384,deg,359,Most twists and turns,336.43979978509384,deg
+density,1,5639,81.268107771347,density,359,Most winding,81.268107771347,density
+density,2,5631,63.18295239956677,density,359,Most winding,63.18295239956677,density
+density,3,5958,57.92451805906046,density,359,Most winding,57.92451805906046,density
+density,4,5738,55.87947024855201,density,359,Most winding,55.87947024855201,density
+density,5,105854,41.21767445649646,density,359,Most winding,41.21767445649646,density
+density,6,5508,39.79923841548338,density,359,Most winding,39.79923841548338,density
+density,7,5730,38.192744130533725,density,359,Most winding,38.192744130533725,density
+density,8,5509,37.606724331351224,density,359,Most winding,37.606724331351224,density
+density,9,105002,31.308538550261545,density,359,Most winding,31.308538550261545,density
+density,10,5627,28.754444898546073,density,359,Most winding,28.754444898546073,density
+bend,1,5488,49.27547110690289,radius,358,Tightest curves,49.27547110690289,radius
+bend,2,5957,50.40126464055052,radius,358,Tightest curves,50.40126464055052,radius
+bend,3,5958,51.732085439846344,radius,358,Tightest curves,51.732085439846344,radius
+bend,4,5639,55.00236050564893,radius,358,Tightest curves,55.00236050564893,radius
+bend,5,5738,62.614078435831786,radius,358,Tightest curves,62.614078435831786,radius
+bend,6,5523,62.894328671491586,radius,358,Tightest curves,62.894328671491586,radius
+bend,7,105854,64.10833614017184,radius,358,Tightest curves,64.10833614017184,radius
+bend,8,5930,64.86731991320332,radius,358,Tightest curves,64.86731991320332,radius
+bend,9,5741,65.50232455783464,radius,358,Tightest curves,65.50232455783464,radius
+bend,10,5638,65.91084344827291,radius,358,Tightest curves,65.91084344827291,radius
+indirect,1,5687,97.34824469605486,ratio,359,The long way around,97.34824469605486,ratio
+indirect,2,5928,89.78501225338175,ratio,359,The long way around,89.78501225338175,ratio
+indirect,3,5760,82.44081864634096,ratio,359,The long way around,82.44081864634096,ratio
+indirect,4,5668,35.90452960933799,ratio,359,The long way around,35.90452960933799,ratio
+indirect,5,5661,34.64951060650405,ratio,359,The long way around,34.64951060650405,ratio
+indirect,6,5680,33.61111691570355,ratio,359,The long way around,33.61111691570355,ratio
+indirect,7,5659,26.18725563033218,ratio,359,The long way around,26.18725563033218,ratio
+indirect,8,5600,23.454429570578032,ratio,359,The long way around,23.454429570578032,ratio
+indirect,9,5567,22.61247000620733,ratio,359,The long way around,22.61247000620733,ratio
+indirect,10,5670,19.767537289471303,ratio,359,The long way around,19.767537289471303,ratio
+broadest,1,5690,2529.1582371539002,ft,359,Widest shapes,2529.1582371539002,ft
+broadest,2,3962,2458.2781705316324,ft,359,Widest shapes,2458.2781705316324,ft
+broadest,3,5626,2001.9780589891182,ft,359,Widest shapes,2001.9780589891182,ft
+broadest,4,5683,1750.6724235114539,ft,359,Widest shapes,1750.6724235114539,ft
+broadest,5,102309,1703.208935119285,ft,359,Widest shapes,1703.208935119285,ft
+broadest,6,5592,1661.7002851106133,ft,359,Widest shapes,1661.7002851106133,ft
+broadest,7,5914,1451.9261821852692,ft,359,Widest shapes,1451.9261821852692,ft
+broadest,8,5703,1329.1279559070315,ft,359,Widest shapes,1329.1279559070315,ft
+broadest,9,5697,1320.9276975416599,ft,359,Widest shapes,1320.9276975416599,ft
+broadest,10,5505,1246.660516556744,ft,359,Widest shapes,1246.660516556744,ft
+tallest,1,5686,8870.180843033068,ft,359,Longest spans,8870.180843033068,ft
+tallest,2,3962,8416.548343376066,ft,359,Longest spans,8416.548343376066,ft
+tallest,3,5703,7875.475786193,ft,359,Longest spans,7875.475786193,ft
+tallest,4,5725,5342.918527660414,ft,359,Longest spans,5342.918527660414,ft
+tallest,5,5602,5066.574636481384,ft,359,Longest spans,5066.574636481384,ft
+tallest,6,5759,4650.467630996358,ft,359,Longest spans,4650.467630996358,ft
+tallest,7,5568,4472.013113247147,ft,359,Longest spans,4472.013113247147,ft
+tallest,8,5694,4450.106958469503,ft,359,Longest spans,4450.106958469503,ft
+tallest,9,5911,4150.022437552869,ft,359,Longest spans,4150.022437552869,ft
+tallest,10,99282,4054.8963573878164,ft,359,Longest spans,4054.8963573878164,ft
+area,1,3962,474.982026256785,acres,359,Biggest footprints,474.982026256785,acres
+area,2,5703,240.30107974054235,acres,359,Biggest footprints,240.30107974054235,acres
+area,3,5690,204.45293140352663,acres,359,Biggest footprints,204.45293140352663,acres
+area,4,5686,189.13569026710147,acres,359,Biggest footprints,189.13569026710147,acres
+area,5,5759,125.81069235019743,acres,359,Biggest footprints,125.81069235019743,acres
+area,6,5592,118.97788843254763,acres,359,Biggest footprints,118.97788843254763,acres
+area,7,5626,115.17126728278215,acres,359,Biggest footprints,115.17126728278215,acres
+area,8,5568,105.90900000709453,acres,359,Biggest footprints,105.90900000709453,acres
+area,9,5914,103.21324287270977,acres,359,Biggest footprints,103.21324287270977,acres
+area,10,50633,101.01557287953263,acres,359,Biggest footprints,101.01557287953263,acres
+straightest,1,5496,0.03459110093873008,percent extra distance,339,Straightest stretches,1.0003459110093873,preciseRatio
+straightest,2,105161,0.04819851799013897,percent extra distance,339,Straightest stretches,1.0004819851799014,preciseRatio
+straightest,3,5945,0.05949950774279955,percent extra distance,339,Straightest stretches,1.000594995077428,preciseRatio
+straightest,4,5552,0.07380254105546769,percent extra distance,339,Straightest stretches,1.0007380254105547,preciseRatio
+straightest,5,5620,0.07391634306066486,percent extra distance,339,Straightest stretches,1.0007391634306066,preciseRatio
+straightest,6,5616,0.08525501599110363,percent extra distance,339,Straightest stretches,1.000852550159911,preciseRatio
+straightest,7,5715,0.08582392692466634,percent extra distance,339,Straightest stretches,1.0008582392692467,preciseRatio
+straightest,8,105172,0.08793853904009996,percent extra distance,339,Straightest stretches,1.000879385390401,preciseRatio
+straightest,9,5718,0.09908784825269912,percent extra distance,339,Straightest stretches,1.000990878482527,preciseRatio
+straightest,10,105162,0.10992190929934864,percent extra distance,339,Straightest stretches,1.0010992190929935,preciseRatio
+branches,1,g89,11,paths,84,Most ramp shapes,11,paths
+branches,2,g100,10,paths,84,Most ramp shapes,10,paths
+branches,3,g98,9,paths,84,Most ramp shapes,9,paths
+branches,3,g63,9,paths,84,Most ramp shapes,9,paths
+branches,5,g165,8,paths,84,Most ramp shapes,8,paths
+branches,5,g82,8,paths,84,Most ramp shapes,8,paths
+branches,5,g38,8,paths,84,Most ramp shapes,8,paths
+branches,5,g4,8,paths,84,Most ramp shapes,8,paths
+branches,9,g143,7,paths,84,Most ramp shapes,7,paths
+branches,9,g142,7,paths,84,Most ramp shapes,7,paths
+traffic,1,3786,31674,aadt,277,Most traffic · 2024,31674,aadt
+traffic,2,5600,29838,aadt,277,Most traffic · 2024,29838,aadt
+traffic,3,5492,29553,aadt,277,Most traffic · 2024,29553,aadt
+traffic,4,5489,25678,aadt,277,Most traffic · 2024,25678,aadt
+traffic,5,5603,22518,aadt,277,Most traffic · 2024,22518,aadt
+traffic,6,5703,22129,aadt,277,Most traffic · 2024,22129,aadt
+traffic,7,102308,21156,aadt,277,Most traffic · 2024,21156,aadt
+traffic,8,5935,21095,aadt,277,Most traffic · 2024,21095,aadt
+traffic,9,5707,20575,aadt,277,Most traffic · 2024,20575,aadt
+traffic,10,5634,19971,aadt,277,Most traffic · 2024,19971,aadt
+quietest,1,5571,339,aadt,277,Least traffic · 2024,339,aadt
+quietest,2,5672,569,aadt,277,Least traffic · 2024,569,aadt
+quietest,3,5918,625,aadt,277,Least traffic · 2024,625,aadt
+quietest,4,5462,745,aadt,277,Least traffic · 2024,745,aadt
+quietest,4,2636,745,aadt,277,Least traffic · 2024,745,aadt
+quietest,6,5908,757,aadt,277,Least traffic · 2024,757,aadt
+quietest,7,5764,761,aadt,277,Least traffic · 2024,761,aadt
+quietest,8,5467,773,aadt,277,Least traffic · 2024,773,aadt
+quietest,9,5563,894,aadt,277,Least traffic · 2024,894,aadt
+quietest,10,5694,1027,aadt,277,Least traffic · 2024,1027,aadt
+tolledtraffic,1,5938,16474,aadt,47,Busiest connections with tolls · 2024,16474,aadt
+tolledtraffic,2,5939,14676,aadt,47,Busiest connections with tolls · 2024,14676,aadt
+tolledtraffic,3,105182,10942,aadt,47,Busiest connections with tolls · 2024,10942,aadt
+tolledtraffic,4,5495,10801,aadt,47,Busiest connections with tolls · 2024,10801,aadt
+tolledtraffic,5,5576,9828,aadt,47,Busiest connections with tolls · 2024,9828,aadt
+tolledtraffic,6,5594,9610,aadt,47,Busiest connections with tolls · 2024,9610,aadt
+tolledtraffic,7,5676,9103,aadt,47,Busiest connections with tolls · 2024,9103,aadt
+tolledtraffic,8,5623,9089,aadt,47,Busiest connections with tolls · 2024,9089,aadt
+tolledtraffic,9,5593,8963,aadt,47,Busiest connections with tolls · 2024,8963,aadt
+tolledtraffic,10,5691,8719,aadt,47,Busiest connections with tolls · 2024,8719,aadt
+quiettolled,1,5753,1200,aadt,47,Quietest connections with tolls · 2024,1200,aadt
+quiettolled,2,99812,2085,aadt,47,Quietest connections with tolls · 2024,2085,aadt
+quiettolled,3,5776,2686,aadt,47,Quietest connections with tolls · 2024,2686,aadt
+quiettolled,4,5697,2687,aadt,47,Quietest connections with tolls · 2024,2687,aadt
+quiettolled,5,5698,2849,aadt,47,Quietest connections with tolls · 2024,2849,aadt
+quiettolled,6,99813,2989,aadt,47,Quietest connections with tolls · 2024,2989,aadt
+quiettolled,7,5524,3304,aadt,47,Quietest connections with tolls · 2024,3304,aadt
+quiettolled,8,5523,3305,aadt,47,Quietest connections with tolls · 2024,3305,aadt
+quiettolled,9,5557,3316,aadt,47,Quietest connections with tolls · 2024,3316,aadt
+quiettolled,10,5595,3415,aadt,47,Quietest connections with tolls · 2024,3415,aadt

@@ -1,0 +1,341 @@
+plaza_id,plaza,kind,milepost,profile,cash_all_times_usd,nj_ezpass_peak_usd,nj_ezpass_offpeak_usd,heavy_trucks_allowed,year
+barrier-pascack-valley,Pascack Valley,mainline,166.1,car,2.4,2.25,2.25,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,senior,2.4,2.25,2.03,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,green,2.4,2.25,2.03,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,truck2,,,,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,truck3,,,,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,truck4,,,,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,truck5,,,,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,truck6,,,,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,bus2,2.85,2.67,2.54,False,2026
+barrier-pascack-valley,Pascack Valley,mainline,166.1,bus3,4.05,4.0,3.8,False,2026
+barrier-bergen,Bergen,mainline,160.5,car,2.4,2.25,2.25,False,2026
+barrier-bergen,Bergen,mainline,160.5,senior,2.4,2.25,2.03,False,2026
+barrier-bergen,Bergen,mainline,160.5,green,2.4,2.25,2.03,False,2026
+barrier-bergen,Bergen,mainline,160.5,truck2,,,,False,2026
+barrier-bergen,Bergen,mainline,160.5,truck3,,,,False,2026
+barrier-bergen,Bergen,mainline,160.5,truck4,,,,False,2026
+barrier-bergen,Bergen,mainline,160.5,truck5,,,,False,2026
+barrier-bergen,Bergen,mainline,160.5,truck6,,,,False,2026
+barrier-bergen,Bergen,mainline,160.5,bus2,2.85,2.67,2.54,False,2026
+barrier-bergen,Bergen,mainline,160.5,bus3,4.05,4.0,3.8,False,2026
+barrier-essex,Essex,mainline,150.7,car,2.4,2.25,2.25,False,2026
+barrier-essex,Essex,mainline,150.7,senior,2.4,2.25,2.03,False,2026
+barrier-essex,Essex,mainline,150.7,green,2.4,2.25,2.03,False,2026
+barrier-essex,Essex,mainline,150.7,truck2,,,,False,2026
+barrier-essex,Essex,mainline,150.7,truck3,,,,False,2026
+barrier-essex,Essex,mainline,150.7,truck4,,,,False,2026
+barrier-essex,Essex,mainline,150.7,truck5,,,,False,2026
+barrier-essex,Essex,mainline,150.7,truck6,,,,False,2026
+barrier-essex,Essex,mainline,150.7,bus2,2.85,2.67,2.54,False,2026
+barrier-essex,Essex,mainline,150.7,bus3,4.05,4.0,3.8,False,2026
+barrier-union,Union,mainline,142.7,car,2.4,2.25,2.25,False,2026
+barrier-union,Union,mainline,142.7,senior,2.4,2.25,2.03,False,2026
+barrier-union,Union,mainline,142.7,green,2.4,2.25,2.03,False,2026
+barrier-union,Union,mainline,142.7,truck2,,,,False,2026
+barrier-union,Union,mainline,142.7,truck3,,,,False,2026
+barrier-union,Union,mainline,142.7,truck4,,,,False,2026
+barrier-union,Union,mainline,142.7,truck5,,,,False,2026
+barrier-union,Union,mainline,142.7,truck6,,,,False,2026
+barrier-union,Union,mainline,142.7,bus2,2.85,2.67,2.54,False,2026
+barrier-union,Union,mainline,142.7,bus3,4.05,4.0,3.8,False,2026
+barrier-raritan,Raritan,mainline,125.4,car,2.4,2.25,2.25,False,2026
+barrier-raritan,Raritan,mainline,125.4,senior,2.4,2.25,2.03,False,2026
+barrier-raritan,Raritan,mainline,125.4,green,2.4,2.25,2.03,False,2026
+barrier-raritan,Raritan,mainline,125.4,truck2,,,,False,2026
+barrier-raritan,Raritan,mainline,125.4,truck3,,,,False,2026
+barrier-raritan,Raritan,mainline,125.4,truck4,,,,False,2026
+barrier-raritan,Raritan,mainline,125.4,truck5,,,,False,2026
+barrier-raritan,Raritan,mainline,125.4,truck6,,,,False,2026
+barrier-raritan,Raritan,mainline,125.4,bus2,2.85,2.67,2.54,False,2026
+barrier-raritan,Raritan,mainline,125.4,bus3,4.05,4.0,3.8,False,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,car,2.4,2.25,2.25,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,senior,2.4,2.25,2.03,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,green,2.4,2.25,2.03,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,truck2,4.75,4.45,4.23,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,truck3,6.7,6.66,6.33,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,truck4,9.1,8.86,8.42,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,truck5,11.25,11.07,10.51,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,truck6,13.4,13.27,12.61,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,bus2,2.85,2.67,2.54,True,2026
+barrier-asbury-park,Asbury Park,mainline,104.0,bus3,4.05,4.0,3.8,True,2026
+barrier-toms-river,Toms River,mainline,84.7,car,1.2,1.13,1.13,True,2026
+barrier-toms-river,Toms River,mainline,84.7,senior,1.2,1.13,1.02,True,2026
+barrier-toms-river,Toms River,mainline,84.7,green,1.2,1.13,1.02,True,2026
+barrier-toms-river,Toms River,mainline,84.7,truck2,2.4,2.23,2.12,True,2026
+barrier-toms-river,Toms River,mainline,84.7,truck3,3.35,3.33,3.17,True,2026
+barrier-toms-river,Toms River,mainline,84.7,truck4,4.55,4.43,4.21,True,2026
+barrier-toms-river,Toms River,mainline,84.7,truck5,5.65,5.54,5.26,True,2026
+barrier-toms-river,Toms River,mainline,84.7,truck6,6.7,6.64,6.31,True,2026
+barrier-toms-river,Toms River,mainline,84.7,bus2,1.45,1.34,1.27,True,2026
+barrier-toms-river,Toms River,mainline,84.7,bus3,2.05,2.0,1.9,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,car,2.4,2.25,2.25,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,senior,2.4,2.25,2.03,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,green,2.4,2.25,2.03,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,truck2,4.75,4.45,4.23,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,truck3,6.7,6.66,6.33,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,truck4,9.1,8.86,8.42,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,truck5,11.25,11.07,10.51,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,truck6,13.4,13.27,12.61,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,bus2,2.85,2.67,2.54,True,2026
+barrier-barnegat,Barnegat,mainline,68.9,bus3,4.05,4.0,3.8,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,car,2.4,2.25,2.25,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,senior,2.4,2.25,2.03,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,green,2.4,2.25,2.03,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,truck2,4.75,4.45,4.23,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,truck3,6.7,6.66,6.33,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,truck4,9.1,8.86,8.42,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,truck5,11.25,11.07,10.51,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,truck6,13.4,13.27,12.61,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,bus2,2.85,2.67,2.54,True,2026
+barrier-new-gretna,New Gretna,mainline,53.5,bus3,4.05,4.0,3.8,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,car,2.4,2.25,2.25,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,senior,2.4,2.25,2.03,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,green,2.4,2.25,2.03,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,truck2,4.75,4.45,4.23,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,truck3,6.7,6.66,6.33,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,truck4,9.1,8.86,8.42,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,truck5,11.25,11.07,10.51,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,truck6,13.4,13.27,12.61,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,bus2,2.85,2.67,2.54,True,2026
+barrier-great-egg,Great Egg,mainline,28.8,bus3,4.05,4.0,3.8,True,2026
+barrier-cape-may,Cape May,mainline,19.4,car,2.4,2.25,2.25,True,2026
+barrier-cape-may,Cape May,mainline,19.4,senior,2.4,2.25,2.03,True,2026
+barrier-cape-may,Cape May,mainline,19.4,green,2.4,2.25,2.03,True,2026
+barrier-cape-may,Cape May,mainline,19.4,truck2,4.75,4.45,4.23,True,2026
+barrier-cape-may,Cape May,mainline,19.4,truck3,6.7,6.66,6.33,True,2026
+barrier-cape-may,Cape May,mainline,19.4,truck4,9.1,8.86,8.42,True,2026
+barrier-cape-may,Cape May,mainline,19.4,truck5,11.25,11.07,10.51,True,2026
+barrier-cape-may,Cape May,mainline,19.4,truck6,13.4,13.27,12.61,True,2026
+barrier-cape-may,Cape May,mainline,19.4,bus2,2.85,2.67,2.54,True,2026
+barrier-cape-may,Cape May,mainline,19.4,bus3,4.05,4.0,3.8,True,2026
+ramp-paramus,Paramus,ramp,164.6,car,0.9,0.79,0.79,False,2026
+ramp-paramus,Paramus,ramp,164.6,senior,0.9,0.79,0.71,False,2026
+ramp-paramus,Paramus,ramp,164.6,green,0.9,0.79,0.71,False,2026
+ramp-paramus,Paramus,ramp,164.6,truck2,,,,False,2026
+ramp-paramus,Paramus,ramp,164.6,truck3,,,,False,2026
+ramp-paramus,Paramus,ramp,164.6,truck4,,,,False,2026
+ramp-paramus,Paramus,ramp,164.6,truck5,,,,False,2026
+ramp-paramus,Paramus,ramp,164.6,truck6,,,,False,2026
+ramp-paramus,Paramus,ramp,164.6,bus2,1.0,0.96,0.92,False,2026
+ramp-paramus,Paramus,ramp,164.6,bus3,1.5,1.38,1.31,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,car,2.4,2.25,2.25,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,senior,2.4,2.25,2.03,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,green,2.4,2.25,2.03,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,truck2,,,,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,truck3,,,,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,truck4,,,,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,truck5,,,,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,truck6,,,,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,bus2,2.85,2.67,2.54,False,2026
+ramp-saddle-brook,Saddle Brook,ramp,160.3,bus3,4.05,4.0,3.8,False,2026
+ramp-clifton,Clifton,ramp,156.1,car,0.9,0.79,0.79,False,2026
+ramp-clifton,Clifton,ramp,156.1,senior,0.9,0.79,0.71,False,2026
+ramp-clifton,Clifton,ramp,156.1,green,0.9,0.79,0.71,False,2026
+ramp-clifton,Clifton,ramp,156.1,truck2,,,,False,2026
+ramp-clifton,Clifton,ramp,156.1,truck3,,,,False,2026
+ramp-clifton,Clifton,ramp,156.1,truck4,,,,False,2026
+ramp-clifton,Clifton,ramp,156.1,truck5,,,,False,2026
+ramp-clifton,Clifton,ramp,156.1,truck6,,,,False,2026
+ramp-clifton,Clifton,ramp,156.1,bus2,1.0,0.96,0.92,False,2026
+ramp-clifton,Clifton,ramp,156.1,bus3,1.5,1.38,1.31,False,2026
+ramp-passaic,Passaic,ramp,154.5,car,0.9,0.79,0.79,False,2026
+ramp-passaic,Passaic,ramp,154.5,senior,0.9,0.79,0.71,False,2026
+ramp-passaic,Passaic,ramp,154.5,green,0.9,0.79,0.71,False,2026
+ramp-passaic,Passaic,ramp,154.5,truck2,,,,False,2026
+ramp-passaic,Passaic,ramp,154.5,truck3,,,,False,2026
+ramp-passaic,Passaic,ramp,154.5,truck4,,,,False,2026
+ramp-passaic,Passaic,ramp,154.5,truck5,,,,False,2026
+ramp-passaic,Passaic,ramp,154.5,truck6,,,,False,2026
+ramp-passaic,Passaic,ramp,154.5,bus2,1.0,0.96,0.92,False,2026
+ramp-passaic,Passaic,ramp,154.5,bus3,1.5,1.38,1.31,False,2026
+ramp-watchung,Watchung,ramp,152.6,car,1.2,1.13,1.13,False,2026
+ramp-watchung,Watchung,ramp,152.6,senior,1.2,1.13,1.02,False,2026
+ramp-watchung,Watchung,ramp,152.6,green,1.2,1.13,1.02,False,2026
+ramp-watchung,Watchung,ramp,152.6,truck2,,,,False,2026
+ramp-watchung,Watchung,ramp,152.6,truck3,,,,False,2026
+ramp-watchung,Watchung,ramp,152.6,truck4,,,,False,2026
+ramp-watchung,Watchung,ramp,152.6,truck5,,,,False,2026
+ramp-watchung,Watchung,ramp,152.6,truck6,,,,False,2026
+ramp-watchung,Watchung,ramp,152.6,bus2,1.45,1.34,1.27,False,2026
+ramp-watchung,Watchung,ramp,152.6,bus3,2.05,2.0,1.9,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,car,0.9,0.79,0.79,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,senior,0.9,0.79,0.71,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,green,0.9,0.79,0.71,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,truck2,,,,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,truck3,,,,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,truck4,,,,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,truck5,,,,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,truck6,,,,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,bus2,1.0,0.96,0.92,False,2026
+ramp-bloomfield,Bloomfield,ramp,148.9,bus3,1.5,1.38,1.31,False,2026
+ramp-east-orange,East Orange,ramp,147.1,car,1.8,1.57,1.57,False,2026
+ramp-east-orange,East Orange,ramp,147.1,senior,1.8,1.57,1.41,False,2026
+ramp-east-orange,East Orange,ramp,147.1,green,1.8,1.57,1.41,False,2026
+ramp-east-orange,East Orange,ramp,147.1,truck2,,,,False,2026
+ramp-east-orange,East Orange,ramp,147.1,truck3,,,,False,2026
+ramp-east-orange,East Orange,ramp,147.1,truck4,,,,False,2026
+ramp-east-orange,East Orange,ramp,147.1,truck5,,,,False,2026
+ramp-east-orange,East Orange,ramp,147.1,truck6,,,,False,2026
+ramp-east-orange,East Orange,ramp,147.1,bus2,1.95,1.92,1.83,False,2026
+ramp-east-orange,East Orange,ramp,147.1,bus3,2.95,2.75,2.61,False,2026
+ramp-irvington,Irvington,ramp,146.1,car,0.9,0.79,0.79,False,2026
+ramp-irvington,Irvington,ramp,146.1,senior,0.9,0.79,0.71,False,2026
+ramp-irvington,Irvington,ramp,146.1,green,0.9,0.79,0.71,False,2026
+ramp-irvington,Irvington,ramp,146.1,truck2,,,,False,2026
+ramp-irvington,Irvington,ramp,146.1,truck3,,,,False,2026
+ramp-irvington,Irvington,ramp,146.1,truck4,,,,False,2026
+ramp-irvington,Irvington,ramp,146.1,truck5,,,,False,2026
+ramp-irvington,Irvington,ramp,146.1,truck6,,,,False,2026
+ramp-irvington,Irvington,ramp,146.1,bus2,1.0,0.96,0.92,False,2026
+ramp-irvington,Irvington,ramp,146.1,bus3,1.5,1.38,1.31,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,car,2.4,2.25,2.25,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,senior,2.4,2.25,2.03,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,green,2.4,2.25,2.03,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,truck2,,,,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,truck3,,,,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,truck4,,,,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,truck5,,,,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,truck6,,,,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,bus2,2.85,2.67,2.54,False,2026
+ramp-union-ramp,Union Ramp,ramp,142.8,bus3,4.05,4.0,3.8,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,car,,2.25,2.25,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,senior,,2.25,2.03,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,green,,2.25,2.03,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,truck2,,,,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,truck3,,,,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,truck4,,,,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,truck5,,,,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,truck6,,,,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,bus2,,2.67,2.54,False,2026
+ramp-sayreville,Sayreville,ramp,125.0,bus3,,4.0,3.8,False,2026
+ramp-matawan,Matawan,ramp,117.1,car,0.9,0.79,0.79,False,2026
+ramp-matawan,Matawan,ramp,117.1,senior,0.9,0.79,0.71,False,2026
+ramp-matawan,Matawan,ramp,117.1,green,0.9,0.79,0.71,False,2026
+ramp-matawan,Matawan,ramp,117.1,truck2,,,,False,2026
+ramp-matawan,Matawan,ramp,117.1,truck3,,,,False,2026
+ramp-matawan,Matawan,ramp,117.1,truck4,,,,False,2026
+ramp-matawan,Matawan,ramp,117.1,truck5,,,,False,2026
+ramp-matawan,Matawan,ramp,117.1,truck6,,,,False,2026
+ramp-matawan,Matawan,ramp,117.1,bus2,1.0,0.96,0.92,False,2026
+ramp-matawan,Matawan,ramp,117.1,bus3,1.5,1.38,1.31,False,2026
+ramp-keyport,Keyport,ramp,118.6,car,0.9,0.79,0.79,False,2026
+ramp-keyport,Keyport,ramp,118.6,senior,0.9,0.79,0.71,False,2026
+ramp-keyport,Keyport,ramp,118.6,green,0.9,0.79,0.71,False,2026
+ramp-keyport,Keyport,ramp,118.6,truck2,,,,False,2026
+ramp-keyport,Keyport,ramp,118.6,truck3,,,,False,2026
+ramp-keyport,Keyport,ramp,118.6,truck4,,,,False,2026
+ramp-keyport,Keyport,ramp,118.6,truck5,,,,False,2026
+ramp-keyport,Keyport,ramp,118.6,truck6,,,,False,2026
+ramp-keyport,Keyport,ramp,118.6,bus2,1.0,0.96,0.92,False,2026
+ramp-keyport,Keyport,ramp,118.6,bus3,1.5,1.38,1.31,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,car,0.9,0.79,0.79,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,senior,0.9,0.79,0.71,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,green,0.9,0.79,0.71,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,truck2,,,,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,truck3,,,,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,truck4,,,,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,truck5,,,,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,truck6,,,,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,bus2,1.0,0.96,0.92,False,2026
+ramp-holmdel,Holmdel,ramp,113.6,bus3,1.5,1.38,1.31,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,car,0.9,0.79,0.79,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,senior,0.9,0.79,0.71,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,green,0.9,0.79,0.71,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,truck2,,,,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,truck3,,,,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,truck4,,,,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,truck5,,,,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,truck6,,,,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,bus2,1.0,0.96,0.92,False,2026
+ramp-red-bank,Red Bank,ramp,110.3,bus3,1.5,1.38,1.31,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,car,2.4,2.25,2.25,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,senior,2.4,2.25,2.03,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,green,2.4,2.25,2.03,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,truck2,,,,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,truck3,,,,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,truck4,,,,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,truck5,,,,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,truck6,,,,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,bus2,2.85,2.67,2.54,False,2026
+ramp-eatontown,Eatontown,ramp,106.5,bus3,4.05,4.0,3.8,False,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,car,0.9,0.79,0.79,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,senior,0.9,0.79,0.71,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,green,0.9,0.79,0.71,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,truck2,1.6,1.6,1.52,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,truck3,2.45,2.29,2.18,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,truck4,3.15,3.09,2.94,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,truck5,4.1,3.92,3.72,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,truck6,4.9,4.84,4.59,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,bus2,1.0,0.96,0.92,True,2026
+ramp-belmar-wall,Belmar/Wall,ramp,98.0,bus3,1.5,1.38,1.31,True,2026
+ramp-brick,Brick,ramp,93.0,car,0.9,0.79,0.79,True,2026
+ramp-brick,Brick,ramp,93.0,senior,0.9,0.79,0.71,True,2026
+ramp-brick,Brick,ramp,93.0,green,0.9,0.79,0.71,True,2026
+ramp-brick,Brick,ramp,93.0,truck2,1.6,1.6,1.52,True,2026
+ramp-brick,Brick,ramp,93.0,truck3,2.45,2.29,2.18,True,2026
+ramp-brick,Brick,ramp,93.0,truck4,3.15,3.09,2.94,True,2026
+ramp-brick,Brick,ramp,93.0,truck5,4.1,3.92,3.72,True,2026
+ramp-brick,Brick,ramp,93.0,truck6,4.9,4.84,4.59,True,2026
+ramp-brick,Brick,ramp,93.0,bus2,1.0,0.96,0.92,True,2026
+ramp-brick,Brick,ramp,93.0,bus3,1.5,1.38,1.31,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,car,0.9,0.79,0.79,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,senior,0.9,0.79,0.71,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,green,0.9,0.79,0.71,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,truck2,1.6,1.6,1.52,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,truck3,2.45,2.29,2.18,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,truck4,3.15,3.09,2.94,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,truck5,4.1,3.92,3.72,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,truck6,4.9,4.84,4.59,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,bus2,1.0,0.96,0.92,True,2026
+ramp-lakewood,Lakewood,ramp,90.1,bus3,1.5,1.38,1.31,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,car,0.9,0.79,0.79,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,senior,0.9,0.79,0.71,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,green,0.9,0.79,0.71,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,truck2,1.6,1.6,1.52,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,truck3,2.45,2.29,2.18,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,truck4,3.15,3.09,2.94,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,truck5,4.1,3.92,3.72,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,truck6,4.9,4.84,4.59,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,bus2,1.0,0.96,0.92,True,2026
+ramp-berkeley,Berkeley,ramp,77.9,bus3,1.5,1.38,1.31,True,2026
+ramp-forked-river,Forked River,ramp,75.3,car,0.9,0.79,0.79,True,2026
+ramp-forked-river,Forked River,ramp,75.3,senior,0.9,0.79,0.71,True,2026
+ramp-forked-river,Forked River,ramp,75.3,green,0.9,0.79,0.71,True,2026
+ramp-forked-river,Forked River,ramp,75.3,truck2,1.6,1.6,1.52,True,2026
+ramp-forked-river,Forked River,ramp,75.3,truck3,2.45,2.29,2.18,True,2026
+ramp-forked-river,Forked River,ramp,75.3,truck4,3.15,3.09,2.94,True,2026
+ramp-forked-river,Forked River,ramp,75.3,truck5,4.1,3.92,3.72,True,2026
+ramp-forked-river,Forked River,ramp,75.3,truck6,4.9,4.84,4.59,True,2026
+ramp-forked-river,Forked River,ramp,75.3,bus2,1.0,0.96,0.92,True,2026
+ramp-forked-river,Forked River,ramp,75.3,bus3,1.5,1.38,1.31,True,2026
+ramp-waretown,Waretown,ramp,70.4,car,1.2,1.13,1.13,True,2026
+ramp-waretown,Waretown,ramp,70.4,senior,1.2,1.13,1.02,True,2026
+ramp-waretown,Waretown,ramp,70.4,green,1.2,1.13,1.02,True,2026
+ramp-waretown,Waretown,ramp,70.4,truck2,2.4,2.23,2.12,True,2026
+ramp-waretown,Waretown,ramp,70.4,truck3,3.35,3.33,3.17,True,2026
+ramp-waretown,Waretown,ramp,70.4,truck4,4.55,4.43,4.21,True,2026
+ramp-waretown,Waretown,ramp,70.4,truck5,5.65,5.54,5.26,True,2026
+ramp-waretown,Waretown,ramp,70.4,truck6,6.7,6.64,6.31,True,2026
+ramp-waretown,Waretown,ramp,70.4,bus2,1.45,1.34,1.27,True,2026
+ramp-waretown,Waretown,ramp,70.4,bus3,2.05,2.0,1.9,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,car,2.4,2.25,2.25,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,senior,2.4,2.25,2.03,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,green,2.4,2.25,2.03,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,truck2,4.75,4.45,4.23,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,truck3,6.7,6.66,6.33,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,truck4,9.1,8.86,8.42,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,truck5,11.25,11.07,10.51,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,truck6,13.4,13.27,12.61,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,bus2,2.85,2.67,2.54,True,2026
+ramp-somers-point,Somers Point,ramp,30.2,bus3,4.05,4.0,3.8,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,car,0.9,0.79,0.79,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,senior,0.9,0.79,0.71,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,green,0.9,0.79,0.71,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,truck2,1.6,1.6,1.52,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,truck3,2.45,2.29,2.18,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,truck4,3.15,3.09,2.94,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,truck5,4.1,3.92,3.72,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,truck6,4.9,4.84,4.59,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,bus2,1.0,0.96,0.92,True,2026
+ramp-wildwood,Wildwood,ramp,3.8,bus3,1.5,1.38,1.31,True,2026
