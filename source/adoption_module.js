@@ -37,8 +37,9 @@ function characterGeometry(r){
  return {d:xyPath(r.source_xy,project),x:clamp(face[0],36,284),y:clamp(face[1]-7,50,221),project};
 }
 function characterMarkup(r,{decorative=false,eyes=true}={}){
- const g=characterGeometry(r);
- return `<svg viewBox="0 0 320 260" class="adoption-character" ${decorative?'aria-hidden="true"':`role="img" aria-label="Real shape of exit ${esc(r.number)}, ${esc(movement(r))}, with decorative eyes. North up."`} data-adoption-fid="${Number(r.fid)}"><path class="adoption-road" d="${g.d}" data-source-vertices="${r.source_xy.length}" data-source-fid="${Number(sourceFID(r))}"/>${eyes?`<g class="adoption-eyes" transform="translate(${g.x.toFixed(3)} ${g.y.toFixed(3)})" aria-hidden="true"><g class="adoption-eye-open"><ellipse cx="-13" cy="0" rx="11" ry="14"/><ellipse cx="13" cy="0" rx="11" ry="14"/><circle class="adoption-pupil" cx="-10" cy="2" r="4"/><circle class="adoption-pupil" cx="16" cy="2" r="4"/></g><path class="adoption-eye-closed" d="M-22 1h17M5 1h17"/></g>`:''}<text x="295" y="23" class="adoption-north">N ↑</text></svg>`;
+ const g=characterGeometry(r),seed=Math.abs(Number(r.fid));
+ const eyeTiming=`--eye-blink-cycle:${(4.4+seed%23/10).toFixed(1)}s;--eye-blink-phase:${(-(seed*17%67)/10).toFixed(1)}s;--eye-gaze-cycle:${(13+seed%29/5).toFixed(1)}s;--eye-gaze-phase:${(-(seed*31%180)/10).toFixed(1)}s`;
+ return `<svg viewBox="0 0 320 260" class="adoption-character" ${decorative?'aria-hidden="true"':`role="img" aria-label="Real shape of exit ${esc(r.number)}, ${esc(movement(r))}, with decorative eyes. North up."`} data-adoption-fid="${Number(r.fid)}"><path class="adoption-road" d="${g.d}" data-source-vertices="${r.source_xy.length}" data-source-fid="${Number(sourceFID(r))}"/>${eyes?`<g class="adoption-eyes" style="${eyeTiming}" transform="translate(${g.x.toFixed(3)} ${g.y.toFixed(3)})" aria-hidden="true"><g class="adoption-eye-open"><g class="adoption-blink"><ellipse cx="-13" cy="0" rx="11" ry="14"/><ellipse cx="13" cy="0" rx="11" ry="14"/><g class="adoption-gaze"><circle class="adoption-pupil" cx="-13" cy="1" r="4"/><circle class="adoption-pupil" cx="13" cy="1" r="4"/></g></g></g><path class="adoption-eye-closed" d="M-22 1h17M5 1h17"/></g>`:''}<text x="295" y="23" class="adoption-north">N ↑</text></svg>`;
 }
 function refreshSelection(){
  const r=byFID.get(state.selected),button=$('adoptSelected');
@@ -170,6 +171,9 @@ document.addEventListener('click',event=>{
  if(familyButton){closeDesk(false);if($('branchDialog').open)closeDetail();switchWorkspace('family',{scroll:true});$('adoptionFamilyTitle').setAttribute('tabindex','-1');$('adoptionFamilyTitle').focus({preventScroll:true});}
 });
 window.addEventListener('storage',event=>{if(event.key!==STORAGE_KEY)return;family=loadFamily();refreshAll();if(desk.open)updateAdoptedStatus();});
+function pauseHiddenEyes(){document.documentElement.classList.toggle('adoption-eyes-paused',document.hidden);}
+document.addEventListener('visibilitychange',pauseHiddenEyes);
+pauseHiddenEyes();
 window.GSPAdoption={renderFamily,refreshSelection,refreshDetail};
 refreshAll();
 })();

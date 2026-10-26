@@ -18,7 +18,7 @@ vm.runInContext(template.split('\n').find(line=>/^function sourceBounds\(/.test(
 vm.runInContext(template.split('\n').find(line=>/^function publicRoad\(/.test(line)),context);
 vm.runInContext(template.split('\n').find(line=>/^const movement=/.test(line)),context);
 vm.runInContext(between(moduleSource,'function nicknameText(','function loadFamily('),context);
-vm.runInContext(between(moduleSource,'function characterGeometry(','function characterMarkup('),context);
+vm.runInContext(between(moduleSource,'function characterGeometry(','function refreshSelection('),context);
 vm.runInContext(between(moduleSource,'function certificateMarkup(','function downloadCertificate('),context);
 assert.equal(vm.runInContext(`nicknameText('  Sir   Bends-a-Lot\u0000 ')`,context),'Sir Bends-a-Lot');
 assert.equal(vm.runInContext(`Array.from(nicknameText('🛣️'.repeat(30))).length`,context),24);
@@ -29,6 +29,14 @@ assert.equal(cleaned.length,1);assert.equal(cleaned[0].name,'Newest');
 assert.equal(vm.runInContext(`normalizeFamily({fid:sampleId,name:'Not an array'}).length`,context),0);
 const attack='\"><img src=x onerror=1>';
 context.attack=attack;
+const character=vm.runInContext(`characterMarkup({...records[0],number:attack,road:attack,direction:attack})`,context);
+assert(!character.includes('<img'));assert(character.includes('&lt;img'));
+// Animation belongs to eye-only groups, and cannot alter the underlying road path.
+const roadPath=character.match(/<path class="adoption-road" d="([^"]+)"/)[1];
+assert.equal(roadPath,vm.runInContext('characterGeometry(records[0]).d',context));
+assert.equal((character.match(/class="adoption-pupil"/g)||[]).length,2);
+const secondCharacter=vm.runInContext('characterMarkup(records[1])',context);
+assert.notEqual(character.match(/style="([^"]+)"/)[1],secondCharacter.match(/style="([^"]+)"/)[1]);
 const certificate=vm.runInContext(`certificateMarkup({...records[0],number:attack,road:attack,direction:attack},nicknameText(attack))`,context);
 assert(!certificate.includes('<img'));assert(!certificate.includes('<script'));
 assert(certificate.includes('&lt;img'));assert(certificate.includes('xmlns="http://www.w3.org/2000/svg"'));

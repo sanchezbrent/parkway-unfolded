@@ -363,6 +363,18 @@ dialog.adoption-dialog{width:min(1020px,calc(100vw - 40px));max-width:1020px;max
 .adoption-family-grid.adoption-family-single{grid-template-columns:minmax(0,390px)}
 
 @media(max-width:680px){.workbench-top>.view-switch #openComparison{grid-column:auto}}
+
+/* Only the decorative eyes move; the road path remains untouched. */
+.adoption-blink{transform-box:fill-box;transform-origin:center;animation:adoption-blink var(--eye-blink-cycle,5.3s) var(--eye-blink-phase,0s) ease-in-out infinite}
+.adoption-gaze{animation:adoption-look-around var(--eye-gaze-cycle,16s) var(--eye-gaze-phase,0s) cubic-bezier(.4,0,.2,1) infinite}
+@keyframes adoption-blink{0%,43.5%,47.5%,100%{transform:scaleY(1)}45%,46%{transform:scaleY(.06)}}
+@keyframes adoption-look-around{0%,18%,90%,100%{transform:translate(0,0)}20%,36%{transform:translate(-4px,-1px)}38%,54%{transform:translate(0,0)}56%,72%{transform:translate(3.5px,-2px)}74%,88%{transform:translate(1px,2.5px)}}
+.adoption-eyes-paused .adoption-blink,.adoption-eyes-paused .adoption-gaze,
+.is-snoozing .adoption-blink,.is-snoozing .adoption-gaze,
+#adoptionDialog:not([open]) .adoption-blink,#adoptionDialog:not([open]) .adoption-gaze,
+#adoptionFamily[hidden] .adoption-blink,#adoptionFamily[hidden] .adoption-gaze,
+#overview[hidden] .adoption-blink,#overview[hidden] .adoption-gaze{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.adoption-blink,.adoption-gaze{animation:none!important;transform:none!important}}
 </style></head>
 <body>
 <script>(function(){let mode='system';try{mode=localStorage.getItem('parkway-theme')||'system';}catch(e){}if(!['system','light','dark'].includes(mode))mode='system';document.body.classList.toggle('night',mode==='dark'||mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
@@ -1927,8 +1939,9 @@ function characterGeometry(r){
  return {d:xyPath(r.source_xy,project),x:clamp(face[0],36,284),y:clamp(face[1]-7,50,221),project};
 }
 function characterMarkup(r,{decorative=false,eyes=true}={}){
- const g=characterGeometry(r);
- return `<svg viewBox="0 0 320 260" class="adoption-character" ${decorative?'aria-hidden="true"':`role="img" aria-label="Real shape of exit ${esc(r.number)}, ${esc(movement(r))}, with decorative eyes. North up."`} data-adoption-fid="${Number(r.fid)}"><path class="adoption-road" d="${g.d}" data-source-vertices="${r.source_xy.length}" data-source-fid="${Number(sourceFID(r))}"/>${eyes?`<g class="adoption-eyes" transform="translate(${g.x.toFixed(3)} ${g.y.toFixed(3)})" aria-hidden="true"><g class="adoption-eye-open"><ellipse cx="-13" cy="0" rx="11" ry="14"/><ellipse cx="13" cy="0" rx="11" ry="14"/><circle class="adoption-pupil" cx="-10" cy="2" r="4"/><circle class="adoption-pupil" cx="16" cy="2" r="4"/></g><path class="adoption-eye-closed" d="M-22 1h17M5 1h17"/></g>`:''}<text x="295" y="23" class="adoption-north">N ↑</text></svg>`;
+ const g=characterGeometry(r),seed=Math.abs(Number(r.fid));
+ const eyeTiming=`--eye-blink-cycle:${(4.4+seed%23/10).toFixed(1)}s;--eye-blink-phase:${(-(seed*17%67)/10).toFixed(1)}s;--eye-gaze-cycle:${(13+seed%29/5).toFixed(1)}s;--eye-gaze-phase:${(-(seed*31%180)/10).toFixed(1)}s`;
+ return `<svg viewBox="0 0 320 260" class="adoption-character" ${decorative?'aria-hidden="true"':`role="img" aria-label="Real shape of exit ${esc(r.number)}, ${esc(movement(r))}, with decorative eyes. North up."`} data-adoption-fid="${Number(r.fid)}"><path class="adoption-road" d="${g.d}" data-source-vertices="${r.source_xy.length}" data-source-fid="${Number(sourceFID(r))}"/>${eyes?`<g class="adoption-eyes" style="${eyeTiming}" transform="translate(${g.x.toFixed(3)} ${g.y.toFixed(3)})" aria-hidden="true"><g class="adoption-eye-open"><g class="adoption-blink"><ellipse cx="-13" cy="0" rx="11" ry="14"/><ellipse cx="13" cy="0" rx="11" ry="14"/><g class="adoption-gaze"><circle class="adoption-pupil" cx="-13" cy="1" r="4"/><circle class="adoption-pupil" cx="13" cy="1" r="4"/></g></g></g><path class="adoption-eye-closed" d="M-22 1h17M5 1h17"/></g>`:''}<text x="295" y="23" class="adoption-north">N ↑</text></svg>`;
 }
 function refreshSelection(){
  const r=byFID.get(state.selected),button=$('adoptSelected');
@@ -2060,6 +2073,9 @@ document.addEventListener('click',event=>{
  if(familyButton){closeDesk(false);if($('branchDialog').open)closeDetail();switchWorkspace('family',{scroll:true});$('adoptionFamilyTitle').setAttribute('tabindex','-1');$('adoptionFamilyTitle').focus({preventScroll:true});}
 });
 window.addEventListener('storage',event=>{if(event.key!==STORAGE_KEY)return;family=loadFamily();refreshAll();if(desk.open)updateAdoptedStatus();});
+function pauseHiddenEyes(){document.documentElement.classList.toggle('adoption-eyes-paused',document.hidden);}
+document.addEventListener('visibilitychange',pauseHiddenEyes);
+pauseHiddenEyes();
 window.GSPAdoption={renderFamily,refreshSelection,refreshDetail};
 refreshAll();
 })();

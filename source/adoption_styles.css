@@ -28,3 +28,15 @@ dialog.adoption-dialog{width:min(1020px,calc(100vw - 40px));max-width:1020px;max
 .adoption-family-grid.adoption-family-single{grid-template-columns:minmax(0,390px)}
 
 @media(max-width:680px){.workbench-top>.view-switch #openComparison{grid-column:auto}}
+
+/* Only the decorative eyes move; the road path remains untouched. */
+.adoption-blink{transform-box:fill-box;transform-origin:center;animation:adoption-blink var(--eye-blink-cycle,5.3s) var(--eye-blink-phase,0s) ease-in-out infinite}
+.adoption-gaze{animation:adoption-look-around var(--eye-gaze-cycle,16s) var(--eye-gaze-phase,0s) cubic-bezier(.4,0,.2,1) infinite}
+@keyframes adoption-blink{0%,43.5%,47.5%,100%{transform:scaleY(1)}45%,46%{transform:scaleY(.06)}}
+@keyframes adoption-look-around{0%,18%,90%,100%{transform:translate(0,0)}20%,36%{transform:translate(-4px,-1px)}38%,54%{transform:translate(0,0)}56%,72%{transform:translate(3.5px,-2px)}74%,88%{transform:translate(1px,2.5px)}}
+.adoption-eyes-paused .adoption-blink,.adoption-eyes-paused .adoption-gaze,
+.is-snoozing .adoption-blink,.is-snoozing .adoption-gaze,
+#adoptionDialog:not([open]) .adoption-blink,#adoptionDialog:not([open]) .adoption-gaze,
+#adoptionFamily[hidden] .adoption-blink,#adoptionFamily[hidden] .adoption-gaze,
+#overview[hidden] .adoption-blink,#overview[hidden] .adoption-gaze{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.adoption-blink,.adoption-gaze{animation:none!important;transform:none!important}}
