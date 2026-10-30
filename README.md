@@ -2,7 +2,7 @@
 
 An interactive look at the Garden State Parkway through the shapes of its
 entrances, exits and connecting roads. Find an exit, unfold the ramps, compare
-two curves, or explore traffic counts, tolls and the Top 10s.
+two curves, adopt a favorite little road, or explore traffic counts, tolls and the Top 10s.
 
 ![Parkway Unfolded](assets/branding/Parkway_Unfolded_Wordmark.png)
 
@@ -45,6 +45,9 @@ Then open `http://localhost:8000/`.
 
 - Full-Parkway map and county browsing: 359 drawings at 84 exit areas.
 - Original road shapes, unfolding animation and two-ramp comparison.
+- Adopt-a-ramp characters, browser-local nicknames, a My ramps collection,
+  map links and downloadable SVG adoption papers. No account is needed.
+  Nicknames and decorative eyes do not change the real road geometry or labels.
 - 15 Top 10 categories: 11 shape comparisons and 4 traffic comparisons.
 - 2024 average daily traffic counts and 2026 toll rates, including eligible
   peak/off-peak plans. Regular passenger-car rates do not vary by time of day.
