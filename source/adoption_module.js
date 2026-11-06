@@ -2,7 +2,63 @@
 (function(){
 'use strict';
 const STORAGE_KEY='parkway-fun-family-v1';
-const nicknames=['Noodle','Professor Loop','Little Detour','Wiggles','Pudding','Turnip','Sir Bends-a-Lot','Spaghetti Joe','Bendy Wendy','Missed My Exit'];
+// A curated core plus playful title/name pairs, all short enough for adoption papers.
+const nicknameOriginals=[
+ "Noodle", "Professor Loop", "Little Detour", "Wiggles", "Pudding",
+ "Turnip", "Sir Bends-a-Lot", "Spaghetti Joe", "Bendy Wendy", "Missed My Exit",
+ "Pork Roll Polly", "Taylor Ham Sam", "Jughandle Judy", "Turnpike Tina", "Garden State Gary",
+ "Tollbooth Tony", "Merge Simpson", "Bendjamin Franklin", "Claudia Curves", "Rampenstein",
+ "Count Rampula", "The Great Bendini", "Bend Solo", "Loop Skywalker", "Rampioli",
+ "Macarampy", "Rampunzel", "Curvature Carl", "Marge the Merge", "Exitential Crisis",
+ "Almost There", "One More Exit", "Oops All Curves", "Mildly Lost", "Scenic Route",
+ "Wrong Way Walter", "See You in Secaucus", "Down the Shore", "Shore Thing", "Boardwalk Betty",
+ "Benny the Bend", "Pine Barrens Pat", "Asbury Swerve", "Hoboken Hokey Pokey", "The Local Noodle",
+ "Greetings from Bend", "No Left Turnip", "Yielda", "Curvy Irving", "Loop There It Is",
+ "Biscuit Bend", "Pretzel Pete", "Meatball Mike", "Rigatoni Rita", "Ziti Sweetie",
+ "Ravioli Ralph", "Dumpling Dot", "Gnocchi Nancy", "Nugget Nancy", "Waffle Walter",
+ "Pancake Pam", "Pickle Patricia", "Tater Tot Terry", "Soup of the Day", "Crumb Bum",
+ "Spud Muffin", "Bean Dip", "Peanut Gallery", "Little Pierogi", "Pesto the Besto",
+ "Bubbles", "Squiggle", "Tangles", "Scribbles", "Shoelace",
+ "Doodlebug", "Loose Spaghetti", "Worm With a Job", "Long Little Guy", "A Respectable Worm",
+ "Licensed to Wiggle", "Certified Good Bend", "Professional Detour", "Assistant to the Ramp", "Deputy Wigglepants",
+ "The Bend Department", "Head of Noodles", "Regional Ramp Manager", "Employee of the Merge", "Very Important Bend",
+ "Grandma GPS", "Uncle U-Turn", "Cousin Curb", "Auntie Asphalt", "Curbside Carl",
+ "Shoulder Shrug", "Soft Shoulder Sammy", "Lane Change Larry", "Blinker Belle", "Traffic Cone Joan",
+ "Pocket Parkway", "Teeny Turn", "Itsy Bitsy Interchange", "Small Road Big Dreams", "Wiggle Room",
+ "Wiggle Wiggle", "Oopsie Loop", "Just a Little Bend", "Happy Little Offramp", "Loop de Lou",
+ "Spaghetti Confetti", "Rumble Strip Rita", "Merging Margot", "Swerve Irving", "No Toll No Trouble",
+ "Tollhouse Cookie", "Exit Stage Left", "Interchangeable Dave", "Gentle Curve Gerald", "The Scenic Noodle"
+];
+const nicknameTitles=[
+ "Professor", "Doctor", "Captain", "Admiral", "Sergeant",
+ "Inspector", "Detective", "Agent", "Ranger", "Deputy",
+ "Mayor", "Councilor", "Commissioner", "Senator", "Judge",
+ "Baron", "Count", "Duke", "Duchess", "Lady",
+ "Sir", "Madam", "Mister", "Miss", "Uncle",
+ "Auntie", "Cousin", "Grandpa", "Grandma", "Coach",
+ "Chef", "Maestro", "Big", "Little", "Baby",
+ "Tiny", "Fancy", "Sleepy", "Wobbly", "Lucky"
+];
+const nicknameThings=[
+ "Noodle", "Meatball", "Ravioli", "Rigatoni", "Gnocchi",
+ "Ziti", "Fusilli", "Macaroni", "Linguine", "Penne",
+ "Spaghetti", "Lasagna", "Tortellini", "Pierogi", "Dumpling",
+ "Wonton", "Biscuit", "Waffle", "Pancake", "Crumpet",
+ "Muffin", "Bagel", "Donut", "Pretzel", "Pickle",
+ "Turnip", "Parsnip", "Potato", "Tater Tot", "Bean",
+ "Peanut", "Cashew", "Pistachio", "Walnut", "Acorn",
+ "Pinecone", "Pebble", "Puddle", "Bubble", "Button",
+ "Thimble", "Shoelace", "Ribbon", "Yarn", "Wiggle",
+ "Squiggle", "Doodle", "Scribble", "Loop", "Bend",
+ "Elbow", "Detour", "Offramp", "Jughandle", "Merge",
+ "Blinker", "Pork Roll", "Taylor Ham", "Boardwalk", "Taffy",
+ "Seagull", "Sandpiper", "Crab", "Cranberry", "Blueberry",
+ "Peach", "Pumpkin", "Pudding", "Custard", "Jellybean",
+ "Gumdrop", "Marshmallow", "Sprinkle", "Nugget", "Crouton",
+ "Breadcrumb", "Pesto", "Polenta", "Peppercorn", "Flapjack"
+];
+const nicknames=[...new Set([...nicknameOriginals,...nicknameTitles.flatMap(title=>nicknameThings.map(thing=>`${title} ${thing}`))])];
+let nicknameDeck=[],lastNickname='';
 const compliments=['Your angles are impeccable.','New Jersey is lucky to have you.','You’re going places. Eventually.','What a fine little detour.','No notes. Perfect bend.','You make a very good point. Several, actually.'];
 let storageAvailable=true,family=loadFamily(),current=null,returnFocus=null,snoozing=false,zoomFrame=null;
 const desk=$('adoptionDialog');
@@ -30,10 +86,22 @@ function saveFamily(){
  refreshAll();
 }
 function memberFor(fid){return family.find(item=>item.fid===fid);}
-function defaultName(r){return nicknames[Math.abs(r.fid)%nicknames.length];}
 function randomNickname(previous){
- const available=nicknames.filter(name=>name!==nicknameText(previous));
- return available[Math.floor(Math.random()*available.length)];
+ const blocked=new Set(family.map(member=>member.name));
+ blocked.add(nicknameText(previous));
+ blocked.add(lastNickname);
+ while(nicknameDeck.length){
+  const name=nicknameDeck.pop();
+  if(!blocked.has(name)){lastNickname=name;return name;}
+ }
+ nicknameDeck=nicknames.filter(name=>!blocked.has(name));
+ // Deal the full shuffled deck before refilling, across both rerolls and new ramps.
+ for(let i=nicknameDeck.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [nicknameDeck[i],nicknameDeck[j]]=[nicknameDeck[j],nicknameDeck[i]];
+ }
+ lastNickname=nicknameDeck.pop()||nicknameText(previous)||nicknames[0];
+ return lastNickname;
 }
 function characterGeometry(r){
  const project=fit(sourceBounds(r),320,260,{left:30,right:30,top:40,bottom:25});
@@ -77,7 +145,7 @@ function renderFamily(){
 function stopZoom(){if(zoomFrame!==null)cancelAnimationFrame(zoomFrame);zoomFrame=null;$('adoptionShape').querySelector('.adoption-runner')?.remove();}
 function paintDesk(){
  stopZoom();snoozing=false;
- const member=memberFor(current.fid),name=member?.name||defaultName(current);
+ const member=memberFor(current.fid),name=member?.name||randomNickname();
  $('adoptionNickname').value=name;$('adoptionNickname').setCustomValidity('');$('adoptionLiveName').textContent=name;
  $('adoptionShape').innerHTML=characterMarkup(current);
  $('adoptionStage').classList.remove('is-snoozing');$('adoptionSnooze').setAttribute('aria-pressed','false');$('adoptionSnooze').textContent='Snooze ☾';

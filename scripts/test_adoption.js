@@ -18,7 +18,7 @@ vm.runInContext(template.split('\n').find(line=>/^function sourceBounds\(/.test(
 vm.runInContext(template.split('\n').find(line=>/^function publicRoad\(/.test(line)),context);
 vm.runInContext(template.split('\n').find(line=>/^const movement=/.test(line)),context);
 vm.runInContext(between(moduleSource,'function nicknameText(','function loadFamily('),context);
-vm.runInContext(moduleSource.split('\n').find(line=>line.startsWith('const nicknames=')),context);
+vm.runInContext(between(moduleSource,'const nicknameOriginals=','const compliments='),context);
 vm.runInContext('let family=[];',context);
 vm.runInContext(between(moduleSource,'function memberFor(','function characterGeometry('),context);
 vm.runInContext(between(moduleSource,'function randomRamp(','function meetRandom('),context);
@@ -40,6 +40,14 @@ assert.equal(vm.runInContext(`randomRamp([{fid:1,number:'10'}],{fid:1,number:'10
 assert.equal(vm.runInContext('randomRamp([],null)',context),undefined);
 assert(vm.runInContext(`Array.from({length:50},()=>randomNickname('Noodle')).every(name=>name!=='Noodle'&&nicknames.includes(name))`,context));
 assert.equal(vm.runInContext('JSON.stringify(family)',context),'[{"fid":3,"name":"Keep me"}]');
+// A full visit can deal every name without repeats; reshuffling and saved names stay safe.
+assert(vm.runInContext('nicknames.length>3000&&new Set(nicknames).size===nicknames.length&&nicknames.every(name=>nicknameText(name)===name)',context));
+vm.runInContext(`nicknameDeck=[];lastNickname='';const wholeDeck=Array.from({length:nicknames.length},()=>randomNickname());`,context);
+assert(vm.runInContext('new Set(wholeDeck).size===nicknames.length',context));
+assert(vm.runInContext('randomNickname()!==wholeDeck.at(-1)',context));
+vm.runInContext(`family=[{fid:3,name:'Duchess Ravioli'}];nicknameDeck=[];lastNickname='';const withoutSaved=Array.from({length:nicknames.length-1},()=>randomNickname());`,context);
+assert(vm.runInContext(`new Set(withoutSaved).size===nicknames.length-1&&!withoutSaved.includes('Duchess Ravioli')`,context));
+assert.equal(vm.runInContext('family[0].name',context),'Duchess Ravioli');
 const attack='\"><img src=x onerror=1>';
 context.attack=attack;
 const character=vm.runInContext(`characterMarkup({...records[0],number:attack,road:attack,direction:attack})`,context);
