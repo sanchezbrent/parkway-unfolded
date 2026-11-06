@@ -18,6 +18,10 @@ vm.runInContext(template.split('\n').find(line=>/^function sourceBounds\(/.test(
 vm.runInContext(template.split('\n').find(line=>/^function publicRoad\(/.test(line)),context);
 vm.runInContext(template.split('\n').find(line=>/^const movement=/.test(line)),context);
 vm.runInContext(between(moduleSource,'function nicknameText(','function loadFamily('),context);
+vm.runInContext(moduleSource.split('\n').find(line=>line.startsWith('const nicknames=')),context);
+vm.runInContext('let family=[];',context);
+vm.runInContext(between(moduleSource,'function memberFor(','function characterGeometry('),context);
+vm.runInContext(between(moduleSource,'function randomRamp(','function meetRandom('),context);
 vm.runInContext(between(moduleSource,'function characterGeometry(','function refreshSelection('),context);
 vm.runInContext(between(moduleSource,'function certificateMarkup(','function downloadCertificate('),context);
 assert.equal(vm.runInContext(`nicknameText('  Sir   Bends-a-Lot\u0000 ')`,context),'Sir Bends-a-Lot');
@@ -27,6 +31,15 @@ context.sampleId=id;
 const cleaned=vm.runInContext(`normalizeFamily([null,{fid:sampleId,name:' First '},{fid:sampleId,name:'Newest'},{fid:sampleId,name:''},{fid:99999999,name:'Ghost'},{fid:String(sampleId),name:'Wrong type'},{fid:sampleId,name:{html:'bad'}}])`,context);
 assert.equal(cleaned.length,1);assert.equal(cleaned[0].name,'Newest');
 assert.equal(vm.runInContext(`normalizeFamily({fid:sampleId,name:'Not an array'}).length`,context),0);
+// Rerolls prefer another exit, fall back safely within a single exit, and never save.
+vm.runInContext(`family=[{fid:3,name:'Keep me'}];`,context);
+assert.equal(vm.runInContext(`randomRamp([{fid:1,number:'10'},{fid:2,number:'10'},{fid:3,number:'11'}],{fid:1,number:'10'}).fid`,context),3);
+assert.equal(vm.runInContext(`randomRamp([{fid:1,number:'10'},{fid:2,number:'10'},{fid:3,number:'11'},{fid:4,number:'12'}],{fid:1,number:'10'}).fid`,context),4);
+assert.equal(vm.runInContext(`randomRamp([{fid:1,number:'10'},{fid:2,number:'10'}],{fid:1,number:'10'}).fid`,context),2);
+assert.equal(vm.runInContext(`randomRamp([{fid:1,number:'10'}],{fid:1,number:'10'}).fid`,context),1);
+assert.equal(vm.runInContext('randomRamp([],null)',context),undefined);
+assert(vm.runInContext(`Array.from({length:50},()=>randomNickname('Noodle')).every(name=>name!=='Noodle'&&nicknames.includes(name))`,context));
+assert.equal(vm.runInContext('JSON.stringify(family)',context),'[{"fid":3,"name":"Keep me"}]');
 const attack='\"><img src=x onerror=1>';
 context.attack=attack;
 const character=vm.runInContext(`characterMarkup({...records[0],number:attack,road:attack,direction:attack})`,context);

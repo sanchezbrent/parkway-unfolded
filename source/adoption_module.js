@@ -31,6 +31,10 @@ function saveFamily(){
 }
 function memberFor(fid){return family.find(item=>item.fid===fid);}
 function defaultName(r){return nicknames[Math.abs(r.fid)%nicknames.length];}
+function randomNickname(previous){
+ const available=nicknames.filter(name=>name!==nicknameText(previous));
+ return available[Math.floor(Math.random()*available.length)];
+}
 function characterGeometry(r){
  const project=fit(sourceBounds(r),320,260,{left:30,right:30,top:40,bottom:25});
  const face=project(sample(r,.53).xy);
@@ -101,12 +105,21 @@ function closeDesk(restoreFocus=true){
  if(!document.querySelector('dialog[open]'))document.body.classList.remove('modal-open');
  if(restoreFocus&&returnFocus?.isConnected&&returnFocus.getClientRects().length)returnFocus.focus({preventScroll:true});
 }
+function randomRamp(pool,previous){
+ let available=pool.filter(r=>r.number!==previous?.number&&!memberFor(r.fid));
+ if(!available.length)available=pool.filter(r=>r.number!==previous?.number);
+ if(!available.length)available=pool.filter(r=>r.fid!==previous?.fid&&!memberFor(r.fid));
+ if(!available.length)available=pool.filter(r=>r.fid!==previous?.fid);
+ if(!available.length)available=pool;
+ return available[Math.floor(Math.random()*available.length)];
+}
 function meetRandom(){
  const pool=state.workspace==='family'?records:records.filter(r=>sectionGroups(state.section).includes(r.group));
- let available=pool.filter(r=>r.fid!==current?.fid&&!memberFor(r.fid));
- if(!available.length)available=pool.filter(r=>r.fid!==current?.fid);
- if(!available.length)available=pool;
- const r=available[Math.floor(Math.random()*available.length)];if(r)openDesk(r.fid);
+ const r=randomRamp(pool,current),wasOpen=desk.open;
+ if(r){
+  openDesk(r.fid);
+  if(wasOpen){$('adoptionFeedback').textContent=`Now meeting exit ${r.number}.`;$('adoptionFeedback').hidden=false;}
+ }
 }
 function findOnMap(fid){
  const r=byFID.get(fid);if(!r)return;
@@ -147,6 +160,11 @@ desk.addEventListener('cancel',event=>{event.preventDefault();closeDesk();});
 desk.addEventListener('close',()=>{stopZoom();if(!document.querySelector('dialog[open]'))document.body.classList.remove('modal-open');});
 desk.addEventListener('click',event=>{if(event.target!==desk)return;const b=desk.getBoundingClientRect();if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom)closeDesk();});
 $('adoptionNickname').addEventListener('input',event=>{event.target.setCustomValidity('');$('adoptionLiveName').textContent=nicknameText(event.target.value)||'A little ramp';});
+$('adoptionRerollName').addEventListener('click',()=>{
+ const input=$('adoptionNickname'),name=randomNickname(input.value);
+ input.value=name;input.setCustomValidity('');$('adoptionLiveName').textContent=name;
+ $('adoptionFeedback').textContent=`How about ${name}?`;$('adoptionFeedback').hidden=false;
+});
 $('adoptionForm').addEventListener('submit',event=>{
  event.preventDefault();const input=$('adoptionNickname'),name=nicknameText(input.value);
  if(!name){input.setCustomValidity('Every little road needs a name.');input.reportValidity();return;}
