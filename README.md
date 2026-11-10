@@ -102,12 +102,12 @@ alone do not establish that those settings are enabled. See
 Live camera integration is paused while reuse permissions are checked.
 The project has no automatic traffic or toll-data refresh.
 
-## Simplified experience test
+## Guided experience test
 
-This branch is a separate, user-requested first-visit experiment based on the adoption preview at `967d070`. Its opening intentionally uses one exit instead of the full-corridor dashboard. The existing adoption preview, main branch and public site remain separate.
+This branch is a separate, user-requested experiment based on the adoption preview at `967d070`. The existing adoption preview, main branch and public site remain separate. The first iteration opened with only one exit; the revised version restores the full-Parkway opening, county browsing, shape gallery, gold Top 10s and compact Traffic/Tolls controls in a single three-view navigation.
 
-`source/simple_module.js` and `source/simple_styles.css` provide the quieter entry point. Exit 135 starts on its real map; one button separates the same source paths into selectable shapes. Search reaches every exit area. Adoption retains the existing storage, nickname shuffle, animated eyes and SVG papers. Road information and comparison follow selection. The full atlas remains linked for rankings and additional tools. All five datasets and source geometries are retained.
+`source/simple_module.js` and `source/simple_styles.css` provide the guided entry point. Actual shape previews and a “See how it works” button introduce the project. Exit 135 starts on its real map; one button separates the same source paths into selectable shapes. Search reaches every exit area. Adoption retains the existing storage, nickname shuffle, animated eyes and SVG papers. Road information and comparison follow selection. All five datasets and source geometries are retained.
 
 Build with `python3 source/build.py` and check with `python3 scripts/check.py`. The added `scripts/test_simple.js` verifies every source vertex through the transition and checks phone and desktop layouts for every exit.
 
-For a first-impression test, give a fresh reader the link without a walkthrough. Ask what they think they are looking at, what they would click first, and whether the unfolding makes the relationship between the map and shapes clear.
+For a first-impression test, give a fresh reader the link without a walkthrough. Ask what they think they are looking at, what they would click first, and whether unfolding makes the relationship between the map and shapes clear.
