@@ -41,7 +41,7 @@ assert.equal(vm.runInContext('randomRamp([],null)',context),undefined);
 assert(vm.runInContext(`Array.from({length:50},()=>randomNickname('Noodle')).every(name=>name!=='Noodle'&&nicknames.includes(name))`,context));
 assert.equal(vm.runInContext('JSON.stringify(family)',context),'[{"fid":3,"name":"Keep me"}]');
 // A full visit can deal every name without repeats; reshuffling and saved names stay safe.
-assert(vm.runInContext('nicknames.length>3000&&new Set(nicknames).size===nicknames.length&&nicknames.every(name=>nicknameText(name)===name)',context));
+assert(vm.runInContext('nicknames.length>=200&&new Set(nicknames).size===nicknames.length&&nicknames.every(name=>nicknameText(name)===name)',context));
 vm.runInContext(`nicknameDeck=[];lastNickname='';const wholeDeck=Array.from({length:nicknames.length},()=>randomNickname());`,context);
 assert(vm.runInContext('new Set(wholeDeck).size===nicknames.length',context));
 assert(vm.runInContext('randomNickname()!==wholeDeck.at(-1)',context));

@@ -5,9 +5,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="light dark" name="color-scheme"/>
-<meta content="Explore the Garden State Parkway through 359 drawings of its ramps and connecting roads. Find your exit, compare shapes, and adopt a favorite little bend. Traffic and tolls are here too." name="description"/>
-<title>Parkway Unfolded · Parkway ramp atlas</title>
-<meta content="index, follow" name="robots"/><style id="parkway-tokens">/* Parkway Unfolded. Flat, legible surfaces and a road-specific palette. */
+<meta content="Explore the Garden State Parkway through its real ramp shapes. Browse the map, unfold an exit, find the Top 10s, and adopt a favorite little road." name="description"/>
+<title>Parkway Unfolded · A simpler look</title>
+<meta content="noindex, nofollow" name="robots"/><style id="parkway-tokens">/* Parkway Unfolded. Flat, legible surfaces and a road-specific palette. */
 :root {
  --paper:#ffffff; --paper-2:#f1f3f4; --white:#ffffff;
  --ink:#15191c; --body:#303940; --muted:#505a62; --line:#c1c9cf;
@@ -376,11 +376,39 @@ dialog.adoption-dialog{width:min(1020px,calc(100vw - 40px));max-width:1020px;max
 #adoptionFamily[hidden] .adoption-blink,#adoptionFamily[hidden] .adoption-gaze,
 #overview[hidden] .adoption-blink,#overview[hidden] .adoption-gaze{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.adoption-blink,.adoption-gaze{animation:none!important;transform:none!important}}
+</style><style id="simple-styles">/* A quiet, single-exit introduction. The full atlas is retained in this test branch. */
+body.simple-mode #compareDock,body.simple-mode #top>*,body.simple-mode #method,body.simple-mode #sources,body.simple-mode .header-tools>.search-shell,body.simple-mode .header-tools>.header-links{display:none!important}
+body.simple-mode #simpleExperience{display:block!important}
+body.simple-mode[data-simple-view=family] #adoptionFamily,body.simple-mode[data-simple-view=compare] #compareDialog{display:block!important}
+body.simple-mode[data-simple-view=family] #simpleExperience,body.simple-mode[data-simple-view=compare] #simpleExperience{display:none!important}
+body.simple-mode .site-header{min-height:105px;padding:20px 0;gap:20px}.simple-mode .site-header h1{font-size:36px}.simple-mode .site-header .brand-subtitle{font-size:13px;margin-top:7px}.simple-mode .header-tools{gap:12px}.simple-header-nav{display:flex;align-items:center;gap:20px}.simple-header-nav button{white-space:nowrap;background:transparent;border:0;font-size:13px;min-height:44px;padding:8px 0}.simple-header-nav button:hover{text-decoration:underline}.simple-header-nav #simpleFind{border:1px solid var(--line);padding:10px 16px;border-radius:99px!important}.simple-header-nav #simpleFamily{color:var(--adopt-plum)}
+.simple-shell{max-width:1120px;margin:0 auto;padding:34px 0 28px}.simple-intro{max-width:720px;margin:0 0 24px}.simple-intro h2{font:700 clamp(30px,3.2vw,42px)/1.12 'Trebuchet MS',Arial,sans-serif;letter-spacing:-1.2px;margin-bottom:11px}.simple-intro p{max-width:650px;font-size:16px;line-height:1.65;color:var(--muted)}
+.simple-scene{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--white)}.simple-scene-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:19px 25px;border-bottom:1px solid var(--line)}.simple-location{display:flex;align-items:center;gap:17px;min-width:0}.simple-exit{font:700 25px/1.1 'Trebuchet MS',Arial,sans-serif;color:var(--adopt-plum);white-space:nowrap}.simple-exit-road{font-size:14px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}.simple-county{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}.simple-primary{border:1px solid var(--adopt-plum);border-radius:99px!important;background:var(--adopt-plum);color:var(--paper);padding:13px 23px;min-height:46px;font-size:14px;font-weight:700;white-space:nowrap}.simple-primary:hover{background:var(--adopt-plum);color:var(--paper);outline:1px solid var(--adopt-plum);outline-offset:3px}.simple-primary:disabled{opacity:.65}.simple-canvas{position:relative;background:var(--paper-2);overflow:hidden}.simple-map{width:100%;height:auto;display:block;overflow:hidden}.simple-context path{fill:none;stroke:var(--muted);stroke-width:1.2;opacity:.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}.simple-context .simple-mainline{stroke-width:4;opacity:.25}.simple-road{fill:none;stroke:var(--adopt-plum);stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}.simple-ramp-cell{fill:var(--white);stroke:var(--line);stroke-width:1;opacity:0}.simple-ramp[role=button]{cursor:pointer;outline:none}.simple-ramp[role=button]:hover .simple-ramp-cell,.simple-ramp[aria-pressed=true] .simple-ramp-cell{fill:var(--adopt-lime);stroke:var(--adopt-plum)}.simple-ramp[role=button]:focus-visible .simple-ramp-cell{stroke:var(--focus);stroke-width:3}.simple-ramp-label{font:12px Arial,sans-serif;fill:var(--muted);text-anchor:middle;pointer-events:none}.simple-ramp-number{font:700 12px Arial,sans-serif;fill:var(--adopt-plum);text-anchor:middle;pointer-events:none}.simple-map-label{font:12px Arial,sans-serif;fill:var(--muted)}.simple-map-note{position:absolute;top:16px;left:22px;display:flex;align-items:center;gap:8px;font:700 10px/1.4 Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--muted);pointer-events:none}.simple-map-note:before{content:'';width:7px;height:7px;background:var(--adopt-plum);border-radius:50%}.simple-north{position:absolute;right:22px;top:16px;font-size:12px;color:var(--muted);pointer-events:none}.simple-scene-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:13px 24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.simple-scene-foot p{color:var(--muted);font-size:12px}.simple-scene-foot button{font-size:12px;min-height:38px}.simple-next{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:17px}.simple-next p{font-size:13px;color:var(--muted)}.simple-next button{font-size:13px;font-weight:700;color:var(--adopt-plum)}
+.simple-selected{margin-top:20px;padding:23px 25px;border:1px solid var(--adopt-plum);border-radius:17px;background:var(--white)}.simple-selected-top{display:flex;align-items:center;justify-content:space-between;gap:24px}.simple-selected h3{font:700 23px/1.25 'Trebuchet MS',Arial,sans-serif;letter-spacing:-.4px;margin:6px 0}.simple-selected .simple-ramp-meta{font-size:13px;color:var(--muted)}.simple-selected .adoption-button{flex-shrink:0}.simple-road-info{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:13px}.simple-road-info summary{cursor:pointer;min-height:35px;padding:5px 0;color:var(--muted)}.simple-road-info p{font-size:13px;line-height:1.7;margin:8px 0}.simple-road-info .traffic-detail{margin:13px 0}.simple-road-actions{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:10px}.simple-road-actions button{font-size:12px}.simple-discover{margin:30px 0 0;border-top:1px solid var(--line);padding-top:20px}.simple-discover>summary{font-size:14px;font-weight:600;cursor:pointer;min-height:44px;padding:9px 0;list-style:none}.simple-discover>summary:after{content:' +';color:var(--muted)}.simple-discover[open]>summary:after{content:' −'}.simple-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:12px}.simple-pick{border:1px solid var(--line);border-radius:14px!important;padding:17px;text-align:left;background:var(--white)}.simple-pick:hover{border-color:var(--adopt-plum)}.simple-pick svg{width:100%;height:105px;stroke:none;margin-bottom:10px}.simple-pick path{fill:none;stroke:var(--adopt-plum);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}.simple-pick strong{font-size:14px;display:block}.simple-pick span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}.simple-browse-all{margin-top:12px;font-size:13px}
+.simple-mode .site-footer{border-top:1px solid var(--line);padding:20px 0 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}.simple-mode .site-footer p{font-size:12px;color:var(--muted)}.simple-mode .site-footer nav{display:flex;align-items:center;gap:22px}.simple-mode .site-footer button,.simple-mode .site-footer a{font-size:12px;color:var(--muted)}.simple-mode .site-footer a{text-decoration:none}.simple-dialog{max-width:660px;width:calc(100vw - 32px);max-height:86vh;max-height:86dvh;padding:0;border:1px solid var(--adopt-plum);border-radius:20px!important;background:var(--paper);color:var(--ink);overflow:auto}.simple-dialog::backdrop{background:#241a2ca8}.simple-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 25px;border-bottom:1px solid var(--line)}.simple-dialog-head h2{font:700 27px/1.15 'Trebuchet MS',Arial,sans-serif;letter-spacing:-.7px}.simple-dialog-body{padding:22px 25px}.simple-dialog-body p{font-size:14px;line-height:1.8;margin-bottom:16px}.simple-dialog-body h3{font-size:15px;margin:22px 0 8px}.simple-dialog-body a{text-decoration:underline}.simple-dialog-body .theme-control{display:flex;align-items:center;gap:12px;font-size:13px;margin-top:25px}.simple-find-label{display:block;font-size:13px;font-weight:600;margin-bottom:9px}.simple-find-input{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--white);padding:13px;font-size:15px;min-height:48px}.simple-find-count{font-size:12px!important;color:var(--muted);margin:12px 0 0!important}.simple-find-list{padding:0 25px 25px;max-height:50vh;overflow:auto}.simple-find-row{width:100%;border:0;border-top:1px solid var(--line);background:transparent;text-align:left;display:flex;gap:15px;align-items:center;padding:15px 0;min-height:62px;border-radius:0!important}.simple-find-row strong{font-size:19px;min-width:58px;color:var(--adopt-plum)}.simple-find-row span{font-size:13px;line-height:1.5}.simple-find-row small{display:block;font-size:11px;color:var(--muted);margin-top:3px}.simple-find-empty{font-size:14px;padding:20px 0}.simple-family-back{font-size:13px}.simple-mode[data-simple-view=family] .adoption-family{padding-top:35px}.simple-mode[data-simple-view=compare] #compareDialog{padding-top:30px}
+@media(max-width:850px){.simple-mode .site-header h1{font-size:32px}.simple-header-nav{gap:15px}.simple-mode .site-header .brand-subtitle{font-size:12px}.simple-shell{padding-top:28px}.simple-location{gap:13px}.simple-scene-head{padding:17px 20px}.simple-exit-road{max-width:250px}.simple-primary{padding:12px 19px}}
+@media(max-width:680px){.simple-mode .site-header{min-height:0;padding:20px 0 16px;display:block}.simple-mode .site-header h1{font-size:32px}.simple-mode .header-tools{margin-top:15px;width:100%;display:block}.simple-header-nav{justify-content:space-between;gap:12px}.simple-header-nav #simpleFind{padding:9px 14px}.simple-mode .site-header .brand-subtitle{font-size:12px;max-width:none}.simple-shell{padding-top:23px;padding-bottom:22px}.simple-intro{margin-bottom:20px}.simple-intro h2{font-size:31px;max-width:300px}.simple-intro p{font-size:14px;line-height:1.7;max-width:360px}.simple-scene{border-radius:15px}.simple-scene-head{align-items:stretch;flex-direction:column;gap:16px;padding:18px}.simple-location{align-items:start;gap:14px}.simple-exit{font-size:24px}.simple-exit-road{font-size:13px;max-width:none}.simple-primary{width:100%;min-height:46px}.simple-map-note{font-size:9px;left:16px;top:14px}.simple-north{right:16px;top:14px}.simple-scene-foot{padding:10px 16px;align-items:start;gap:9px}.simple-scene-foot p{font-size:11px;max-width:220px}.simple-scene-foot button{font-size:11px;flex-shrink:0;min-height:36px}.simple-next{align-items:start;gap:12px}.simple-next p{font-size:12px}.simple-next button{font-size:12px;text-align:right;padding-top:0}.simple-selected{padding:19px 18px}.simple-selected-top{display:block}.simple-selected h3{font-size:22px}.simple-selected .adoption-button{width:100%;margin-top:17px}.simple-road-info{font-size:12px}.simple-road-info p{font-size:12px}.simple-picks{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.simple-pick{padding:14px}.simple-pick svg{height:90px}.simple-pick span{font-size:11px}.simple-mode .site-footer{display:block;padding:19px 0 24px}.simple-mode .site-footer nav{margin-top:12px;gap:23px}.simple-dialog-head{padding:20px}.simple-dialog-head h2{font-size:25px}.simple-dialog-body{padding:20px}.simple-find-list{padding-inline:20px}.simple-dialog{max-height:90dvh}.simple-find-list{max-height:47vh}.simple-header-nav #simpleFamily{margin-left:auto}.simple-header-nav #simpleBack{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.simple-mode *{scroll-behavior:auto!important}}
+/* A broader opening with one place to choose how to explore. */
+body.simple-mode[data-simple-view] #simpleExperience{display:none!important}
+body.simple-mode[data-simple-view=explore] #simpleExperience,body.simple-mode #simpleLanding{display:block!important}
+body.simple-mode[data-simple-view=overview] #overview,body.simple-mode[data-simple-view=atlas] #atlas,body.simple-mode[data-simple-view=superlatives] #superlatives{display:block!important}
+body.simple-mode[data-simple-view=explore] #simpleLanding,body.simple-mode[data-simple-view=family] #simpleLanding,body.simple-mode[data-simple-view=compare] #simpleLanding{display:none!important}
+body.simple-mode #simpleTools{display:none!important}
+body.simple-mode[data-simple-view=overview] #simpleTools,body.simple-mode[data-simple-view=atlas] #simpleTools,body.simple-mode[data-simple-view=superlatives] #simpleTools{display:flex!important}
+.simple-landing-hero{display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:48px;padding:32px 0 29px}.simple-landing-copy h2{font:700 clamp(31px,3.2vw,43px)/1.1 'Trebuchet MS',Arial,sans-serif;letter-spacing:-1.2px;margin:9px 0 12px}.simple-landing-copy>p{font-size:15px;line-height:1.7;color:var(--muted);max-width:490px}.simple-landing-copy>.simple-primary{margin-top:19px;font-size:13px;padding:11px 18px}.simple-teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.simple-teasers .simple-pick{padding:13px;background:var(--paper-2);border-color:transparent}.simple-teasers .simple-pick:hover{border-color:var(--adopt-plum);background:var(--white)}.simple-teasers .simple-pick svg{height:90px;margin:0 0 9px}.simple-teasers .simple-pick span{font-size:11px;min-height:33px}.simple-teasers .simple-pick strong{font-size:13px}.simple-view-nav{display:flex;gap:7px;border-bottom:1px solid var(--line);padding-bottom:12px}.simple-view-nav button{font-size:14px;font-weight:600;border:1px solid transparent;border-radius:99px!important;padding:10px 19px;background:transparent;min-height:44px}.simple-view-nav button:hover{background:var(--paper-2)}.simple-view-nav button[aria-pressed=true]{background:var(--green);color:var(--paper)}.simple-view-nav .simple-gold{color:var(--ink);background:#fff1ce;border-color:#d8ac4b;color:#5a3e05}.simple-view-nav .simple-gold[aria-pressed=true]{background:#efbb4b;border-color:#b78421;color:#251d0a}
+#simpleTools{align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line)}#simpleTools .shared-range{display:flex;gap:10px;align-items:center;flex:1;margin:0;padding:0;border:0;min-width:240px}#simpleTools .shared-range>label{font-size:12px;gap:8px;flex-basis:auto}#simpleTools .shared-range select{min-height:39px;font-size:12px;max-width:190px}#simpleTools .section-status{font-size:11px;line-height:1.5}#simpleTools .current-exit-link,#simpleTools .corridor-steps{display:none!important}#simpleTools .scope-reset{font-size:11px}#simpleTools .integrated-layers{margin:0;padding:0;border:0}#simpleTools .layer-legends{flex-basis:100%;margin:0}#simpleTools .layer-legends:has(> [hidden]):not(:has(> :not([hidden]))){display:none}body.simple-mode[data-simple-view=superlatives] #simpleTools .integrated-layers{display:none}body.simple-mode #overview{padding-top:26px}body.simple-mode #overview .overview-heading{margin-bottom:20px}body.simple-mode #overview .overview-heading h2{font-size:27px}body.simple-mode #overview .overview-heading p{font-size:13px;max-width:700px}body.simple-mode #overview .overview-directory{max-height:665px;overflow:auto}body.simple-mode #atlas,body.simple-mode #superlatives{padding-top:27px}body.simple-mode #editorialDiscoveries{margin-top:34px}body.simple-mode #atlas .atlas-intro{margin-bottom:20px}
+@media(min-width:681px){body.simple-mode[data-simple-view=atlas] .simple-landing-hero,body.simple-mode[data-simple-view=superlatives] .simple-landing-hero{display:none}body.simple-mode[data-simple-view=atlas] .simple-view-nav,body.simple-mode[data-simple-view=superlatives] .simple-view-nav{padding-top:20px}}
+@media(max-width:850px){.simple-landing-hero{gap:24px;grid-template-columns:1fr 1fr}.simple-teasers{gap:8px}.simple-teasers .simple-pick{padding:10px}.simple-teasers .simple-pick svg{height:70px}.simple-teasers .simple-pick span{display:none}.simple-landing-copy h2{font-size:34px}#simpleTools .section-status{display:none}}
+@media(max-width:680px){.simple-landing-hero{display:block;padding:24px 0 19px}.simple-landing-copy h2{font-size:33px}.simple-landing-copy>p{font-size:14px}.simple-landing-copy>.simple-primary{width:auto;margin-top:15px;font-size:12px}.simple-teasers{margin-top:23px;gap:10px}.simple-teasers .simple-pick{padding:10px}.simple-teasers .simple-pick svg{height:64px;margin-bottom:5px}.simple-teasers .simple-pick strong{font-size:12px}.simple-view-nav{gap:4px;justify-content:space-between;padding-bottom:12px}.simple-view-nav button{font-size:12px;padding:9px 13px}.simple-mode[data-simple-view=atlas] .simple-landing-hero,.simple-mode[data-simple-view=superlatives] .simple-landing-hero{display:none}.simple-mode[data-simple-view=atlas] .simple-view-nav,.simple-mode[data-simple-view=superlatives] .simple-view-nav{padding-top:18px}#simpleTools{gap:12px;padding:13px 0}#simpleTools .shared-range{flex-basis:100%;min-width:0}#simpleTools .shared-range>label{display:flex;min-width:0;width:100%;flex-wrap:nowrap}#simpleTools .shared-range select{flex:1;max-width:none}#simpleTools .integrated-layers{width:100%;justify-content:flex-start}#simpleTools .integrated-layers button{font-size:11px}body.simple-mode #overview{padding-top:20px}body.simple-mode #overview .overview-heading h2{font-size:25px}body.simple-mode #overview .overview-directory{max-height:none;overflow:visible}body.simple-mode #editorialDiscoveries{margin-top:25px}}
+
+body.simple-mode.night .simple-view-nav .simple-gold{background:#45351d;color:#f6d491;border-color:#95703a}body.simple-mode.night .simple-view-nav .simple-gold[aria-pressed=true]{background:#f4c66f;color:#28302a;border-color:#f4c66f}
+body.simple-mode[data-simple-view=atlas] #compareDock:not([hidden]){display:flex!important}
 </style></head>
-<body>
+<body class="simple-mode">
 <script>(function(){let mode='system';try{mode=localStorage.getItem('parkway-theme')||'system';}catch(e){}if(!['system','light','dark'].includes(mode))mode='system';document.body.classList.toggle('night',mode==='dark'||mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
 <a class="skip-link" href="#workspace">Skip to the Parkway map</a>
-<header class="site-header wrap"><a aria-label="Return to the full Parkway overview" class="brand-block" href="#top" id="brandHome"><div><h1 id="title" class="parkway-wordmark" aria-label="Parkway Unfolded"><span class="wordmark-word"><span class="sr-only">P</span><svg class="wordmark-initial wordmark-p" viewBox="0 0 44 48" aria-hidden="true" focusable="false"><path d="M6 42V15C6 8 11 5 20 5C30 5 36 10 36 18C36 26 29 30 21 28L6 22"/><circle class="wordmark-end" cx="6" cy="42" r="2.1"/></svg><span>arkway</span></span> <span class="wordmark-word"><span class="sr-only">U</span><svg class="wordmark-initial wordmark-u" viewBox="0 0 44 48" aria-hidden="true" focusable="false"><path d="M6 6V26C6 37 12 42 21 42C30 42 36 35 36 25L39 6"/><circle class="wordmark-end" cx="6" cy="6" r="2.1"/><circle class="wordmark-end" cx="39" cy="6" r="2.1"/></svg><span>nfolded</span></span></h1><span class="brand-subtitle">Meet the strange little shapes of the Garden State Parkway.</span></div></a><div class="header-tools"><div class="search-shell"><label class="sr-only" for="exitSearch">Find an exit number, connecting road or county across the full Parkway</label><div class="search-field"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input aria-autocomplete="list" aria-controls="searchResults" aria-describedby="searchHelp" aria-expanded="false" autocomplete="off" id="exitSearch" placeholder="Find your exit…" role="combobox" type="search"/></div><span class="sr-only" id="searchHelp">Search the whole Parkway, regardless of county. Arrow keys select a result, Enter opens it, and Escape closes the results.</span><div class="search-panel" hidden="" id="searchPanel"><p class="search-status" id="searchStatus" role="status"></p><div aria-label="Matching exits and ramps" id="searchResults" role="listbox"></div></div></div><nav aria-label="About the project" class="header-links"><a data-open-method="" href="#method">About</a><a data-open-sources="" href="#sources">About the data ↗</a></nav><label class="theme-control" for="themeSelect">Theme<select id="themeSelect"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div></header>
+<header class="site-header wrap"><a aria-label="Return to the full Parkway overview" class="brand-block" href="#top" id="brandHome"><div><h1 id="title" class="parkway-wordmark" aria-label="Parkway Unfolded"><span class="wordmark-word"><span class="sr-only">P</span><svg class="wordmark-initial wordmark-p" viewBox="0 0 44 48" aria-hidden="true" focusable="false"><path d="M6 42V15C6 8 11 5 20 5C30 5 36 10 36 18C36 26 29 30 21 28L6 22"/><circle class="wordmark-end" cx="6" cy="42" r="2.1"/></svg><span>arkway</span></span> <span class="wordmark-word"><span class="sr-only">U</span><svg class="wordmark-initial wordmark-u" viewBox="0 0 44 48" aria-hidden="true" focusable="false"><path d="M6 6V26C6 37 12 42 21 42C30 42 36 35 36 25L39 6"/><circle class="wordmark-end" cx="6" cy="6" r="2.1"/><circle class="wordmark-end" cx="39" cy="6" r="2.1"/></svg><span>nfolded</span></span></h1><span class="brand-subtitle">A closer look at the Garden State Parkway.</span></div></a><div class="header-tools"><div class="search-shell"><label class="sr-only" for="exitSearch">Find an exit number, connecting road or county across the full Parkway</label><div class="search-field"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input aria-autocomplete="list" aria-controls="searchResults" aria-describedby="searchHelp" aria-expanded="false" autocomplete="off" id="exitSearch" placeholder="Find your exit…" role="combobox" type="search"/></div><span class="sr-only" id="searchHelp">Search the whole Parkway, regardless of county. Arrow keys select a result, Enter opens it, and Escape closes the results.</span><div class="search-panel" hidden="" id="searchPanel"><p class="search-status" id="searchStatus" role="status"></p><div aria-label="Matching exits and ramps" id="searchResults" role="listbox"></div></div></div><nav aria-label="About the project" class="header-links"><a data-open-method="" href="#method">About</a><a data-open-sources="" href="#sources">About the data ↗</a></nav><label class="theme-control" for="themeSelect">Theme<select id="themeSelect"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div></header>
 <main id="top">
 <section aria-label="Find and browse Parkway ramps" class="workbench wrap" id="workspace">
 <div class="workbench-top"><div aria-label="Study view" class="view-switch" role="group"><button aria-controls="overview" aria-pressed="true" data-workspace="overview" id="viewOverview"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg><span class="workspace-nav-label">Parkway map</span></button><button aria-controls="explore" aria-pressed="false" data-workspace="explore" id="viewInterchanges"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V3m14 18V3M5 16c0-6 14-2 14-8M5 8c0 6 14 2 14 8"/></svg><span class="workspace-nav-label">Explore exits</span></button><button aria-controls="atlas" aria-pressed="false" data-workspace="atlas" id="viewShapes"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="workspace-nav-label">Ramp shapes</span></button><button aria-controls="superlatives" aria-pressed="false" data-workspace="superlatives" id="viewSuperlatives"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 3h8v7a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4M12 14v4m-4 3v-3h8v3M6 21h12"/></svg><span class="workspace-nav-label">Top 10s</span></button><button aria-controls="compareDialog" aria-pressed="false" class="compare-launch" id="openComparison"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="16" rx="1"/><path d="M6 8v8m11-8v8M10 12h4"/></svg><span class="workspace-nav-label">Compare <span class="desktop-only">two ramps</span></span></button><button aria-controls="adoptionFamily" aria-pressed="false" data-workspace="family" id="viewMyRamps"><svg class="workspace-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21 3.8 13C-2 7 6 0 12 6c6-6 14 1 8.2 7Z"/></svg><span class="workspace-nav-label">My ramps <span id="adoptionNavCount" class="adoption-nav-count">0</span></span></button></div>
@@ -1906,62 +1934,338 @@ drawOverview();
 (function(){
 'use strict';
 const STORAGE_KEY='parkway-fun-family-v1';
-// A curated core plus playful title/name pairs, all short enough for adoption papers.
+// A deliberately smaller mix of road jokes, characters, creatures and oddities.
 const nicknameOriginals=[
- "Noodle", "Professor Loop", "Little Detour", "Wiggles", "Pudding",
- "Turnip", "Sir Bends-a-Lot", "Spaghetti Joe", "Bendy Wendy", "Missed My Exit",
- "Pork Roll Polly", "Taylor Ham Sam", "Jughandle Judy", "Turnpike Tina", "Garden State Gary",
- "Tollbooth Tony", "Merge Simpson", "Bendjamin Franklin", "Claudia Curves", "Rampenstein",
- "Count Rampula", "The Great Bendini", "Bend Solo", "Loop Skywalker", "Rampioli",
- "Macarampy", "Rampunzel", "Curvature Carl", "Marge the Merge", "Exitential Crisis",
- "Almost There", "One More Exit", "Oops All Curves", "Mildly Lost", "Scenic Route",
- "Wrong Way Walter", "See You in Secaucus", "Down the Shore", "Shore Thing", "Boardwalk Betty",
- "Benny the Bend", "Pine Barrens Pat", "Asbury Swerve", "Hoboken Hokey Pokey", "The Local Noodle",
- "Greetings from Bend", "No Left Turnip", "Yielda", "Curvy Irving", "Loop There It Is",
- "Biscuit Bend", "Pretzel Pete", "Meatball Mike", "Rigatoni Rita", "Ziti Sweetie",
- "Ravioli Ralph", "Dumpling Dot", "Gnocchi Nancy", "Nugget Nancy", "Waffle Walter",
- "Pancake Pam", "Pickle Patricia", "Tater Tot Terry", "Soup of the Day", "Crumb Bum",
- "Spud Muffin", "Bean Dip", "Peanut Gallery", "Little Pierogi", "Pesto the Besto",
- "Bubbles", "Squiggle", "Tangles", "Scribbles", "Shoelace",
- "Doodlebug", "Loose Spaghetti", "Worm With a Job", "Long Little Guy", "A Respectable Worm",
- "Licensed to Wiggle", "Certified Good Bend", "Professional Detour", "Assistant to the Ramp", "Deputy Wigglepants",
- "The Bend Department", "Head of Noodles", "Regional Ramp Manager", "Employee of the Merge", "Very Important Bend",
- "Grandma GPS", "Uncle U-Turn", "Cousin Curb", "Auntie Asphalt", "Curbside Carl",
- "Shoulder Shrug", "Soft Shoulder Sammy", "Lane Change Larry", "Blinker Belle", "Traffic Cone Joan",
- "Pocket Parkway", "Teeny Turn", "Itsy Bitsy Interchange", "Small Road Big Dreams", "Wiggle Room",
- "Wiggle Wiggle", "Oopsie Loop", "Just a Little Bend", "Happy Little Offramp", "Loop de Lou",
- "Spaghetti Confetti", "Rumble Strip Rita", "Merging Margot", "Swerve Irving", "No Toll No Trouble",
- "Tollhouse Cookie", "Exit Stage Left", "Interchangeable Dave", "Gentle Curve Gerald", "The Scenic Noodle"
+ // Roads, bends and questionable navigation
+ "Professor Loop",
+ "Little Detour",
+ "Wiggles",
+ "Sir Bends-a-Lot",
+ "Bendy Wendy",
+ "Missed My Exit",
+ "Jughandle Judy",
+ "Tollbooth Tony",
+ "Merge Simpson",
+ "Bendjamin Franklin",
+ "Claudia Curves",
+ "Rampenstein",
+ "Count Rampula",
+ "The Great Bendini",
+ "Bend Solo",
+ "Loop Skywalker",
+ "Rampunzel",
+ "Curvature Carl",
+ "Marge the Merge",
+ "Exitential Crisis",
+ "Almost There",
+ "One More Exit",
+ "Oops All Curves",
+ "Mildly Lost",
+ "Scenic Route",
+ "Wrong Way Walter",
+ "Benny the Bend",
+ "Greetings from Bend",
+ "Yielda",
+ "Curvy Irving",
+ "Loop There It Is",
+ "Licensed to Wiggle",
+ "Certified Good Bend",
+ "Professional Detour",
+ "Very Important Bend",
+ "Uncle U-Turn",
+ "Cousin Curb",
+ "Auntie Asphalt",
+ "Curbside Carl",
+ "Shoulder Shrug",
+ "Soft Shoulder Sammy",
+ "Lane Change Larry",
+ "Blinker Belle",
+ "Traffic Cone Joan",
+ "Pocket Parkway",
+ "Teeny Turn",
+ "Itsy Bitsy Interchange",
+ "Small Road Big Dreams",
+ "Wiggle Room",
+ "Oopsie Loop",
+ "Happy Little Offramp",
+ "Loop de Lou",
+ "Rumble Strip Rita",
+ "Merging Margot",
+ "Swerve Irving",
+ "Exit Stage Left",
+ "Interchangeable Dave",
+ "Gentle Curve Gerald",
+ "Merge of Honor",
+ "Lane Austen",
+ "Edgar Allan Toll",
+ "The Turn Identity",
+ "Lord of the Ramps",
+ "No Sudden Moves",
+ "Probably This Way",
+ "Blink and You Miss It",
+ "A Slight Diversion",
+ "The Long Goodbye",
+ "Just One More Turn",
+ "Left on Read",
+ // A few familiar New Jersey faces
+ "Turnpike Tina",
+ "Garden State Gary",
+ "See You in Secaucus",
+ "Down the Shore",
+ "Shore Thing",
+ "Boardwalk Betty",
+ "Pine Barrens Pat",
+ "Asbury Swerve",
+ "Hoboken Hokey Pokey",
+ "Greetings from Exit 9",
+ "Bruce Springbend",
+ "Jersey Swerve",
+ "Shore Leave",
+ "The Local Legend",
+ "Cape May I",
+ "Paramus Maximus",
+ "Bend It Like Bergen",
+ "Morris the Merge",
+ "Essex Appeal",
+ "Union Jackknife",
+ "The Parkway Pal",
+ "Ocean Motion",
+ "Atlantic Attitude",
+ "Local Lanes Larry",
+ "Monmouth Moxie",
+ "Burlington Bert",
+ "Just Jersey Things",
+ "Northbound Nancy",
+ "Southbound Sal",
+ "Shorely You Jest",
+ // Tiny officials and office personalities
+ "Assistant to the Ramp",
+ "Deputy Wigglepants",
+ "The Bend Department",
+ "Regional Ramp Manager",
+ "Employee of the Merge",
+ "Grandma GPS",
+ "Acting Road Director",
+ "Chief of Small Turns",
+ "The Interim Wizard",
+ "Mayor of Over There",
+ "Deputy Daydream",
+ "Inspector Maybe",
+ "Detective Sidequest",
+ "Captain Eventually",
+ "Admiral Sideways",
+ "Professor Fidget",
+ "Doctor Meander",
+ "Sir Taps-a-Lot",
+ "Baron Von Bother",
+ "Count Fluster",
+ "Duchess Dawdle",
+ "Lady Loiter",
+ "Madam Miscellaneous",
+ "Judge Wobble",
+ "Agent Detour",
+ "Ranger Whimsy",
+ "Coach Chaos",
+ "Intern of the Month",
+ "Senior Junior",
+ "Vice President of Huh",
+ "The Committee",
+ "Pending Approval",
+ "Per My Last Blinker",
+ "Out of Office",
+ "Team Building Exercise",
+ "A Quick Follow-Up",
+ "Unfinished Business",
+ "The Loose Agenda",
+ "Meeting Adjourned",
+ "Municipal Mystery",
+ // Creatures with places to be
+ "Doodlebug",
+ "Worm With a Job",
+ "Long Little Guy",
+ "A Respectable Worm",
+ "Disco Pigeon",
+ "Seagull Supervisor",
+ "Goose With a Permit",
+ "Moth in a Tiny Hat",
+ "The Opossum Diplomat",
+ "Raccoon in Charge",
+ "Turtle With Ambition",
+ "A Very Busy Newt",
+ "Frog About Town",
+ "The Scenic Snail",
+ "Mildly Famous Mantis",
+ "Wren With a Plan",
+ "Cricket at Large",
+ "The Patient Heron",
+ "Owl Be Right Back",
+ "A Dignified Beetle",
+ "Fancy Little Ferret",
+ "Professor Possum",
+ "Deputy Dragonfly",
+ "Dame Firefly",
+ "Captain Cormorant",
+ "Otter Nonsense",
+ "An Unhurried Egret",
+ "Wobbly Wombat",
+ "Mister Moth",
+ "Bureaucratic Badger",
+ "The Pigeon Principal",
+ "Sparrow in a Hurry",
+ "Local Cryptid",
+ "The Jersey Daydream",
+ "Mothman Takes Exit 8",
+ "The Toll Troll",
+ "Pocket Gargoyle",
+ "Duchess Dragon",
+ "The Friendly Phantom",
+ "Ghost With a Commute",
+ // Objects, weather and other small mysteries
+ "Bubbles",
+ "Squiggle",
+ "Tangles",
+ "Scribbles",
+ "Shoelace",
+ "Pocket Lint",
+ "Spare Button",
+ "Lucky Paperclip",
+ "The Bent Staple",
+ "Tiny Umbrella",
+ "Sir Thimble",
+ "Madam Marble",
+ "The Lost Mitten",
+ "Wandering Sock",
+ "Mismatched Slippers",
+ "A Loose Thread",
+ "The Spare Key",
+ "Pocket Watch",
+ "Old Reliable",
+ "The Rubber Stamp",
+ "Captain Kettle",
+ "Little Lantern",
+ "The Wobbly Wheel",
+ "A Small Contraption",
+ "Disco Ball Dave",
+ "Velvet Tracksuit",
+ "The Crooked Bookmark",
+ "Ribbon With Ambition",
+ "The Fancy Doorknob",
+ "Captain Cardigan",
+ "Pebble With Plans",
+ "Pinecone Prime",
+ "Acorn of Interest",
+ "The Little Fern",
+ "Moss Boss",
+ "Puddle Jumper",
+ "Cloud Nine-ish",
+ "A Passing Cloud",
+ "Mister Mist",
+ "Drizzle Dazzle",
+ "Breezy Beatrice",
+ "Captain Static",
+ "Thunder on Tiptoes",
+ "Comet With Errands",
+ "Satellite Sid",
+ "Orbiting Oliver",
+ "Little Dipper",
+ "Moonbeam Maurice",
+ "The Minor Planet",
+ "Asteroid on Vacation",
+ // Moods, mishaps and grand entrances
+ "A Small Plot Twist",
+ "Main Character Energy",
+ "A Brief Interruption",
+ "Slightly Dramatic",
+ "Mostly Harmless",
+ "Remarkably Average",
+ "Suspiciously Polite",
+ "Quietly Spectacular",
+ "Unexpected Guest",
+ "Unscheduled Whimsy",
+ "The Scenic Pause",
+ "A Gentle Nuisance",
+ "The Other Way Around",
+ "Here for the Scenery",
+ "Just Browsing",
+ "Leisurely Larry",
+ "The Slow Reveal",
+ "Small but Complicated",
+ "A Work in Progress",
+ "The Grand Entrance",
+ "Not in a Hurry",
+ "Fashionably Delayed",
+ "The Little Flourish",
+ "A Minor Inconvenience",
+ "Wiggle by Appointment",
+ "The Dashing Dash",
+ "An Interesting Choice",
+ "Cautiously Optimistic",
+ "A Curious Development",
+ "The Serendipity Dept.",
+ "Fancy Footwork",
+ "A Reasonable Detour",
+ "A Modest Adventure",
+ "Some Assembly Required",
+ "Wait Where Was I",
+ "The Unexpected Encore",
+ "Officially Unofficial",
+ "The Accidental Tourist",
+ "A Very Small Epic",
+ "One for the Road",
+ // Long strands, loose loops, twirls and tangles
+ "Spaghetti Joe",
+ "Loose Linguine",
+ "Sir Twirls-a-Lot",
+ "The Scenic Noodle",
+ "The Local Noodle",
+ "Loop de Linguine",
+ "Linguine Houdini",
+ "Fusilli Jerry",
+ "Fusilli Goose",
+ "Noodly Doodly",
+ "Long Tall Linguine",
+ "Spaghetti Confetti",
+ "Licensed to Twirl",
+ "Taglia-Tell Me About It",
+ "The Twirl Next Door",
+ "Fettuccine Fred",
+ "Angel Hair Harry",
+ "Pasta Your Exit",
+ "A Strand Named Desire",
+ "One Long Noodle",
+ "Noodle With Ambition",
+ "Ramen Around",
+ "Udon Know Me",
+ "The Rambling Ramen",
+ "Soba So Good",
+ "Loopini",
+ "Curly Mac",
+ "Macarampy",
+ "Rampioli",
+ "The Great Spaghettini",
+ "Corkscrew Lou",
+ "Twistopher Pasta",
+ "The Midnight Twirler",
+ "The Long Twirl Home",
+ "Linguine in the Wild",
+ "Noodle on the Loose",
+ "The Wandering Strand",
+ "Fusilli Business",
+ "Spaghettaboutit",
+ "Unspaghettable",
+ "Laid-Back Linguine",
+ "One Fine Strand",
+ "Fettuccine a Scene",
+ "Al Dente Detour",
+ "The Elegant Tangle",
+ // A few other food favorites
+ "Noodle",
+ "Pretzel Pete",
+ "Pork Roll Polly",
+ "Taylor Ham Sam",
+ "Duchess Ravioli",
 ];
-const nicknameTitles=[
- "Professor", "Doctor", "Captain", "Admiral", "Sergeant",
- "Inspector", "Detective", "Agent", "Ranger", "Deputy",
- "Mayor", "Councilor", "Commissioner", "Senator", "Judge",
- "Baron", "Count", "Duke", "Duchess", "Lady",
- "Sir", "Madam", "Mister", "Miss", "Uncle",
- "Auntie", "Cousin", "Grandpa", "Grandma", "Coach",
- "Chef", "Maestro", "Big", "Little", "Baby",
- "Tiny", "Fancy", "Sleepy", "Wobbly", "Lucky"
-];
-const nicknameThings=[
- "Noodle", "Meatball", "Ravioli", "Rigatoni", "Gnocchi",
- "Ziti", "Fusilli", "Macaroni", "Linguine", "Penne",
- "Spaghetti", "Lasagna", "Tortellini", "Pierogi", "Dumpling",
- "Wonton", "Biscuit", "Waffle", "Pancake", "Crumpet",
- "Muffin", "Bagel", "Donut", "Pretzel", "Pickle",
- "Turnip", "Parsnip", "Potato", "Tater Tot", "Bean",
- "Peanut", "Cashew", "Pistachio", "Walnut", "Acorn",
- "Pinecone", "Pebble", "Puddle", "Bubble", "Button",
- "Thimble", "Shoelace", "Ribbon", "Yarn", "Wiggle",
- "Squiggle", "Doodle", "Scribble", "Loop", "Bend",
- "Elbow", "Detour", "Offramp", "Jughandle", "Merge",
- "Blinker", "Pork Roll", "Taylor Ham", "Boardwalk", "Taffy",
- "Seagull", "Sandpiper", "Crab", "Cranberry", "Blueberry",
- "Peach", "Pumpkin", "Pudding", "Custard", "Jellybean",
- "Gumdrop", "Marshmallow", "Sprinkle", "Nugget", "Crouton",
- "Breadcrumb", "Pesto", "Polenta", "Peppercorn", "Flapjack"
-];
-const nicknames=[...new Set([...nicknameOriginals,...nicknameTitles.flatMap(title=>nicknameThings.map(thing=>`${title} ${thing}`))])];
+const nicknames=[...new Set(nicknameOriginals)];
 let nicknameDeck=[],lastNickname='';
 const compliments=['Your angles are impeccable.','New Jersey is lucky to have you.','You’re going places. Eventually.','What a fine little detour.','No notes. Perfect bend.','You make a very good point. Several, actually.'];
 let storageAvailable=true,family=loadFamily(),current=null,returnFocus=null,snoozing=false,zoomFrame=null;
@@ -2166,6 +2470,210 @@ document.addEventListener('visibilitychange',pauseHiddenEyes);
 pauseHiddenEyes();
 window.GSPAdoption={renderFamily,refreshSelection,refreshDetail};
 refreshAll();
+})();
+</script><script id="simple-module">/* A guided atlas experiment, built on the unchanged atlas records. */
+(function(){
+'use strict';
+const demoGroup='135',picks=['135','138','82','105','100','91'];
+const openingQuery=new URLSearchParams((window.GSPInitialViewHash??location.hash).slice(1));
+let group=demoGroup,unfolded=false,progress=0,selected=null,hasUnfolded=false,animation=null,scene=null,activeDialogFocus=null,galleryOpened=false,comparisonOrigin='explore';
+const priorSwitch=switchWorkspace;
+const experience=document.createElement('section');
+experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
+const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
+$('brandHome').setAttribute('aria-label','Return to the full Parkway');
+experience.innerHTML=`<div class="simple-shell"><header class="simple-intro"><h2>Every exit has a shape.</h2><p id="simpleIntroCopy">These are real Garden State Parkway ramps, lifted off the map so you can see their shapes.</p></header><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h3 class="simple-exit" id="simpleExitHeading"></h3><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit ↗</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit ↝</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>A few other good bends</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit →</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
+$('top').prepend(experience);
+const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
+landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><span class="adoption-eyebrow">The Garden State Parkway, taken apart.</span><h2>Every exit has a shape.</h2><p>Explore the real shapes of the Parkway’s ramps. Find a familiar exit, pull its roads apart, and see what you’ve been driving past.</p><button class="simple-primary" id="simpleStart">See how it works · Exit 135 ↗</button></div><div class="simple-teasers" id="simpleTeasers" aria-label="A few real Parkway ramp shapes"></div></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
+$('top').prepend(landing);
+const tools=document.createElement('section');tools.id='simpleTools';tools.className='wrap';tools.setAttribute('aria-label','Browse and map options');
+for(const selector of ['.shared-range','.integrated-layers','.layer-legends'])tools.append(document.querySelector(selector));
+landing.after(tools);
+const collectionCopy=$('atlas').querySelector('.atlas-copy p');collectionCopy.textContent='The roads, pulled apart. Choose a shape to meet it, or put them back on the map.';
+function setSimpleNavigation(view){
+ document.body.dataset.simpleView=view;
+ if(skip){skip.href=view==='explore'?'#simpleExperience':['family','compare'].includes(view)?'#'+(view==='family'?'adoptionFamily':'compareDialog'):'#simpleLanding';skip.textContent=view==='explore'?'Skip to the exit':'Skip to the Parkway';}
+ for(const button of landing.querySelectorAll('[data-simple-workspace]'))button.setAttribute('aria-pressed',String(button.dataset.simpleWorkspace===view));
+ $('simpleBack').hidden=!['explore','family','compare'].includes(view);
+ $('simpleBack').textContent=view==='explore'?'← Parkway map':view==='compare'&&comparisonOrigin==='atlas'?'← Ramp shapes':'← Back to the exit';
+}
+
+const headerNav=document.createElement('nav');headerNav.className='simple-header-nav';headerNav.setAttribute('aria-label','Explore the Parkway');
+headerNav.innerHTML='<button id="simpleBack" hidden>← Back to the exit</button><button id="simpleFind">Find your exit <span aria-hidden="true">⌕</span></button><button id="simpleFamily" hidden>My ramps</button>';
+document.querySelector('.header-tools').append(headerNav);
+const about=document.createElement('dialog');about.id='simpleAbout';about.className='simple-dialog';about.setAttribute('aria-labelledby','simpleAboutTitle');
+about.innerHTML=`<header class="simple-dialog-head"><h2 id="simpleAboutTitle">About Parkway Unfolded</h2><button class="icon-button" data-simple-close="simpleAbout" aria-label="Close About">✕</button></header><div class="simple-dialog-body"><p>Parkway Unfolded takes the Garden State Parkway’s entrance ramps, exit ramps and connecting roads off the map, so you can look closely at their shapes.</p><p>Browse the Parkway map by county, explore the ramp shapes, or visit the Top 10s. For a quick introduction, choose <strong>See how it works</strong> on the opening page. At an exit, choose <strong>Unfold this exit</strong> to pull its ramps apart. The same lines move from their real locations into separate spaces: their bends stay the same, north stays up, and each drawing is enlarged to fit. Select one to learn about it or adopt it for fun.</p><h3>The roads are real. The adoption is pretend.</h3><p>Nicknames and adoption papers are extremely unofficial. Saved ramps stay in this browser, on this device. Some drawings show only part of a longer connection.</p><h3>About the data</h3><p>All 359 drawings come from NJDOT’s August 2025 road map. Traffic figures are daily averages from 2024. Toll information uses published 2026 schedules. These are dated snapshots, rather than live driving conditions.</p><p><a href="https://www.nj.gov/transportation/refdata/gis/data.shtm" target="_blank" rel="noopener">NJDOT road maps</a> · <a href="https://www.njta.gov/document/2026-parkway-cash-rates/" target="_blank" rel="noopener">NJTA toll schedules</a></p><p>This test keeps the map, shapes and rankings in three views. The <a href="https://parkway-unfolded-adoption.sanchezbr.chatgpt.site" target="_blank" rel="noopener">original version ↗</a> remains available too.</p></div>`;
+document.body.append(about);
+const theme=document.querySelector('.theme-control');if(theme)about.querySelector('.simple-dialog-body').append(theme);
+const finder=document.createElement('dialog');finder.id='simpleFinder';finder.className='simple-dialog';finder.setAttribute('aria-labelledby','simpleFindTitle');
+finder.innerHTML=`<header class="simple-dialog-head"><h2 id="simpleFindTitle">Find your exit</h2><button class="icon-button" data-simple-close="simpleFinder" aria-label="Close exit search">✕</button></header><div class="simple-dialog-body"><label class="simple-find-label" for="simpleSearch">Exit number, connecting road or county</label><input class="simple-find-input" id="simpleSearch" type="search" autocomplete="off" placeholder="Try 135, Route 37, or Ocean…" aria-controls="simpleFindList"><p class="simple-find-count" id="simpleFindCount" role="status"></p></div><div class="simple-find-list" id="simpleFindList"></div>`;
+document.body.append(finder);
+const footer=document.querySelector('.site-footer');
+footer.innerHTML='<p>Real road shapes · NJDOT, August 2025</p><nav aria-label="Project information"><button class="text-button" id="simpleAboutButton">About &amp; sources</button><a href="https://parkway-unfolded-adoption.sanchezbr.chatgpt.site" target="_blank" rel="noopener">Original version ↗</a></nav>';
+
+function simpleCellProjection(r,cell){
+ const local=fit(sourceBounds(r),cell.w,cell.h,{left:23,right:23,top:21,bottom:43});
+ const p=xy=>{const q=local(xy);return [q[0]+cell.x,q[1]+cell.y];};p.s=local.s;return p;
+}
+function simpleBlendedProjection(start,end,amount){
+ const p=xy=>{const a=start(xy),b=end(xy);return [mix(a[0],b[0],amount),mix(a[1],b[1],amount)];};
+ p.s=mix(start.s,end.s,amount);return p;
+}
+function sceneLayout(count,width){
+ const small=width<600,cols=small?Math.min(2,count):count>6?4:Math.min(2,count),rows=Math.ceil(count/cols);
+ const height=Math.max(small?350:360,rows*(small?150:160)+50),gap=small?12:18,pad=small?16:25,top=42;
+ const cellW=(width-pad*2-gap*(cols-1))/cols,cellH=(height-top-18-gap*(rows-1))/rows;
+ return {width,height,mapHeight:small?350:360,cells:Array.from({length:count},(_,i)=>({x:pad+(i%cols)*(cellW+gap),y:top+Math.floor(i/cols)*(cellH+gap),w:cellW,h:cellH}))};
+}
+function drawScene(){
+ if(animation!==null){cancelAnimationFrame(animation);animation=null;progress=unfolded?1:0;}
+ const svg=$('simpleMap'),g=DATA.groups[group],rs=g.fids.map(fid=>byFID.get(fid));
+ const layout=sceneLayout(rs.length,Math.max(280,$('simpleCanvas').clientWidth));
+ const map=fit(padBounds(g.bounds,.12,150),layout.width,layout.mapHeight,{left:36,right:36,top:47,bottom:25});
+ svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${layout.width} ${layout.height}`);svg.setAttribute('aria-label',`${groupLabel(group)}, ${groupNames[group]}. The same real ramp shapes on and off the map.`);
+ append(svg,'title',{},`Garden State Parkway ${groupLabel(group).toLowerCase()}`);
+ append(svg,'desc',{},'Unfold this exit to separate the highlighted ramps from nearby roads. Every ramp keeps its original bends and north-up orientation.');
+ const context=append(svg,'g',{class:'simple-context','aria-hidden':'true'});
+ for(const l of g.context_lines)append(context,'path',{d:xyPath(l.xy,map),class:l.role==='mainline'?'simple-mainline':''});
+ scene={svg,context,rs,map,layout,ramps:[]};
+ rs.forEach((r,i)=>{
+  const cell=layout.cells[i],end=simpleCellProjection(r,cell),node=append(svg,'g',{class:'simple-ramp','data-simple-fid':r.fid,'aria-label':`${movement(r)}, ${publicRoad(r.road)}`});
+  const rect=append(node,'rect',{x:cell.x,y:cell.y,width:cell.w,height:cell.h,rx:12,class:'simple-ramp-cell'});
+  const path=append(node,'path',{class:'simple-road','data-source-fid':Number(sourceFID(r)),'data-source-vertices':r.source_xy.length});
+  const label=append(node,'text',{x:cell.x+cell.w/2,y:cell.y+cell.h-17,class:'simple-ramp-label'},movement(r));
+  const number=append(node,'text',{x:cell.x+17,y:cell.y+22,class:'simple-ramp-number'},String(i+1));
+  const choose=()=>{if(progress===1)selectRamp(r.fid);};
+  node.addEventListener('click',choose);node.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();choose();}});
+  scene.ramps.push({r,node,rect,path,label,number,end});
+ });
+ paintScene(progress);paintSceneCopy();
+}
+function paintScene(amount){
+ if(!scene)return;
+ scene.svg.setAttribute('viewBox',`0 0 ${scene.layout.width} ${mix(scene.layout.mapHeight,scene.layout.height,amount)}`);
+ scene.context.style.opacity=String(1-amount);
+ for(const entry of scene.ramps){
+  const {r,node,rect,path,label,number,end}=entry;
+  path.setAttribute('d',xyPath(r.source_xy,simpleBlendedProjection(scene.map,end,amount)));
+  rect.style.opacity=String(amount);rect.style.pointerEvents=amount===1?'all':'none';
+  label.style.opacity=String(amount);number.style.opacity=String(amount);
+  node.setAttribute('tabindex',amount===1?'0':'-1');node.setAttribute('aria-hidden',String(amount!==1));
+  if(amount===1){node.setAttribute('role','button');node.setAttribute('aria-pressed',String(selected===r.fid));}else{node.removeAttribute('role');node.removeAttribute('aria-pressed');}
+ }
+}
+function paintSceneCopy(){
+ $('simpleExitHeading').textContent=groupLabel(group);$('simpleExitRoad').textContent=groupNames[group];$('simpleCounty').textContent=groupCounties(group).map(name=>`${name} County`).join(' / ');
+ $('simpleIntroCopy').textContent=unfolded?'The same ramps, pulled apart. Their bends stay the same. Pick a shape to take a closer look.':'These are real Garden State Parkway ramps, lifted off the map so you can see their shapes.';
+ $('simplePhase').textContent=unfolded?'The same roads, unfolded':'On the map';
+ $('simpleUnfold').textContent=unfolded?'Back on the map ↙':'Unfold this exit ↗';$('simpleUnfold').disabled=false;$('simpleUnfold').setAttribute('aria-expanded',String(unfolded));
+ $('simpleMap').removeAttribute('aria-busy');
+ $('simpleSceneHint').textContent=unfolded?'Same roads. Same bends. Pick a shape to meet it.':'The highlighted lines are the ramps.';
+ $('simpleScaleNote').textContent=unfolded?'North up · enlarged to fit':'North stays up.';
+ $('simpleNextHint').textContent=unfolded?'Pick a shape to take a closer look.':'Unfold this exit to see its ramps separately.';
+ $('simpleNext').hidden=!hasUnfolded;$('simpleDiscover').hidden=!hasUnfolded;
+}
+function animateUnfold(target){
+ if(animation!==null)return;
+ unfolded=target;if(target)hasUnfolded=true;
+ selected=null;$('simpleSelected').hidden=true;
+ const from=progress,to=target?1:0,start=performance.now(),duration=reduced.matches?0:1100;
+ $('simpleUnfold').disabled=true;$('simpleUnfold').textContent=target?'Unfolding…':'Back to the map…';$('simpleMap').setAttribute('aria-busy','true');
+ function tick(now){
+  const t=duration?Math.min(1,(now-start)/duration):1,eased=t*t*(3-2*t);
+  progress=mix(from,to,eased);paintScene(progress);
+  if(t<1)animation=requestAnimationFrame(tick);else{animation=null;progress=to;paintScene(progress);paintSceneCopy();syncHash();$('simpleAnnouncement').textContent=target?`${scene.rs.length} real ramp shapes, unfolded. Choose one to take a closer look.`:'The ramps are back in their real locations.';}
+ }
+ if(duration)animation=requestAnimationFrame(tick);else tick(start);
+}
+function showGroup(id,{focus=false,select=null}={}){
+ if(!DATA.groups[id])return;
+ if(animation!==null){cancelAnimationFrame(animation);animation=null;}
+ group=id;unfolded=false;progress=0;selected=null;state.group=id;state.selected=null;state.workspace='explore';
+ setSimpleNavigation('explore');experience.hidden=false;for(const id of ['overview','atlas','superlatives','adoptionFamily','compareDialog'])$(id).hidden=true;
+ $('simpleSelected').hidden=true;$('simpleAnnouncement').textContent='';drawScene();
+ if(select&&byFID.get(select)?.group===id){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();selectRamp(select,{focus:false});}
+ syncHash();
+ if(focus){$('simpleExitHeading').tabIndex=-1;$('simpleExitHeading').focus({preventScroll:true});experience.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});}
+}
+function selectRamp(fid,{focus=true}={}){
+ const r=byFID.get(fid);if(!r)return;selected=fid;state.selected=fid;
+ for(const entry of scene.ramps)entry.node.setAttribute('aria-pressed',String(entry.r.fid===fid));
+ const selectedHost=$('simpleSelected'),plaza=window.GSPTolls?.lookup(fid),note=[branchScope(r),warningFor(r)].filter(Boolean).join(' ');
+ selectedHost.innerHTML=`<div class="simple-selected-top"><div><span class="adoption-eyebrow">A closer look · Exit ${esc(r.number)}</span><h3 id="simpleSelectedTitle">${esc(publicRoad(r.road))}</h3><p class="simple-ramp-meta">${esc(movement(r))} · ${esc(groupCounties(r.group).join(' / '))}</p></div><button class="adoption-button" data-adoption-visit="${Number(fid)}">Adopt this ramp ♡</button></div><details class="simple-road-info"><summary>More about this road</summary><p>${fmt(r.length_ft)} feet of road. ${esc(note||'This line follows the original road map.')}</p><div class="traffic-detail">${trafficDetailHTML(r)}</div><p>${plaza?`A toll is listed for this connection at ${esc(plaza.name)}.`:'No ramp toll is listed for this drawing. Other tolls may apply along your journey.'}</p><div class="simple-road-actions">${plaza?'<button class="text-button" id="simpleToll">View 2026 toll information ↗</button>':''}<button class="text-button" id="simpleCompare">Compare with another ramp →</button></div></details>`;
+ selectedHost.hidden=false;syncHash();
+ $('simpleToll')?.addEventListener('click',()=>window.GSPTolls.openPlaza(plaza.id));
+ $('simpleCompare').addEventListener('click',()=>{state.compare=[fid,null];updateComparisonUI();switchWorkspace('compare',{scroll:true});});
+ if(focus){$('simpleSelectedTitle').tabIndex=-1;$('simpleSelectedTitle').focus({preventScroll:true});selectedHost.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'nearest'});}
+}
+function syncHash(){
+ if(['overview','atlas','superlatives'].includes(state.workspace)){const query=new URLSearchParams(location.hash.slice(1));for(const key of ['exit','view','ramp'])query.delete(key);query.set('workspace',state.workspace);if(state.section)query.set('area',state.section);else query.delete('area');history.replaceState(null,'','#'+query.toString());return;}
+ const query=new URLSearchParams({exit:group,view:unfolded?'unfolded':'map'});
+ if(selected)query.set('ramp',String(selected));
+ history.replaceState(null,'','#'+query.toString());
+}
+function refreshFamilyLink(){
+ const count=Number($('adoptionNavCount').textContent)||0;
+ $('simpleFamily').hidden=count===0;$('simpleFamily').textContent=`My ramps${count?' · '+count:''}`;
+}
+function openSimpleDialog(dialog){
+ activeDialogFocus=document.activeElement;dialog.showModal();document.body.classList.add('modal-open');
+}
+function closeSimpleDialog(dialog){
+ dialog.close();if(!document.querySelector('dialog[open]'))document.body.classList.remove('modal-open');
+ if(activeDialogFocus?.isConnected)activeDialogFocus.focus({preventScroll:true});
+}
+function renderFind(){
+ const q=$('simpleSearch').value.trim().toLowerCase();
+ const matches=groupOrder.filter(id=>`${id} ${groupNames[id]} ${groupCounties(id).join(' ')}`.toLowerCase().includes(q));
+ $('simpleFindCount').textContent=q?`${matches.length} ${matches.length===1?'exit area':'exit areas'} found`:'All Parkway exits, north to south.';
+ $('simpleFindList').innerHTML=matches.length?matches.map(id=>`<button class="simple-find-row" data-simple-group="${esc(id)}"><strong>${esc(id)}</strong><span>${esc(groupNames[id])}<small>${esc(groupCounties(id).join(' / '))}${groupCounties(id).length>1?' counties':' County'}</small></span></button>`).join(''):'<p class="simple-find-empty">No exits found. Try another number, road or county.</p>';
+}
+function openFinder(){renderFind();openSimpleDialog(finder);$('simpleSearch').focus();}
+function pickHTML(id){
+  const rs=DATA.groups[id].fids.map(fid=>byFID.get(fid)),r=rs.find(item=>item.fid===5687)||rs.find(item=>item.kind==='Exit')||rs[0];
+  const p=fit(sourceBounds(r),240,110,14);
+  return `<button class="simple-pick" data-simple-group="${esc(id)}"><svg viewBox="0 0 240 110" aria-hidden="true"><path d="${xyPath(r.source_xy,p)}"/></svg><strong>Exit ${esc(id)}</strong><span>${esc(groupNames[id])}</span></button>`;
+}
+function renderPicks(){
+ $('simplePicks').innerHTML=picks.map(pickHTML).join('');
+ $('simpleTeasers').innerHTML=picks.slice(0,3).map(pickHTML).join('');
+}
+switchWorkspace=function(view,options={}){
+ if(['overview','atlas','superlatives','family','compare'].includes(view)){
+  if(view==='compare')comparisonOrigin=state.workspace==='atlas'?'atlas':'explore';
+  if(animation!==null){cancelAnimationFrame(animation);animation=null;progress=unfolded?1:0;}
+  setSimpleNavigation(view);experience.hidden=true;
+  if(view==='atlas'){if(!galleryOpened){state.collection='featured';galleryOpened=true;}state.morph=1;}
+  priorSwitch(view,{scroll:false});syncHash();
+  if(options.scroll)(['family','compare'].includes(view)?$(view==='family'?'adoptionFamily':'compareDialog'):$('simpleLanding')).scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
+ }else if(view==='explore')showGroup(state.group,{focus:!!options.scroll,select:state.selected});
+ else showGroup(group,{focus:!!options.scroll});
+};
+$('simpleUnfold').addEventListener('click',()=>animateUnfold(!unfolded));
+$('simpleAnother').addEventListener('click',()=>{const available=picks.filter(id=>id!==group);showGroup(available[Math.floor(Math.random()*available.length)],{focus:true});});
+$('closeComparison').addEventListener('click',event=>{event.stopImmediatePropagation();switchWorkspace(comparisonOrigin,{scroll:true});if(comparisonOrigin==='explore')$('simpleUnfold').focus({preventScroll:true});},true);
+$('simpleFind').addEventListener('click',openFinder);$('simpleBrowseAll').addEventListener('click',openFinder);
+$('simpleFamily').addEventListener('click',()=>switchWorkspace('family',{scroll:true}));
+$('simpleBack').addEventListener('click',()=>{if(document.body.dataset.simpleView==='compare'&&comparisonOrigin==='atlas'){switchWorkspace('atlas',{scroll:true});return;}if(document.body.dataset.simpleView==='explore'){switchWorkspace('overview',{scroll:true});return;}state.workspace='explore';state.group=group;state.selected=selected;setSimpleNavigation('explore');experience.hidden=false;for(const id of ['overview','atlas','superlatives','adoptionFamily','compareDialog'])$(id).hidden=true;drawScene();syncHash();experience.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});});
+$('simpleStart').addEventListener('click',()=>showGroup(demoGroup,{focus:true}));
+landing.querySelector('.simple-view-nav').addEventListener('click',event=>{const button=event.target.closest('[data-simple-workspace]');if(button)switchWorkspace(button.dataset.simpleWorkspace,{scroll:true});});
+const priorSection=setSharedSection;setSharedSection=function(id){priorSection(id);syncHash();};
+$('simpleAboutButton').addEventListener('click',()=>openSimpleDialog(about));
+$('simpleSearch').addEventListener('input',renderFind);
+$('simpleSearch').addEventListener('keydown',event=>{if(event.key==='Enter'){const rows=$('simpleFindList').querySelectorAll('[data-simple-group]');if(rows.length===1){event.preventDefault();rows[0].click();}}});
+for(const dialog of [about,finder]){
+ dialog.addEventListener('cancel',event=>{event.preventDefault();closeSimpleDialog(dialog);});
+ dialog.querySelector('[data-simple-close]').addEventListener('click',()=>closeSimpleDialog(dialog));
+ dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeSimpleDialog(dialog);});
+}
+for(const host of [$('simplePicks'),$('simpleTeasers'),$('simpleFindList')])host.addEventListener('click',event=>{const b=event.target.closest('[data-simple-group]');if(!b)return;if(finder.open)closeSimpleDialog(finder);showGroup(b.dataset.simpleGroup,{focus:true});});
+new MutationObserver(refreshFamilyLink).observe($('adoptionNavCount'),{childList:true,subtree:true,characterData:true});
+let resizeFrame=null,lastCanvasWidth=$('simpleCanvas').clientWidth;new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(Math.abs(width-lastCanvasWidth)<.5)return;lastCanvasWidth=width;if(resizeFrame!==null)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;if(document.body.dataset.simpleView==='explore')drawScene();});}).observe($('simpleCanvas'));
+refreshFamilyLink();renderPicks();
+const firstGroup=DATA.groups[openingQuery.get('exit')]?openingQuery.get('exit'):demoGroup;
+if(openingQuery.has('exit'))showGroup(firstGroup);else switchWorkspace(['atlas','superlatives'].includes(openingQuery.get('workspace'))?openingQuery.get('workspace'):'overview');
+if(openingQuery.has('exit')&&openingQuery.get('view')==='unfolded'){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();const firstRamp=Number(openingQuery.get('ramp'));if(byFID.get(firstRamp)?.group===firstGroup)selectRamp(firstRamp,{focus:false});syncHash();}
 })();
 </script>
 </body>
