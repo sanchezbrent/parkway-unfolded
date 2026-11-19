@@ -39,6 +39,42 @@ document.body.append(finder);
 const footer=document.querySelector('.site-footer');
 footer.innerHTML='<p>Real road shapes · NJDOT, August 2025</p><nav aria-label="Project information"><button class="text-button" id="simpleAboutButton">About &amp; sources</button><a href="https://parkway-unfolded-adoption.sanchezbr.chatgpt.site" target="_blank" rel="noopener">Original version ↗</a></nav>';
 
+// Friendly visual descriptions, illustrated with exact existing source paths.
+const shapeGuideExamples=[
+ {fid:5687,title:'The loop',copy:'Curls back around.'},
+ {fid:5483,title:'The hook',copy:'A bend on a long stem.'},
+ {fid:5496,title:'The straight bit',copy:'Mostly a straight run.'}
+];
+function shapeGuideHTML(id){
+ return `<header><h3 id="${id}">A tiny shape guide.</h3><p>Pick a real ramp to meet it.</p></header><div class="simple-guide-examples">${shapeGuideExamples.map(example=>{
+  const r=byFID.get(example.fid),project=fit(sourceBounds(r),110,90,12);
+  return `<button class="simple-guide-example" data-guide-fid="${Number(r.fid)}" aria-label="${esc(example.title)}. Explore ${esc(groupLabel(r.group))}, ${esc(movement(r))}, ${esc(publicRoad(r.road))}."><svg viewBox="0 0 110 90" aria-hidden="true"><path d="${xyPath(r.source_xy,project)}" data-source-fid="${Number(sourceFID(r))}" data-source-vertices="${r.source_xy.length}"/></svg><span><strong>${esc(example.title)}</strong><span>${esc(example.copy)}</span><small>Meet this one · Exit ${esc(r.number)}</small></span></button>`;
+ }).join('')}</div><p class="simple-guide-note">North up. Each road enlarged to fit.</p>`;
+}
+const guide=document.createElement('aside');guide.className='simple-shape-guide';guide.setAttribute('aria-labelledby','simpleGuideTitle');guide.innerHTML=shapeGuideHTML('simpleGuideTitle');
+const sceneFrame=document.createElement('div');sceneFrame.className='simple-scene-layout';const sceneElement=experience.querySelector('.simple-scene');sceneElement.before(sceneFrame);sceneFrame.append(sceneElement,guide);
+const galleryGuide=document.createElement('details');galleryGuide.className='simple-gallery-guide';galleryGuide.innerHTML='<summary>A little help spotting the shapes</summary><div class="simple-shape-guide" aria-labelledby="simpleGalleryGuideTitle">'+shapeGuideHTML('simpleGalleryGuideTitle')+'</div>';
+$('atlas').querySelector('.atlas-intro').after(galleryGuide);
+for(const host of [guide,galleryGuide])host.addEventListener('click',event=>{const button=event.target.closest('[data-guide-fid]');if(!button)return;const r=byFID.get(Number(button.dataset.guideFid));showGroup(r.group,{focus:true,select:r.fid});});
+
+// Historical summaries from NJTA's GSP History; no archive media is reproduced.
+const parkwayOddities=[
+ {title:'Adults needed a chaperone.',copy:'The Bibbery at Forked River was a children’s diner. Adults could come in only when accompanied by a child.',source:'https://gsphistory.njta.gov/#clients',section:'Driving: Amenities'},
+ {title:'The Parkway had a Stork Club.',copy:'In 1964, 23 children born along the Parkway belonged to its Stork Club. The Highway Authority held birthday parties for the children.',source:'https://gsphistory.njta.gov/#price',section:'Effects: What makes the Parkway special?'},
+ {title:'Even the shoulders could sing.',copy:'Early Parkway rumble strips were called “singing shoulders”: textured concrete that made a noise when tires strayed beyond the travel lane.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Singing Shoulders'},
+ {title:'A road with its own sign shape.',copy:'Early Parkway entrance signs were trapezoidal, designed to make the road stand out from other highways.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Signage'}
+];
+let oddityIndex=Math.floor(Math.random()*parkwayOddities.length);
+const oddity=document.createElement('aside');oddity.id='simpleOddity';oddity.className='simple-oddity';oddity.setAttribute('aria-labelledby','simpleOddityTitle');
+oddity.innerHTML='<div class="simple-oddity-copy"><span class="simple-oddity-eyebrow">A Parkway oddity</span><div aria-live="polite" aria-atomic="true"><h3 id="simpleOddityTitle"></h3><p id="simpleOddityCopy"></p><a id="simpleOdditySource" target="_blank" rel="noopener">Source: NJTA history</a></div></div><button class="text-button" id="simpleOddityNext">Another oddity</button>';
+$('editorialDiscoveries').before(oddity);
+function renderOddity(){
+ const item=parkwayOddities[oddityIndex];$('simpleOddityTitle').textContent=item.title;$('simpleOddityCopy').textContent=item.copy;
+ $('simpleOdditySource').href=item.source;$('simpleOdditySource').setAttribute('aria-label','Source: NJTA history. '+item.section+'.');
+}
+$('simpleOddityNext').addEventListener('click',()=>{oddityIndex=(oddityIndex+1)%parkwayOddities.length;renderOddity();});
+renderOddity();
+
 function simpleCellProjection(r,cell){
  const local=fit(sourceBounds(r),cell.w,cell.h,{left:23,right:23,top:21,bottom:43});
  const p=xy=>{const q=local(xy);return [q[0]+cell.x,q[1]+cell.y];};p.s=local.s;return p;

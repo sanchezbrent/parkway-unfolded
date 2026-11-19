@@ -111,3 +111,5 @@ This branch is a separate, user-requested experiment based on the adoption previ
 Build with `python3 source/build.py` and check with `python3 scripts/check.py`. The added `scripts/test_simple.js` verifies every source vertex through the transition and checks phone and desktop layouts for every exit.
 
 For a first-impression test, give a fresh reader the link without a walkthrough. Ask what they think they are looking at, what they would click first, and whether unfolding makes the relationship between the map and shapes clear.
+
+The guided exit view includes a small shape guide, using three exact source drawings with informal visual labels. The gallery offers the same guide in an optional disclosure. One historical oddity appears below the Parkway map, with a button to browse another. Historical summaries link to NJTA’s history site; source notes are in `docs/history-notes.md`.
