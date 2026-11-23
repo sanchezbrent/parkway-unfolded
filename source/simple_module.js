@@ -59,14 +59,14 @@ for(const host of [guide,galleryGuide])host.addEventListener('click',event=>{con
 
 // Historical summaries from NJTA's GSP History; no archive media is reproduced.
 const parkwayOddities=[
- {title:'Adults needed a chaperone.',copy:'The Bibbery at Forked River was a children’s diner. Adults could come in only when accompanied by a child.',source:'https://gsphistory.njta.gov/#clients',section:'Driving: Amenities'},
- {title:'The Parkway had a Stork Club.',copy:'In 1964, 23 children born along the Parkway belonged to its Stork Club. The Highway Authority held birthday parties for the children.',source:'https://gsphistory.njta.gov/#price',section:'Effects: What makes the Parkway special?'},
- {title:'Even the shoulders could sing.',copy:'Early Parkway rumble strips were called “singing shoulders”: textured concrete that made a noise when tires strayed beyond the travel lane.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Singing Shoulders'},
- {title:'A road with its own sign shape.',copy:'Early Parkway entrance signs were trapezoidal, designed to make the road stand out from other highways.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Signage'}
+ {copy:'The Bibbery at Forked River was a children’s diner. Adults could come in only when accompanied by a child.',source:'https://gsphistory.njta.gov/#clients',section:'Driving: Amenities'},
+ {copy:'In 1964, 23 children born along the Parkway belonged to its Stork Club. The Highway Authority held birthday parties for the children.',source:'https://gsphistory.njta.gov/#price',section:'Effects: What makes the Parkway special?'},
+ {copy:'Early Parkway rumble strips were called “singing shoulders”: textured concrete that made a noise when tires strayed beyond the travel lane.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Singing Shoulders'},
+ {copy:'Early Parkway entrance signs were trapezoidal, designed to make the road stand out from other highways.',source:'https://gsphistory.njta.gov/#portfolio',section:'Designing: Signage'}
 ];
 let oddityIndex=Math.floor(Math.random()*parkwayOddities.length);
 const oddity=document.createElement('aside');oddity.id='simpleOddity';oddity.className='simple-oddity';oddity.setAttribute('aria-labelledby','simpleOddityTitle');
-oddity.innerHTML='<div class="simple-oddity-copy"><span class="simple-oddity-eyebrow">A Parkway oddity</span><div aria-live="polite" aria-atomic="true"><h3 id="simpleOddityTitle"></h3><p id="simpleOddityCopy"></p></div></div><div class="simple-extra-actions"><button class="text-button" id="simpleOddityNext">Another oddity</button><a id="simpleOdditySource" target="_blank" rel="noopener">Source: NJTA history</a></div>';
+oddity.innerHTML='<div class="simple-oddity-copy"><span class="simple-oddity-eyebrow" id="simpleOddityTitle">A Parkway oddity</span><div aria-live="polite" aria-atomic="true"><p id="simpleOddityCopy"></p></div></div><div class="simple-extra-actions"><button class="text-button" id="simpleOddityNext">Another oddity</button><a id="simpleOdditySource" target="_blank" rel="noopener">Source: NJTA history</a></div>';
 const extras=document.createElement('div');extras.id='simpleExtras';extras.className='simple-extras';
 const adoptionWelcome=$('editorialDiscoveries');
 adoptionWelcome.before(extras);extras.append(oddity,adoptionWelcome);
@@ -77,7 +77,7 @@ const adoptionWelcomeButton=adoptionWelcome.querySelector('[data-adoption-random
 adoptionWelcomeButton.classList.replace('adoption-button','text-button');
 adoptionWelcomeButton.textContent='Meet a random ramp';
 function renderOddity(){
- const item=parkwayOddities[oddityIndex];$('simpleOddityTitle').textContent=item.title;$('simpleOddityCopy').textContent=item.copy;
+ const item=parkwayOddities[oddityIndex];$('simpleOddityCopy').textContent=item.copy;
  $('simpleOdditySource').href=item.source;$('simpleOdditySource').setAttribute('aria-label','Source: NJTA history. '+item.section+'.');
 }
 $('simpleOddityNext').addEventListener('click',()=>{oddityIndex=(oddityIndex+1)%parkwayOddities.length;renderOddity();});
