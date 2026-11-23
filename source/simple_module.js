@@ -9,7 +9,7 @@ const experience=document.createElement('section');
 experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
 const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
 $('brandHome').setAttribute('aria-label','Return to the full Parkway');
-experience.innerHTML=`<div class="simple-shell"><header class="simple-intro"><h2>Every exit has a shape.</h2><p id="simpleIntroCopy">These are real Garden State Parkway ramps, lifted off the map so you can see their shapes.</p></header><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h3 class="simple-exit" id="simpleExitHeading"></h3><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit ↗</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit ↝</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>A few other good bends</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit →</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
+experience.innerHTML=`<div class="simple-shell"><header class="simple-intro"><h2>Every exit has a shape.</h2><p id="simpleIntroCopy">These are real Garden State Parkway ramps, lifted off the map so you can see their shapes.</p></header><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h3 class="simple-exit" id="simpleExitHeading"></h3><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit ↗</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit ↝</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit →</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
 $('top').prepend(experience);
 const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
 landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><span class="adoption-eyebrow">The Garden State Parkway, taken apart.</span><h2>Every exit has a shape.</h2><p>Explore the real shapes of the Parkway’s ramps. Find a familiar exit, pull its roads apart, and see what you’ve been driving past.</p><button class="simple-primary" id="simpleStart">See how it works · Exit 135 ↗</button></div><div class="simple-teasers" id="simpleTeasers" aria-label="A few real Parkway ramp shapes"></div></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
@@ -17,7 +17,7 @@ $('top').prepend(landing);
 const tools=document.createElement('section');tools.id='simpleTools';tools.className='wrap';tools.setAttribute('aria-label','Browse and map options');
 for(const selector of ['.shared-range','.integrated-layers','.layer-legends'])tools.append(document.querySelector(selector));
 landing.after(tools);
-const collectionCopy=$('atlas').querySelector('.atlas-copy p');collectionCopy.textContent='The roads, pulled apart. Choose a shape to meet it, or put them back on the map.';
+const collectionCopy=$('atlas').querySelector('.atlas-copy p');collectionCopy.textContent='The roads, pulled apart. Choose a shape to view its details, or see the ramps on the map.';
 function setSimpleNavigation(view){
  document.body.dataset.simpleView=view;
  if(skip){skip.href=view==='explore'?'#simpleExperience':['family','compare'].includes(view)?'#'+(view==='family'?'adoptionFamily':'compareDialog'):'#simpleLanding';skip.textContent=view==='explore'?'Skip to the exit':'Skip to the Parkway';}
@@ -41,19 +41,19 @@ footer.innerHTML='<p>Real road shapes · NJDOT, August 2025</p><nav aria-label="
 
 // Friendly visual descriptions, illustrated with exact existing source paths.
 const shapeGuideExamples=[
- {fid:5687,title:'The loop',copy:'Curls back around.'},
- {fid:5483,title:'The hook',copy:'A bend on a long stem.'},
- {fid:5496,title:'The straight bit',copy:'Mostly a straight run.'}
+ {fid:5687,title:'Loop'},
+ {fid:5483,title:'Hook'},
+ {fid:5496,title:'Straight'}
 ];
 function shapeGuideHTML(id){
- return `<header><h3 id="${id}">A tiny shape guide.</h3><p>Pick a real ramp to meet it.</p></header><div class="simple-guide-examples">${shapeGuideExamples.map(example=>{
+ return `<header><h3 id="${id}">Shape guide</h3><p>Explore an example exit.</p></header><div class="simple-guide-examples">${shapeGuideExamples.map(example=>{
   const r=byFID.get(example.fid),project=fit(sourceBounds(r),110,90,12);
-  return `<button class="simple-guide-example" data-guide-fid="${Number(r.fid)}" aria-label="${esc(example.title)}. Explore ${esc(groupLabel(r.group))}, ${esc(movement(r))}, ${esc(publicRoad(r.road))}."><svg viewBox="0 0 110 90" aria-hidden="true"><path d="${xyPath(r.source_xy,project)}" data-source-fid="${Number(sourceFID(r))}" data-source-vertices="${r.source_xy.length}"/></svg><span><strong>${esc(example.title)}</strong><span>${esc(example.copy)}</span><small>Meet this one · Exit ${esc(r.number)}</small></span></button>`;
+  return `<button class="simple-guide-example" data-guide-fid="${Number(r.fid)}" aria-label="${esc(example.title)}. Explore ${esc(groupLabel(r.group))}, ${esc(movement(r))}, ${esc(publicRoad(r.road))}."><svg viewBox="0 0 110 90" aria-hidden="true"><path d="${xyPath(r.source_xy,project)}" data-source-fid="${Number(sourceFID(r))}" data-source-vertices="${r.source_xy.length}"/></svg><span><strong>${esc(example.title)}</strong><span>${esc(publicRoad(r.road))}</span><small>Explore Exit ${esc(r.number)}</small></span></button>`;
  }).join('')}</div><p class="simple-guide-note">North up. Each road enlarged to fit.</p>`;
 }
 const guide=document.createElement('aside');guide.className='simple-shape-guide';guide.setAttribute('aria-labelledby','simpleGuideTitle');guide.innerHTML=shapeGuideHTML('simpleGuideTitle');
 const sceneFrame=document.createElement('div');sceneFrame.className='simple-scene-layout';const sceneElement=experience.querySelector('.simple-scene');sceneElement.before(sceneFrame);sceneFrame.append(sceneElement,guide);
-const galleryGuide=document.createElement('details');galleryGuide.className='simple-gallery-guide';galleryGuide.innerHTML='<summary>A little help spotting the shapes</summary><div class="simple-shape-guide" aria-labelledby="simpleGalleryGuideTitle">'+shapeGuideHTML('simpleGalleryGuideTitle')+'</div>';
+const galleryGuide=document.createElement('details');galleryGuide.className='simple-gallery-guide';galleryGuide.innerHTML='<summary>Shape guide</summary><div class="simple-shape-guide" aria-labelledby="simpleGalleryGuideTitle">'+shapeGuideHTML('simpleGalleryGuideTitle')+'</div>';
 $('atlas').querySelector('.atlas-intro').after(galleryGuide);
 for(const host of [guide,galleryGuide])host.addEventListener('click',event=>{const button=event.target.closest('[data-guide-fid]');if(!button)return;const r=byFID.get(Number(button.dataset.guideFid));showGroup(r.group,{focus:true,select:r.fid});});
 
@@ -131,7 +131,7 @@ function paintSceneCopy(){
  $('simplePhase').textContent=unfolded?'The same roads, unfolded':'On the map';
  $('simpleUnfold').textContent=unfolded?'Back on the map ↙':'Unfold this exit ↗';$('simpleUnfold').disabled=false;$('simpleUnfold').setAttribute('aria-expanded',String(unfolded));
  $('simpleMap').removeAttribute('aria-busy');
- $('simpleSceneHint').textContent=unfolded?'Same roads. Same bends. Pick a shape to meet it.':'The highlighted lines are the ramps.';
+ $('simpleSceneHint').textContent=unfolded?'Choose a ramp to view its details.':'The highlighted lines are the ramps.';
  $('simpleScaleNote').textContent=unfolded?'North up · enlarged to fit':'North stays up.';
  $('simpleNextHint').textContent=unfolded?'Pick a shape to take a closer look.':'Unfold this exit to see its ramps separately.';
  $('simpleNext').hidden=!hasUnfolded;$('simpleDiscover').hidden=!hasUnfolded;
