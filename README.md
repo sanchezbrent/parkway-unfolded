@@ -1,8 +1,10 @@
 # Parkway Unfolded
 
+**[Open Parkway Unfolded](https://sanchezbrent.github.io/parkway-unfolded/)** — the latest public version.
+
 An interactive look at the Garden State Parkway through the shapes of its
 entrances, exits and connecting roads. Find an exit, unfold the ramps, compare
-two curves, or explore traffic counts, tolls and the Top 10s.
+two curves, adopt a favorite little road, or explore traffic counts, tolls and the Top 10s.
 
 ![Parkway Unfolded](assets/branding/Parkway_Unfolded_Wordmark.png)
 
@@ -44,7 +46,12 @@ Then open `http://localhost:8000/`.
 ## Included
 
 - Full-Parkway map and county browsing: 359 drawings at 84 exit areas.
-- Original road shapes, unfolding animation and two-ramp comparison.
+- Original road shapes, a guided Exit 135 introduction, unfolding animation and two-ramp comparison.
+- A tiny shape guide illustrated with real ramps, plus one sourced Parkway history oddity at a time.
+- Adopt-a-ramp characters, browser-local nicknames, a My ramps collection,
+  320 curated nicknames, animated eyes, rerolls inside the adoption popup,
+  map links and downloadable SVG adoption papers. No account is needed.
+  Nicknames and decorative eyes do not change the real road geometry or labels.
 - 15 Top 10 categories: 11 shape comparisons and 4 traffic comparisons.
 - 2024 average daily traffic counts and 2026 toll rates, including eligible
   peak/off-peak plans. Regular passenger-car rates do not vary by time of day.
@@ -98,3 +105,29 @@ alone do not establish that those settings are enabled. See
 
 Live camera integration is paused while reuse permissions are checked.
 The project has no automatic traffic or toll-data refresh.
+
+## The guided experience
+
+The public site opens on the full Parkway and keeps browsing in three views:
+Parkway map, Ramp shapes and Top 10s. Real shape previews and a “See how it
+works” button introduce the project. Exit 135 starts on its real map; one button
+separates the same source paths into selectable drawings. Search reaches every
+exit area. County browsing and the compact Traffic/Tolls controls carry across
+the views. Road details and comparison follow selection; adoption sits below
+the map.
+
+`source/simple_module.js` and `source/simple_styles.css` provide this entry
+point. `scripts/test_simple.js` verifies every source vertex through the
+transition and checks phone and desktop layouts for every exit. All five
+canonical datasets and the original road geometry are retained.
+
+The shape guide uses three exact source drawings with informal visual labels.
+The gallery offers the same guide in an optional disclosure. One historical
+oddity appears below the Parkway map, with a button to browse another. These
+summaries link to NJTA’s history site; see [source notes](docs/history-notes.md).
+
+The earlier public version is preserved on
+[`archive/pre-guided-pages-2026-11-23`](https://github.com/sanchezbrent/parkway-unfolded/tree/archive/pre-guided-pages-2026-11-23).
+The adoption and guided preview branches remain in the repository’s history.
+GitHub Pages publishes from `main`; use the public link at the top of this page
+to share the latest release.
