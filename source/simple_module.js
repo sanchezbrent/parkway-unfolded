@@ -66,8 +66,16 @@ const parkwayOddities=[
 ];
 let oddityIndex=Math.floor(Math.random()*parkwayOddities.length);
 const oddity=document.createElement('aside');oddity.id='simpleOddity';oddity.className='simple-oddity';oddity.setAttribute('aria-labelledby','simpleOddityTitle');
-oddity.innerHTML='<div class="simple-oddity-copy"><span class="simple-oddity-eyebrow">A Parkway oddity</span><div aria-live="polite" aria-atomic="true"><h3 id="simpleOddityTitle"></h3><p id="simpleOddityCopy"></p><a id="simpleOdditySource" target="_blank" rel="noopener">Source: NJTA history</a></div></div><button class="text-button" id="simpleOddityNext">Another oddity</button>';
-$('editorialDiscoveries').before(oddity);
+oddity.innerHTML='<div class="simple-oddity-copy"><span class="simple-oddity-eyebrow">A Parkway oddity</span><div aria-live="polite" aria-atomic="true"><h3 id="simpleOddityTitle"></h3><p id="simpleOddityCopy"></p></div></div><div class="simple-extra-actions"><button class="text-button" id="simpleOddityNext">Another oddity</button><a id="simpleOdditySource" target="_blank" rel="noopener">Source: NJTA history</a></div>';
+const extras=document.createElement('div');extras.id='simpleExtras';extras.className='simple-extras';
+const adoptionWelcome=$('editorialDiscoveries');
+adoptionWelcome.before(extras);extras.append(oddity,adoptionWelcome);
+adoptionWelcome.setAttribute('aria-label','Adopt a ramp');
+adoptionWelcome.querySelector('h3').textContent='Adopt a ramp';
+adoptionWelcome.querySelector('p').textContent='Pick a bend. Become unnecessarily attached.';
+const adoptionWelcomeButton=adoptionWelcome.querySelector('[data-adoption-random]');
+adoptionWelcomeButton.classList.replace('adoption-button','text-button');
+adoptionWelcomeButton.textContent='Meet a random ramp';
 function renderOddity(){
  const item=parkwayOddities[oddityIndex];$('simpleOddityTitle').textContent=item.title;$('simpleOddityCopy').textContent=item.copy;
  $('simpleOdditySource').href=item.source;$('simpleOdditySource').setAttribute('aria-label','Source: NJTA history. '+item.section+'.');
