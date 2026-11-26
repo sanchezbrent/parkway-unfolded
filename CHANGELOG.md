@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-26 — Follow the Parkway and connect the county views
+
+- Add north/south controls below each exit drawing, following the original exit order.
+- Keep the map or unfolded view when hopping to a neighboring exit, including across county lines.
+- Disable further travel at either end of the Parkway.
+- Link county-directory hover and keyboard focus to the matching map sign and county outline, in both directions.
+- Preserve the source geometry and all five datasets.
+
 ## 2026-11-26 — Visible light and dark mode switching
 
 - Add a labeled sun/moon theme button to the header on every view.

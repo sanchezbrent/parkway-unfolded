@@ -889,6 +889,13 @@ function overviewProjection(bounds,width,height,small,full=!state.section){
  }
  return p;
 }
+function refreshOverviewCountyPreview(){
+ const svg=$('overviewSVG'),controls=[...svg.querySelectorAll('[data-map-county]'),...$('overviewDirectory').querySelectorAll('[data-county]')];
+ const active=controls.find(control=>control.matches(':focus-visible'))||controls.find(control=>control.matches(':hover'));
+ const county=active?.dataset.mapCounty||active?.dataset.county;
+ for(const outline of svg.querySelectorAll('[data-county-outline]'))outline.classList.toggle('is-preview',outline.dataset.countyOutline===county);
+ for(const control of controls)control.classList.toggle('is-preview',(control.dataset.mapCounty||control.dataset.county)===county);
+}
 function drawOverview(){
  if(state.workspace!=='overview')return;
  const c=countyById.get(state.section),gs=scopedGroups(),rs=records.filter(r=>gs.includes(r.group));
@@ -907,6 +914,7 @@ function drawOverview(){
    const preview=sample?`<svg class="directory-shape" viewBox="0 0 60 44" aria-hidden="true"><path d="${xyPath(sample.source_xy,fit(sourceBounds(sample),60,44,5))}"/></svg>`:'';
    b.innerHTML=`${preview}<span class="directory-copy"><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${Number(county.record_count)} drawings</small></span><span class="directory-range"><span>Exits</span>${esc(county.groups[0])}–${esc(county.groups.at(-1))}</span>`;
    b.addEventListener('click',()=>setSharedSection(county.id));directory.append(b);
+   for(const event of ['mouseenter','mouseleave','focus','blur'])b.addEventListener(event,refreshOverviewCountyPreview);
   }
  }else{
   for(const g of gs){
@@ -943,8 +951,7 @@ function drawOverview(){
      append(g,'rect',{x,y:y-labelH/2,width:labelW,height:labelH,rx:7,class:'overview-map-label-bg','aria-hidden':'true'});
      append(g,'rect',{x:x+4,y:y-labelH/2+4,width:labelW-8,height:labelH-8,rx:4,class:'overview-map-keyline','aria-hidden':'true'});
      append(g,'text',{x:x+labelW/2,y:y+5.5,'text-anchor':'middle',class:'overview-map-label','aria-hidden':'true'},county.name);
-     const preview=()=>svg.querySelector(`[data-county-outline="${county.id}"]`)?.classList.toggle('is-preview',g.matches(':hover,:focus-visible'));
-     for(const event of ['mouseenter','mouseleave','focus','blur'])g.addEventListener(event,preview);
+     for(const event of ['mouseenter','mouseleave','focus','blur'])g.addEventListener(event,refreshOverviewCountyPreview);
      const choose=()=>setSharedSection(county.id);g.addEventListener('click',choose);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
    }
  }
@@ -973,6 +980,7 @@ function drawOverview(){
  }
  append(svg,'text',{x:width-25,y:26,'text-anchor':'end',class:'overview-north','aria-hidden':'true'},'N ↑');
  $('overviewShapes').textContent=c?`Browse ${rs.length} ramp shapes`:`Browse all ${records.length} ramp shapes`;
+ refreshOverviewCountyPreview();
 }
 function openOverviewGroup(g){
  if(!DATA.groups[g])return;setGroup(g,{drawAtlas:false});state.selected=null;state.focus=false;switchWorkspace('explore',{scroll:true});

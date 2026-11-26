@@ -10,7 +10,7 @@ const experience=document.createElement('section');
 experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
 const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
 $('brandHome').setAttribute('aria-label','Return to the full Parkway');
-experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
+experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer><nav class="simple-exit-neighbors" aria-label="Nearby Parkway exits"><button class="simple-exit-step" id="simpleNorth" type="button"><span>North</span><strong></strong></button><button class="simple-exit-step" id="simpleSouth" type="button"><span>South</span><strong></strong></button></nav></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
 $('top').prepend(experience);
 const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
 landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><h2>Every exit has a shape.</h2><p>Take the Garden State Parkway’s ramps off the map and explore their shapes.</p><form class="simple-landing-search" id="simpleLandingSearchForm" role="search" aria-label="Find a Parkway exit"><label for="simpleLandingSearch">Find your exit</label><div class="simple-landing-search-row"><input id="simpleLandingSearch" class="simple-find-input" name="exit" type="search" autocomplete="off" enterkeyhint="search" placeholder="Exit, road, or county"><button class="simple-primary" type="submit">Find</button></div></form><button class="text-button simple-demo-link" id="simpleStart">Or explore Exit 135</button></div><section class="simple-demo" id="simpleDemo" aria-labelledby="simpleDemoTitle"><header class="simple-demo-head"><div><h3 id="simpleDemoTitle">Exit 135</h3><p>Central Avenue / Clark</p></div><button class="text-button" id="simpleDemoReplay" aria-controls="simpleDemoMap">Unfold ramps</button></header><div class="simple-demo-canvas"><span class="simple-demo-phase" id="simpleDemoPhase">On the map</span><span class="simple-demo-north" aria-hidden="true">N ↑</span><svg id="simpleDemoMap" viewBox="0 0 520 286" role="img" aria-labelledby="simpleDemoSvgTitle simpleDemoSvgDesc"></svg></div><p class="simple-demo-caption">The same ramps. Their bends stay the same.</p><span class="sr-only" role="status" id="simpleDemoStatus"></span></section></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
@@ -205,6 +205,22 @@ function paintSceneCopy(){
  $('simpleScaleNote').textContent=unfolded?'North up · enlarged to fit':'North stays up.';
  $('simpleNextHint').textContent=unfolded?'Pick a shape to take a closer look.':'Unfold this exit to see its ramps separately.';
  $('simpleNext').hidden=!hasUnfolded;$('simpleDiscover').hidden=!hasUnfolded;
+ const neighbors=adjacentSimpleGroups(group);
+ for(const direction of ['north','south']){
+  const button=$(direction==='north'?'simpleNorth':'simpleSouth'),id=neighbors[direction];
+  button.disabled=!id;button.querySelector('strong').textContent=id?groupLabel(id):'End of Parkway';
+  button.setAttribute('aria-label',id?`${direction==='north'?'North':'South'} to ${groupLabel(id)}, ${groupNames[id]}`:`${direction==='north'?'North':'South'} end of the Parkway`);
+ }
+}
+function adjacentSimpleGroups(id){
+ const index=groupOrder.indexOf(id);
+ return {north:index>0?groupOrder[index-1]:null,south:index>=0&&index<groupOrder.length-1?groupOrder[index+1]:null};
+}
+function stepSimpleGroup(direction){
+ const id=adjacentSimpleGroups(group)[direction];if(!id)return;
+ const unfold=unfolded;
+ if(state.section&&!sectionGroups(state.section).includes(id)){state.section='';state.filters.group='';}
+ showGroup(id,{focus:true,unfold});refreshSharedControls();
 }
 function animateUnfold(target){
  if(animation!==null)return;
@@ -219,13 +235,14 @@ function animateUnfold(target){
  }
  if(duration)animation=requestAnimationFrame(tick);else tick(start);
 }
-function showGroup(id,{focus=false,select=null}={}){
+function showGroup(id,{focus=false,select=null,unfold=false}={}){
  if(!DATA.groups[id])return;
  if(animation!==null){cancelAnimationFrame(animation);animation=null;}
  group=id;unfolded=false;progress=0;selected=null;state.group=id;state.selected=null;state.workspace='explore';
  setSimpleNavigation('explore');experience.hidden=false;for(const id of ['overview','atlas','superlatives','adoptionFamily','compareDialog'])$(id).hidden=true;
  $('simpleSelected').hidden=true;$('simpleAnnouncement').textContent='';drawScene();
- if(select&&byFID.get(select)?.group===id){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();selectRamp(select,{focus:false});}
+ const validSelection=select&&byFID.get(select)?.group===id;
+ if(unfold||validSelection){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();if(validSelection)selectRamp(select,{focus:false});}
  syncHash();
  if(focus){$('simpleExitHeading').tabIndex=-1;$('simpleExitHeading').focus({preventScroll:true});experience.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});}
 }
@@ -295,6 +312,8 @@ switchWorkspace=function(view,options={}){
  else showGroup(group,{focus:!!options.scroll});
 };
 $('simpleUnfold').addEventListener('click',()=>animateUnfold(!unfolded));
+$('simpleNorth').addEventListener('click',()=>stepSimpleGroup('north'));
+$('simpleSouth').addEventListener('click',()=>stepSimpleGroup('south'));
 $('simpleAnother').addEventListener('click',()=>{const available=picks.filter(id=>id!==group);showGroup(available[Math.floor(Math.random()*available.length)],{focus:true});});
 $('closeComparison').addEventListener('click',event=>{event.stopImmediatePropagation();switchWorkspace(comparisonOrigin,{scroll:true});if(comparisonOrigin==='explore')$('simpleUnfold').focus({preventScroll:true});},true);
 $('simpleFind').addEventListener('click',openFinder);$('simpleBrowseAll').addEventListener('click',openFinder);
