@@ -3,6 +3,7 @@
 ## 2026-11-26 — Visible light and dark mode switching
 
 - Add a labeled sun/moon theme button to the header on every view.
+- Keep sign-button text dark against gold hover and focus backgrounds in both themes.
 - Switch immediately between light and dark, remembering the choice in this browser.
 - Keep the System setting in About & sources for following device appearance.
 - Preserve the selected exit, drawings and source data.
