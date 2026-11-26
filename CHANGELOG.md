@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-25 — A live introduction and wider exit drawings
+
+- Replace the three opening thumbnails with a live Exit 135 unfolding example.
+- Play the example once when visible, with replay and reduced-motion still views.
+- Give each selected exit the full content width and larger road drawings.
+- Move the shape guide below the exit as a compact row of examples.
+- Preserve all source geometry, county browsing, rankings and data controls.
+
 ## 2026-10-25 — A clearer introduction
 
 - Replace the road-name subheader with a concise explanation of the project.
