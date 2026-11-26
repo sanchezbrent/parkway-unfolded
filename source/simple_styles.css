@@ -87,7 +87,6 @@ body.simple-mode[data-simple-view=atlas] #compareDock:not([hidden]){display:flex
 .simple-landing-search-row .simple-find-input{flex:1;min-width:0;width:auto;font-size:16px;color:var(--ink)}
 .simple-landing-search-row .simple-primary{flex:0 0 auto;padding:11px 20px;font-size:16px}
 .simple-demo-link{display:block;min-height:44px;margin-top:5px;padding:8px 0;font-size:14px;font-weight:600;color:var(--adopt-plum);text-align:left}
-body.simple-mode[data-simple-view=overview] .header-tools:not(:has(#simpleFamily:not([hidden]))){display:none}
 .simple-find-label{font-size:14px}.simple-find-input{font-size:16px;color:var(--ink)}
 .simple-find-count{font-size:14px!important}.simple-find-row span,.simple-find-row small{font-size:14px}
 @media(max-width:680px){
@@ -194,3 +193,14 @@ body.simple-mode .interchange-directory-row .directory-number{background:var(--c
 body.simple-mode #superlatives :is(.super-families,.view-switch) button[aria-pressed=true]{background:var(--control-green);border-color:var(--control-green);color:var(--control-cream)}
 body.simple-mode #superlatives :is(.super-families,.view-switch) button[aria-pressed=true]::after{opacity:1}
 body.simple-mode #superlatives :is(.super-families,.view-switch) button:is(:hover,:focus-visible){background:var(--control-hover);color:var(--control-ink);border-color:var(--control-ink)}
+
+/* Keep appearance switching within reach on every page. */
+body.simple-mode .simple-header-nav{flex-wrap:wrap;gap:8px}
+body.simple-mode .simple-header-nav #themeToggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:126px;margin-left:auto;text-decoration:none}
+.theme-toggle svg{width:18px;height:18px;flex-shrink:0}
+.theme-toggle .theme-sun,body.night .theme-toggle .theme-moon{display:none}
+body.night .theme-toggle .theme-sun{display:block}
+@media(max-width:680px){
+ body.simple-mode .site-header .header-tools{margin-top:12px}
+ body.simple-mode .simple-header-nav #themeToggle{min-width:126px}
+}
