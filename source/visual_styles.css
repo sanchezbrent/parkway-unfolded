@@ -212,3 +212,21 @@ dialog::backdrop{backdrop-filter:none!important;background:#0009!important}
 @media(max-width:360px){.site-header h1.parkway-wordmark{font-size:26px}}
 
 #detailNote:empty{display:none}.reader-sources{padding-left:20px}.reader-sources li{margin:10px 0}#fullSources>p{max-width:850px;margin:12px 0;font-size:16px;line-height:1.6}
+
+/* County names and exit numbers borrow the Parkway's road-sign language. */
+.overview-map-control .overview-map-label-bg{fill:#12523f;stroke:#12523f;stroke-width:1}
+.overview-map-keyline{fill:none;stroke:#fff9e7;stroke-width:1;pointer-events:none}
+.overview-map-control .overview-map-label{fill:#fff9e7;font:700 17px 'Trebuchet MS',Arial,sans-serif;letter-spacing:.1px;pointer-events:none}
+.overview-map-control .overview-exit-label{fill:#fff9e7;stroke:none;font:700 14px 'Trebuchet MS',Arial,sans-serif;pointer-events:none}
+.overview-map-focus{fill:none;stroke:var(--focus);stroke-width:2;opacity:0;pointer-events:none}
+.overview-map-control:focus-visible .overview-map-focus{opacity:1}
+.overview-map-control:hover .overview-map-label-bg,.overview-map-control:focus-visible .overview-map-label-bg{fill:#f0cf78;stroke:#194b39;stroke-width:1}
+.overview-map-control:hover .overview-map-keyline,.overview-map-control:focus-visible .overview-map-keyline{stroke:#194b39}
+.overview-map-control:hover .overview-map-label,.overview-map-control:hover .overview-exit-label,.overview-map-control:focus-visible .overview-map-label,.overview-map-control:focus-visible .overview-exit-label{fill:#194b39}
+.overview-county-sign .overview-leader,.overview-exit-sign .overview-leader{stroke:#43725f;stroke-width:1.2;opacity:.75}
+.overview-county.is-preview{fill:#d0e0d5;stroke:#33765a;stroke-width:1.4}
+body.night .overview-map-control .overview-map-label-bg{fill:#164b3d;stroke:#b1d1b8}
+body.night .overview-map-control:hover .overview-map-label-bg,body.night .overview-map-control:focus-visible .overview-map-label-bg{fill:#f0cf78;stroke:#f0cf78}
+body.night .overview-county-sign .overview-leader,body.night .overview-exit-sign .overview-leader{stroke:#b1d1b8}
+body.night .overview-county.is-preview{fill:#355747;stroke:#a8d2b7;stroke-width:1.4}
+@media(max-width:680px){.overview-map-control .overview-map-label{font-size:14px}}
