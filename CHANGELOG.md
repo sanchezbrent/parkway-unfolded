@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-26 — A shared sign style and illustrated county directory
+
+- Carry the map signs' green, cream keylines and rounded corners into action buttons.
+- Keep gold Top 10s and clear hover, selected and keyboard-focus states in both themes.
+- Add a real, north-up ramp preview and exit-range badge to each county entry.
+- Show all ten county entries without a separate scrolling panel.
+- Enlarge the road-range label, chooser and drawing count, with a stacked chooser on small phones.
+- Keep the opening headline and all source geometry and data unchanged.
+
 ## 2026-11-26 — Parkway-inspired map labels
 
 - Give county labels bold lettering, green sign faces and cream borders.

@@ -125,3 +125,72 @@ body.simple-mode[data-simple-view=overview] .header-tools:not(:has(#simpleFamily
  .simple-next button{min-height:44px;padding:4px 0}
  .simple-road-info p{line-height:1.6}
 }
+
+/* Carry the county signs into the controls without competing with the roads. */
+body.simple-mode{--control-green:#12523f;--control-cream:#fff9e7;--control-hover:#f0cf78;--control-ink:#194b39;--control-label:#12523f;--control-line:#628171}
+body.simple-mode.night{--control-green:#164b3d;--control-label:#b1d8c1;--control-line:#8caf9b}
+body.simple-mode button:not(.icon-button){border-radius:7px!important;font-family:'Trebuchet MS',Arial,sans-serif;font-weight:700}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button){position:relative;border:1px solid var(--control-line);background:var(--white);color:var(--control-label);min-height:44px;font-size:14px;padding:11px 16px;outline-offset:3px}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button)::after{content:'';position:absolute;inset:3px;border:1px solid currentColor;border-radius:3px;opacity:.35;pointer-events:none}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button[aria-pressed=true],.integrated-layers>button[aria-pressed=true]){background:var(--control-green);border-color:var(--control-green);color:var(--control-cream)}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button[aria-pressed=true],.integrated-layers>button[aria-pressed=true])::after{opacity:1}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button):is(:hover,:focus-visible):not(:disabled){background:var(--control-hover);border-color:var(--control-ink);color:var(--control-ink)}
+body.simple-mode .simple-view-nav button.simple-gold{background:#fff1ce;color:#5a3e05;border-color:#b78421}
+body.simple-mode .simple-view-nav button.simple-gold[aria-pressed=true]{background:#efbb4b;color:#251d0a;border-color:#b78421}
+body.simple-mode.night .simple-view-nav button.simple-gold{background:#45351d;color:#f6d491;border-color:#95703a}
+body.simple-mode.night .simple-view-nav button.simple-gold[aria-pressed=true]{background:#f4c66f;color:#28302a;border-color:#f4c66f}
+body.simple-mode .simple-view-nav button.simple-gold:is(:hover,:focus-visible){background:var(--control-hover);color:var(--control-ink)}
+body.simple-mode .simple-primary:hover{outline:0}
+body.simple-mode .simple-primary:focus-visible{outline:3px solid var(--focus)}
+body.simple-mode :is(.simple-next button,.simple-demo-link,.simple-header-nav button,.simple-road-info button,#simpleExtras .text-button){color:var(--control-label);font-size:14px}
+body.simple-mode .simple-demo-head button{padding:10px 14px;text-align:center;min-width:148px}
+body.simple-mode .simple-landing-search-row button.simple-primary{font-size:16px;padding-inline:21px}
+body.simple-mode .simple-header-nav #simpleFind{border-radius:7px!important}
+body.simple-mode .integrated-layers>button{padding:10px 12px;gap:5px}
+body.simple-mode .layer-data-menu>summary{border-radius:7px;font-weight:700;min-height:44px;display:flex;align-items:center;padding:10px 9px}
+
+/* A north-to-south directory, with one source drawing from each county. */
+body.simple-mode #overview .overview-directory{max-height:none;overflow:visible}
+#overviewDirectory:has(.county-directory-stop){display:grid;gap:6px}
+body.simple-mode .county-directory-stop{display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:12px;min-height:60px;padding:6px 10px;border:1px solid var(--line);background:var(--white);text-align:left;align-items:center}
+.county-directory-stop .directory-shape{width:60px;height:44px;fill:none;stroke:var(--adopt-plum);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.county-directory-stop .directory-copy{min-width:0}
+body.simple-mode .county-directory-stop strong{font:700 17px/1.15 'Trebuchet MS',Arial,sans-serif;color:var(--control-label)}
+body.simple-mode .county-directory-stop small{font:13px/1.4 Arial,sans-serif;margin-top:4px;color:var(--muted)}
+body.simple-mode .county-directory-stop .directory-range{display:block;min-width:77px;padding:7px 9px;background:var(--control-green);color:var(--control-cream);border:1px solid var(--control-green);outline:1px solid var(--control-cream);outline-offset:-4px;border-radius:5px;font:700 15px/1.2 'Trebuchet MS',Arial,sans-serif;text-align:center;white-space:nowrap}
+.county-directory-stop .directory-range>span{display:block;font-size:12px;font-weight:400;margin-bottom:1px}
+body.simple-mode .county-directory-stop:is(:hover,:focus-visible){background:var(--paper-2);border-color:var(--control-line)}
+body.simple-mode .county-directory-stop:is(:hover,:focus-visible) .directory-range{background:var(--control-hover);color:var(--control-ink);outline-color:var(--control-ink);border-color:var(--control-ink)}
+body.simple-mode .interchange-directory-row .directory-number{background:var(--control-green);color:var(--control-cream);outline:1px solid var(--control-cream);outline-offset:-4px;border-radius:5px;font-family:'Trebuchet MS',Arial,sans-serif;font-weight:700}
+
+/* Readable scope controls, including their count, at every screen size. */
+#simpleTools .shared-range{gap:10px 16px;flex-wrap:wrap;min-width:0;flex:1 1 590px}
+#simpleTools .shared-range>label{font-size:16px;font-weight:600;gap:12px;min-width:0;flex:0 1 auto}
+#simpleTools .shared-range select{min-height:46px;font-size:16px;max-width:245px;border-color:var(--control-line);border-radius:7px}
+#simpleTools .shared-range .section-status{display:block;font-size:14px;white-space:normal}
+#simpleTools .scope-reset{font-size:14px;min-height:44px}
+@media(max-width:1100px){
+ body.simple-mode .county-directory-stop{grid-template-columns:44px minmax(0,1fr) auto;gap:9px;padding-inline:8px}
+ .county-directory-stop .directory-shape{width:44px}
+ body.simple-mode .county-directory-stop small{font-size:12px}
+ body.simple-mode .county-directory-stop .directory-range{min-width:66px;font-size:14px;padding-inline:7px}
+}
+@media(max-width:680px){
+ body.simple-mode .simple-view-nav button{padding:10px 12px;font-size:14px}
+ body.simple-mode .simple-demo-head button{min-width:132px;padding-inline:10px}
+ #simpleTools .shared-range{flex-basis:100%;gap:8px}
+ #simpleTools .shared-range>label{flex:1 1 100%;width:100%;gap:10px;font-size:16px;flex-wrap:wrap}
+ #simpleTools .shared-range select{min-width:0;max-width:none;flex:1 1 160px}
+ #simpleTools .shared-range .section-status{flex:1 1 100%}
+ body.simple-mode .county-directory-stop{grid-template-columns:44px minmax(0,1fr) auto;min-height:68px}
+ body.simple-mode .county-directory-stop strong{font-size:17px}
+ body.simple-mode .county-directory-stop small{font-size:13px;max-width:200px}
+}
+@media(max-width:380px){
+ #simpleTools .shared-range>label{display:block}
+ #simpleTools .shared-range select{display:block;width:100%;margin-top:8px}
+}
+
+body.simple-mode #superlatives :is(.super-families,.view-switch) button[aria-pressed=true]{background:var(--control-green);border-color:var(--control-green);color:var(--control-cream)}
+body.simple-mode #superlatives :is(.super-families,.view-switch) button[aria-pressed=true]::after{opacity:1}
+body.simple-mode #superlatives :is(.super-families,.view-switch) button:is(:hover,:focus-visible){background:var(--control-hover);color:var(--control-ink);border-color:var(--control-ink)}

@@ -895,14 +895,17 @@ function drawOverview(){
  $('overviewTitle').textContent=c?c.label:'The Parkway, up close';
  $('overviewMeta').textContent=c?'Choose an exit to explore its ramps and connecting roads.':'Start with a county or search for your exit. Open Ramp shapes to pull the roads off the map.';
  $('overviewBack').hidden=!c;$('overviewDirectoryTitle').textContent=c?'Choose an interchange':'Browse by county';
- $('overviewDirectoryNote').textContent=c?'Choose an exit to see its ramps.':'North to south. Select a county for a closer view.';
+ $('overviewDirectoryNote').textContent=c?'Choose an exit to see its ramps.':'North to south, with a sample ramp from each county.';
  $('overviewBoundaryNote').textContent='Road shapes come from NJDOT’s August 2025 map. County outlines help you browse.';
  $('countyCountNote').hidden=!!c;
  const directory=$('overviewDirectory');directory.replaceChildren();
  if(!c){
   for(const county of countySections){
-   const b=document.createElement('button');b.className='county-directory-row';b.dataset.county=county.id;
-   b.innerHTML=`<span><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${Number(county.record_count)} ramp drawings</small></span><span class="directory-range">${esc(county.groups[0])}–${esc(county.groups.at(-1))} <span aria-hidden="true">→</span></span>`;
+   const b=document.createElement('button');b.className='county-directory-row county-directory-stop';b.dataset.county=county.id;
+   const candidates=records.filter(r=>county.groups.includes(r.group));
+   const sample=candidates.find(r=>FEATURED_FIDS.has(r.fid))||candidates[0];
+   const preview=sample?`<svg class="directory-shape" viewBox="0 0 60 44" aria-hidden="true"><path d="${xyPath(sample.source_xy,fit(sourceBounds(sample),60,44,5))}"/></svg>`:'';
+   b.innerHTML=`${preview}<span class="directory-copy"><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${Number(county.record_count)} drawings</small></span><span class="directory-range"><span>Exits</span>${esc(county.groups[0])}–${esc(county.groups.at(-1))}</span>`;
    b.addEventListener('click',()=>setSharedSection(county.id));directory.append(b);
   }
  }else{
