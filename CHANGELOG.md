@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-25 — Find an exit from the introduction
+
+- Put a visible exit search beside the unfolding example.
+- Open a single match directly; show choices for broader searches by road or county.
+- Shorten the introduction and phone spacing, with one search entry point on the opening view.
+- Retain the header search when exploring exits, ramp shapes and rankings.
+
 ## 2026-11-25 — A live introduction and wider exit drawings
 
 - Replace the three opening thumbnails with a live Exit 135 unfolding example.

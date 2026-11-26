@@ -78,3 +78,28 @@ body.simple-mode[data-simple-view=atlas] #compareDock:not([hidden]){display:flex
 .simple-scene-layout .simple-guide-note{grid-column:2;margin:0;font-size:13px}
 @media(max-width:1000px){.simple-scene-layout>.simple-shape-guide{grid-template-columns:minmax(0,1fr)}.simple-scene-layout .simple-guide-note{grid-column:1}.simple-scene-layout>.simple-shape-guide header{display:flex;align-items:baseline;gap:14px}.simple-scene-layout>.simple-shape-guide header>p{margin:0}}
 @media(max-width:680px){.simple-demo{margin-top:22px;border-radius:14px}.simple-demo-head{padding:11px 14px;gap:10px}.simple-demo-head h3{font-size:18px}.simple-demo-head p{font-size:14px}.simple-demo-head button{font-size:14px}.simple-demo-phase{left:14px}.simple-demo-north{right:14px}.simple-demo-caption{padding:10px 14px}.simple-scene-layout .simple-guide-examples{gap:8px}.simple-scene-layout .simple-guide-example{display:block;text-align:center;padding:8px 5px}.simple-scene-layout .simple-guide-example svg{height:54px;max-width:80px;margin:0 auto 5px}.simple-scene-layout .simple-guide-example span>span{display:none}.simple-scene-layout .simple-guide-example strong{font-size:16px}.simple-scene-layout .simple-guide-example small{font-size:14px;overflow-wrap:anywhere}.simple-scene-layout>.simple-shape-guide header{display:block}.simple-scene-layout>.simple-shape-guide header>p{margin-top:5px}}
+
+/* A familiar starting point beside the unfolding example. */
+.simple-landing-copy>p{font-size:16px;line-height:1.55}
+.simple-landing-search{margin-top:20px;max-width:460px}
+.simple-landing-search>label{display:block;font-size:16px;font-weight:700;margin-bottom:9px}
+.simple-landing-search-row{display:flex;gap:8px;align-items:stretch}
+.simple-landing-search-row .simple-find-input{flex:1;min-width:0;width:auto;font-size:16px;color:var(--ink)}
+.simple-landing-search-row .simple-primary{flex:0 0 auto;padding:11px 20px;font-size:16px}
+.simple-demo-link{display:block;min-height:44px;margin-top:5px;padding:8px 0;font-size:14px;font-weight:600;color:var(--adopt-plum);text-align:left}
+body.simple-mode[data-simple-view=overview] .header-tools:not(:has(#simpleFamily:not([hidden]))){display:none}
+.simple-find-label{font-size:14px}.simple-find-input{font-size:16px;color:var(--ink)}
+.simple-find-count{font-size:14px!important}.simple-find-row span,.simple-find-row small{font-size:14px}
+@media(max-width:680px){
+ body.simple-mode[data-simple-view=overview] .site-header{padding:16px 0 12px}
+ .simple-landing-hero{padding:16px 0}
+ .simple-landing-copy h2{font-size:31px;margin:0 0 8px}
+ .simple-landing-copy>p{line-height:1.5}
+ .simple-landing-search{margin-top:15px;max-width:none}
+ .simple-landing-search>label{margin-bottom:7px}
+ .simple-landing-search-row .simple-primary{width:auto;padding-inline:16px}
+ .simple-demo{margin-top:12px}
+ .simple-demo-caption{padding-block:8px}
+ .simple-view-nav{padding-bottom:8px}
+ .simple-view-nav button{font-size:14px;padding-inline:10px}
+}
