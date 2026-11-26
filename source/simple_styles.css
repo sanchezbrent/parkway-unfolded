@@ -57,7 +57,7 @@ body.simple-mode[data-simple-view=atlas] #compareDock:not([hidden]){display:flex
 .simple-demo-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:1px solid var(--line)}
 .simple-demo-head h3{font:700 20px/1.2 'Trebuchet MS',Arial,sans-serif;color:var(--adopt-plum)}
 .simple-demo-head p{font-size:14px;line-height:1.4;color:var(--muted);margin:3px 0 0}
-.simple-demo-head button{font-size:14px;font-weight:600;min-height:44px;padding:6px 0;color:var(--adopt-plum);flex-shrink:0}
+.simple-demo-head button{font-size:14px;font-weight:600;min-height:44px;min-width:132px;padding:6px 0;text-align:right;color:var(--adopt-plum);flex-shrink:0}
 .simple-demo-head button:disabled{color:var(--muted);cursor:default}
 .simple-demo-canvas{position:relative;background:var(--paper-2);padding-top:32px}
 .simple-demo-canvas svg{display:block;width:100%;height:auto}
