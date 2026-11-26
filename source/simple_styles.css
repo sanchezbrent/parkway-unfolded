@@ -141,7 +141,8 @@ body.simple-mode.night .simple-view-nav button.simple-gold[aria-pressed=true]{ba
 body.simple-mode .simple-view-nav button.simple-gold:is(:hover,:focus-visible){background:var(--control-hover);color:var(--control-ink)}
 body.simple-mode .simple-primary:hover{outline:0}
 body.simple-mode .simple-primary:focus-visible{outline:3px solid var(--focus)}
-body.simple-mode :is(.simple-next button,.simple-demo-link,.simple-header-nav button,.simple-road-info button,#simpleExtras .text-button){color:var(--control-label);font-size:14px}
+body.simple-mode :is(.simple-next button,.simple-demo-link,.simple-header-nav button,.simple-road-info button){color:var(--control-label);font-size:14px}
+body.simple-mode #simpleExtras .text-button{color:var(--control-label);font-size:14px}
 body.simple-mode .simple-demo-head button{padding:10px 14px;text-align:center;min-width:148px}
 body.simple-mode .simple-landing-search-row button.simple-primary{font-size:16px;padding-inline:21px}
 body.simple-mode .simple-header-nav #simpleFind{border-radius:7px!important}
