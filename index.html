@@ -875,7 +875,7 @@ function setGroup(g,{fromTour=false,scrollNav=false,drawAtlas:refreshAtlas=true,
   $('groupSummary').textContent=[ex?`${ex} selected ${ex===1?'exit':'exits'}`:'',en?`${en} ${en===1?'entrance':'entrances'}`:''].filter(Boolean).join(' · ');
   $('groupBranchCount').textContent=`Choose a ramp · ${list.length}`;$('groupPosition').textContent=String(groupOrder.indexOf(g)+1);$('groupTotal').textContent=scopedGroups().length;$('groupPosition').textContent=String(scopedGroups().indexOf(g)+1);
   $('sidebarStatus').textContent='Road shapes from NJDOT’s map';$('mapTooltip').hidden=true;
-  $('branchList').innerHTML=list.map(r=>`<button class="branch-row" data-fid="${Number(r.fid)}" aria-pressed="${state.selected===r.fid}" style="--branch-color:${color(r,true)}"><span class="branch-dot" aria-hidden="true"></span><span><strong><b>${esc(r.number)}</b><span>${esc(movement(r))}</span></strong><small>${esc(publicRoad(r.road))}</small></span><span class="row-arrow" aria-hidden="true">↗</span></button>`).join('');
+  $('branchList').innerHTML=list.map(r=>`<button class="branch-row" data-fid="${Number(r.fid)}" aria-pressed="${state.selected===r.fid}" style="--branch-color:${color(r,true)}"><span class="branch-dot" aria-hidden="true"></span><span><strong><b>${esc(r.number)}</b><span>${esc(movement(r))}</span></strong><small>${esc(publicRoad(r.road))}</small></span></button>`).join('');
   $('branchList').querySelectorAll('button').forEach(b=>{b.addEventListener('click',()=>selectBranch(Number(b.dataset.fid)));b.addEventListener('pointerenter',()=>{state.hover=Number(b.dataset.fid);updateHighlight();});b.addEventListener('pointerleave',()=>{state.hover=null;updateHighlight();});b.addEventListener('focus',()=>{state.hover=Number(b.dataset.fid);updateHighlight();});b.addEventListener('blur',()=>{state.hover=null;updateHighlight();});});
   renderExitNav();refreshSharedControls();drawLocator();setSelectionDisplay();drawMain();atlasDirty=true;
   if(refreshAtlas&&state.workspace==='atlas')drawAtlas();
@@ -1585,7 +1585,7 @@ function rateHTML(p){const v=price(p);return `<div class="toll-rate-pair"><div><
 function rampHTML(r){
  const m=pathTolls.get(r.fid),p=byPlaza.get(m?.ramp_plaza_id);
  if(!p)return '<div class="toll-ramp-heading">Ramp toll · 2026</div><p>No separate ramp toll is listed for this connection. You may still pass a toll on the Parkway.</p>';
- return `<div class="toll-ramp-heading">${esc(p.name)} ramp toll · 2026</div>${!p.cash_accepted?'<p class="toll-ez-only">E-ZPass only</p>':''}${rateHTML(p)}<p>${esc(profile().label)} · ${esc(codeNames[m.movement_code])}</p><button class="toll-text-link" data-toll-open="${p.id}">Toll prices &amp; details ↗</button>`;
+ return `<div class="toll-ramp-heading">${esc(p.name)} ramp toll · 2026</div>${!p.cash_accepted?'<p class="toll-ez-only">E-ZPass only</p>':''}${rateHTML(p)}<p>${esc(profile().label)} · ${esc(codeNames[m.movement_code])}</p><button class="toll-text-link" data-toll-open="${p.id}">Toll prices &amp; details</button>`;
 }
 function bindPlazaButtons(host){host.querySelectorAll('[data-toll-open]').forEach(b=>b.addEventListener('click',()=>openPlaza(b.dataset.tollOpen)));}
 function updateRampDetails(){
@@ -2447,7 +2447,7 @@ function renderFamily(){
  }
  content.innerHTML=`<div class="adoption-family-grid${family.length===1?' adoption-family-single':''}">${family.map(member=>{
   const r=byFID.get(member.fid);
-  return `<article class="adoption-family-card"><button class="adoption-card-portrait" data-adoption-visit="${r.fid}" aria-label="Say hello to ${esc(member.name)}, exit ${esc(r.number)}">${characterMarkup(r,{decorative:true})}</button><div class="adoption-card-copy"><span class="adoption-eyebrow">Very good little road</span><h3>${esc(member.name)}</h3><p class="adoption-card-road"><strong>Exit ${esc(r.number)} · ${esc(movement(r))}</strong><br>${esc(publicRoad(r.road))}</p><div class="adoption-card-actions"><button class="adoption-button" data-adoption-visit="${r.fid}">Say hello ♡</button><button class="text-button" data-adoption-map="${r.fid}">Find on map ↗</button></div></div></article>`;
+  return `<article class="adoption-family-card"><button class="adoption-card-portrait" data-adoption-visit="${r.fid}" aria-label="Say hello to ${esc(member.name)}, exit ${esc(r.number)}">${characterMarkup(r,{decorative:true})}</button><div class="adoption-card-copy"><span class="adoption-eyebrow">Very good little road</span><h3>${esc(member.name)}</h3><p class="adoption-card-road"><strong>Exit ${esc(r.number)} · ${esc(movement(r))}</strong><br>${esc(publicRoad(r.road))}</p><div class="adoption-card-actions"><button class="adoption-button" data-adoption-visit="${r.fid}">Say hello ♡</button><button class="text-button" data-adoption-map="${r.fid}">Find on map</button></div></div></article>`;
  }).join('')}</div>`;
 }
 function stopZoom(){if(zoomFrame!==null)cancelAnimationFrame(zoomFrame);zoomFrame=null;$('adoptionShape').querySelector('.adoption-runner')?.remove();}
