@@ -5,6 +5,7 @@ const demoGroup='135',picks=['135','138','82','105','100','91'];
 const openingQuery=new URLSearchParams((window.GSPInitialViewHash??location.hash).slice(1));
 let group=demoGroup,unfolded=false,progress=0,selected=null,hasUnfolded=false,animation=null,scene=null,activeDialogFocus=null,galleryOpened=false,comparisonOrigin='explore';
 const priorSwitch=switchWorkspace;
+let landingDemo=null,landingDemoFrame=null,landingDemoPlayed=false,landingDemoVisible=false;
 const experience=document.createElement('section');
 experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
 const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
@@ -12,7 +13,7 @@ $('brandHome').setAttribute('aria-label','Return to the full Parkway');
 experience.innerHTML=`<div class="simple-shell"><header class="simple-intro"><h2>Every exit has a shape.</h2><p id="simpleIntroCopy">These are real Garden State Parkway ramps, lifted off the map so you can see their shapes.</p></header><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h3 class="simple-exit" id="simpleExitHeading"></h3><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit ↗</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit ↝</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit →</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
 $('top').prepend(experience);
 const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
-landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><span class="adoption-eyebrow">The Garden State Parkway, taken apart.</span><h2>Every exit has a shape.</h2><p>Explore the real shapes of the Parkway’s ramps. Find a familiar exit, pull its roads apart, and see what you’ve been driving past.</p><button class="simple-primary" id="simpleStart">See how it works · Exit 135 ↗</button></div><div class="simple-teasers" id="simpleTeasers" aria-label="A few real Parkway ramp shapes"></div></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
+landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><span class="adoption-eyebrow">The Garden State Parkway, taken apart.</span><h2>Every exit has a shape.</h2><p>Explore the real shapes of the Parkway’s ramps. Find a familiar exit, pull its roads apart, and see what you’ve been driving past.</p><button class="simple-primary" id="simpleStart">Explore Exit 135</button></div><section class="simple-demo" id="simpleDemo" aria-labelledby="simpleDemoTitle"><header class="simple-demo-head"><div><h3 id="simpleDemoTitle">Exit 135</h3><p>Central Avenue / Clark</p></div><button class="text-button" id="simpleDemoReplay" aria-controls="simpleDemoMap">Unfold ramps</button></header><div class="simple-demo-canvas"><span class="simple-demo-phase" id="simpleDemoPhase">On the map</span><span class="simple-demo-north" aria-hidden="true">N ↑</span><svg id="simpleDemoMap" viewBox="0 0 520 286" role="img" aria-labelledby="simpleDemoSvgTitle simpleDemoSvgDesc"></svg></div><p class="simple-demo-caption">The same ramps. Their bends stay the same.</p><span class="sr-only" role="status" id="simpleDemoStatus"></span></section></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
 $('top').prepend(landing);
 const tools=document.createElement('section');tools.id='simpleTools';tools.className='wrap';tools.setAttribute('aria-label','Browse and map options');
 for(const selector of ['.shared-range','.integrated-layers','.layer-legends'])tools.append(document.querySelector(selector));
@@ -20,6 +21,7 @@ landing.after(tools);
 const collectionCopy=$('atlas').querySelector('.atlas-copy p');collectionCopy.textContent='The roads, pulled apart. Choose a shape to view its details, or see the ramps on the map.';
 function setSimpleNavigation(view){
  document.body.dataset.simpleView=view;
+ if(view!=='overview')finishLandingDemo();else maybeStartLandingDemo();
  if(skip){skip.href=view==='explore'?'#simpleExperience':['family','compare'].includes(view)?'#'+(view==='family'?'adoptionFamily':'compareDialog'):'#simpleLanding';skip.textContent=view==='explore'?'Skip to the exit':'Skip to the Parkway';}
  for(const button of landing.querySelectorAll('[data-simple-workspace]'))button.setAttribute('aria-pressed',String(button.dataset.simpleWorkspace===view));
  $('simpleBack').hidden=!['explore','family','compare'].includes(view);
@@ -30,7 +32,7 @@ const headerNav=document.createElement('nav');headerNav.className='simple-header
 headerNav.innerHTML='<button id="simpleBack" hidden>← Back to the exit</button><button id="simpleFind">Find your exit <span aria-hidden="true">⌕</span></button><button id="simpleFamily" hidden>My ramps</button>';
 document.querySelector('.header-tools').append(headerNav);
 const about=document.createElement('dialog');about.id='simpleAbout';about.className='simple-dialog';about.setAttribute('aria-labelledby','simpleAboutTitle');
-about.innerHTML=`<header class="simple-dialog-head"><h2 id="simpleAboutTitle">About Parkway Unfolded</h2><button class="icon-button" data-simple-close="simpleAbout" aria-label="Close About">✕</button></header><div class="simple-dialog-body"><p>Parkway Unfolded takes the Garden State Parkway’s entrance ramps, exit ramps and connecting roads off the map, so you can look closely at their shapes.</p><p>Browse the Parkway map by county, explore the ramp shapes, or visit the Top 10s. For a quick introduction, choose <strong>See how it works</strong> on the opening page. At an exit, choose <strong>Unfold this exit</strong> to pull its ramps apart. The same lines move from their real locations into separate spaces: their bends stay the same, north stays up, and each drawing is enlarged to fit. Select one to learn about it or adopt it for fun.</p><h3>The roads are real. The adoption is pretend.</h3><p>Nicknames and adoption papers are extremely unofficial. Saved ramps stay in this browser, on this device. Some drawings show only part of a longer connection.</p><h3>About the data</h3><p>All 359 drawings come from NJDOT’s August 2025 road map. Traffic figures are daily averages from 2024. Toll information uses published 2026 schedules. These are dated snapshots, rather than live driving conditions.</p><p><a href="https://www.nj.gov/transportation/refdata/gis/data.shtm" target="_blank" rel="noopener">NJDOT road maps</a> · <a href="https://www.njta.gov/document/2026-parkway-cash-rates/" target="_blank" rel="noopener">NJTA toll schedules</a></p><p>Explore the project’s <a href="https://github.com/sanchezbrent/parkway-unfolded" target="_blank" rel="noopener">source, data and earlier versions on GitHub</a>.</p></div>`;
+about.innerHTML=`<header class="simple-dialog-head"><h2 id="simpleAboutTitle">About Parkway Unfolded</h2><button class="icon-button" data-simple-close="simpleAbout" aria-label="Close About">✕</button></header><div class="simple-dialog-body"><p>Parkway Unfolded takes the Garden State Parkway’s entrance ramps, exit ramps and connecting roads off the map, so you can look closely at their shapes.</p><p>Browse the Parkway map by county, explore the ramp shapes, or visit the Top 10s. The opening example shows how the roads unfold. Choose <strong>Explore Exit 135</strong> to try it yourself. At an exit, choose <strong>Unfold this exit</strong> to pull its ramps apart. The same lines move from their real locations into separate spaces: their bends stay the same, north stays up, and each drawing is enlarged to fit. Select one to learn about it or adopt it for fun.</p><h3>The roads are real. The adoption is pretend.</h3><p>Nicknames and adoption papers are extremely unofficial. Saved ramps stay in this browser, on this device. Some drawings show only part of a longer connection.</p><h3>About the data</h3><p>All 359 drawings come from NJDOT’s August 2025 road map. Traffic figures are daily averages from 2024. Toll information uses published 2026 schedules. These are dated snapshots, rather than live driving conditions.</p><p><a href="https://www.nj.gov/transportation/refdata/gis/data.shtm" target="_blank" rel="noopener">NJDOT road maps</a> · <a href="https://www.njta.gov/document/2026-parkway-cash-rates/" target="_blank" rel="noopener">NJTA toll schedules</a></p><p>Explore the project’s <a href="https://github.com/sanchezbrent/parkway-unfolded" target="_blank" rel="noopener">source, data and earlier versions on GitHub</a>.</p></div>`;
 document.body.append(about);
 const theme=document.querySelector('.theme-control');if(theme)about.querySelector('.simple-dialog-body').append(theme);
 const finder=document.createElement('dialog');finder.id='simpleFinder';finder.className='simple-dialog';finder.setAttribute('aria-labelledby','simpleFindTitle');
@@ -83,8 +85,8 @@ function renderOddity(){
 $('simpleOddityNext').addEventListener('click',()=>{oddityIndex=(oddityIndex+1)%parkwayOddities.length;renderOddity();});
 renderOddity();
 
-function simpleCellProjection(r,cell){
- const local=fit(sourceBounds(r),cell.w,cell.h,{left:23,right:23,top:21,bottom:43});
+function simpleCellProjection(r,cell,padding={left:23,right:23,top:21,bottom:43}){
+ const local=fit(sourceBounds(r),cell.w,cell.h,padding);
  const p=xy=>{const q=local(xy);return [q[0]+cell.x,q[1]+cell.y];};p.s=local.s;return p;
 }
 function simpleBlendedProjection(start,end,amount){
@@ -93,9 +95,68 @@ function simpleBlendedProjection(start,end,amount){
 }
 function sceneLayout(count,width){
  const small=width<600,cols=small?Math.min(2,count):count>6?4:Math.min(2,count),rows=Math.ceil(count/cols);
- const height=Math.max(small?350:360,rows*(small?150:160)+50),gap=small?12:18,pad=small?16:25,top=42;
+ const mapHeight=small?350:Math.round(Math.min(520,Math.max(420,width*.46)));
+ const height=Math.max(mapHeight,rows*(small?150:210)+50),gap=small?12:18,pad=small?16:25,top=42;
  const cellW=(width-pad*2-gap*(cols-1))/cols,cellH=(height-top-18-gap*(rows-1))/rows;
- return {width,height,mapHeight:small?350:360,cells:Array.from({length:count},(_,i)=>({x:pad+(i%cols)*(cellW+gap),y:top+Math.floor(i/cols)*(cellH+gap),w:cellW,h:cellH}))};
+ return {width,height,mapHeight,cells:Array.from({length:count},(_,i)=>({x:pad+(i%cols)*(cellW+gap),y:top+Math.floor(i/cols)*(cellH+gap),w:cellW,h:cellH}))};
+}
+// The opening uses the same original points and the same uniform-scale projections.
+function paintLandingDemo(amount){
+ if(!landingDemo)return;
+ landingDemo.progress=amount;landingDemo.context.style.opacity=String(1-amount);
+ for(const entry of landingDemo.ramps){
+  entry.tile.style.opacity=String(amount);
+  entry.path.setAttribute('d',xyPath(entry.r.source_xy,simpleBlendedProjection(landingDemo.map,entry.end,amount)));
+ }
+ $('simpleDemoPhase').textContent=amount===0?'On the map':amount===1?'Same ramps, unfolded':'Unfolding';
+}
+function finishLandingDemo(){
+ if(!landingDemo)return;
+ if(landingDemoFrame!==null){cancelAnimationFrame(landingDemoFrame);landingDemoFrame=null;paintLandingDemo(1);}
+ const button=$('simpleDemoReplay');button.disabled=false;
+ button.textContent=reduced.matches?(landingDemo.progress===1?'Show on map':'Show unfolded'):(landingDemo.progress===1?'Replay unfolding':'Unfold ramps');
+}
+function runLandingDemo(manual=false){
+ if(!landingDemo||landingDemoFrame!==null)return;
+ landingDemoPlayed=true;
+ if(reduced.matches){paintLandingDemo(landingDemo.progress===1?0:1);finishLandingDemo();return;}
+ paintLandingDemo(0);$('simpleDemoReplay').disabled=true;$('simpleDemoReplay').textContent='Unfolding…';
+ const start=performance.now(),hold=400,duration=1550;
+ function tick(now){
+  if(document.hidden||document.body.dataset.simpleView!=='overview'||!landingDemoVisible){finishLandingDemo();return;}
+  const t=Math.min(1,Math.max(0,(now-start-hold)/duration));
+  paintLandingDemo(t*t*(3-2*t));
+  if(t<1)landingDemoFrame=requestAnimationFrame(tick);
+  else{landingDemoFrame=null;finishLandingDemo();if(manual)$('simpleDemoStatus').textContent='The same four ramps, unfolded. Choose Explore Exit 135 to take a closer look.';}
+ }
+ landingDemoFrame=requestAnimationFrame(tick);
+}
+function maybeStartLandingDemo(){
+ if(landingDemo&&landingDemoVisible&&!landingDemoPlayed&&!reduced.matches&&!document.hidden&&document.body.dataset.simpleView==='overview')runLandingDemo();
+}
+function buildLandingDemo(){
+ const g=DATA.groups[demoGroup],svg=$('simpleDemoMap'),width=520,height=286;
+ const map=fit(padBounds(g.bounds,.12,150),width,height,{left:32,right:32,top:18,bottom:18});
+ append(svg,'title',{id:'simpleDemoSvgTitle'},'Garden State Parkway Exit 135, unfolding');
+ append(svg,'desc',{id:'simpleDemoSvgDesc'},'Four real ramps move from their map positions into separate drawings. Their bends and north-up orientation stay the same.');
+ // All tiles stay beneath all roads throughout the transition.
+ const tiles=append(svg,'g',{'aria-hidden':'true'}),context=append(svg,'g',{class:'simple-context','aria-hidden':'true'}),roads=append(svg,'g',{'aria-hidden':'true'});
+ for(const l of g.context_lines)append(context,'path',{d:xyPath(l.xy,map),class:l.role==='mainline'?'simple-mainline':''});
+ landingDemo={map,context,ramps:[],progress:0};
+ g.fids.forEach((fid,i)=>{
+  const r=byFID.get(fid),cell={x:18+(i%2)*250,y:18+Math.floor(i/2)*133,w:234,h:117};
+  const tile=append(tiles,'rect',{x:cell.x,y:cell.y,width:cell.w,height:cell.h,rx:10,class:'simple-demo-tile'});
+  const path=append(roads,'path',{class:'simple-road','data-demo-fid':Number(fid),'data-source-fid':Number(sourceFID(r)),'data-source-vertices':r.source_xy.length});
+  landingDemo.ramps.push({r,tile,path,end:simpleCellProjection(r,cell,16)});
+ });
+ paintLandingDemo(reduced.matches?1:0);finishLandingDemo();
+ $('simpleDemoReplay').addEventListener('click',()=>runLandingDemo(true));
+ new IntersectionObserver(entries=>{
+  landingDemoVisible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.35;
+  if(!landingDemoVisible)finishLandingDemo();else maybeStartLandingDemo();
+ },{threshold:[0,.35]}).observe($('simpleDemo'));
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)finishLandingDemo();else maybeStartLandingDemo();});
+ reduced.addEventListener('change',()=>{finishLandingDemo();if(reduced.matches)paintLandingDemo(1);finishLandingDemo();maybeStartLandingDemo();});
 }
 function drawScene(){
  if(animation!==null){cancelAnimationFrame(animation);animation=null;progress=unfolded?1:0;}
@@ -208,7 +269,6 @@ function pickHTML(id){
 }
 function renderPicks(){
  $('simplePicks').innerHTML=picks.map(pickHTML).join('');
- $('simpleTeasers').innerHTML=picks.slice(0,3).map(pickHTML).join('');
 }
 switchWorkspace=function(view,options={}){
  if(['overview','atlas','superlatives','family','compare'].includes(view)){
@@ -238,10 +298,10 @@ for(const dialog of [about,finder]){
  dialog.querySelector('[data-simple-close]').addEventListener('click',()=>closeSimpleDialog(dialog));
  dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeSimpleDialog(dialog);});
 }
-for(const host of [$('simplePicks'),$('simpleTeasers'),$('simpleFindList')])host.addEventListener('click',event=>{const b=event.target.closest('[data-simple-group]');if(!b)return;if(finder.open)closeSimpleDialog(finder);showGroup(b.dataset.simpleGroup,{focus:true});});
+for(const host of [$('simplePicks'),$('simpleFindList')])host.addEventListener('click',event=>{const b=event.target.closest('[data-simple-group]');if(!b)return;if(finder.open)closeSimpleDialog(finder);showGroup(b.dataset.simpleGroup,{focus:true});});
 new MutationObserver(refreshFamilyLink).observe($('adoptionNavCount'),{childList:true,subtree:true,characterData:true});
 let resizeFrame=null,lastCanvasWidth=$('simpleCanvas').clientWidth;new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(Math.abs(width-lastCanvasWidth)<.5)return;lastCanvasWidth=width;if(resizeFrame!==null)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;if(document.body.dataset.simpleView==='explore')drawScene();});}).observe($('simpleCanvas'));
-refreshFamilyLink();renderPicks();
+refreshFamilyLink();renderPicks();buildLandingDemo();
 const firstGroup=DATA.groups[openingQuery.get('exit')]?openingQuery.get('exit'):demoGroup;
 if(openingQuery.has('exit'))showGroup(firstGroup);else switchWorkspace(['atlas','superlatives'].includes(openingQuery.get('workspace'))?openingQuery.get('workspace'):'overview');
 if(openingQuery.has('exit')&&openingQuery.get('view')==='unfolded'){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();const firstRamp=Number(openingQuery.get('ramp'));if(byFID.get(firstRamp)?.group===firstGroup)selectRamp(firstRamp,{focus:false});syncHash();}
