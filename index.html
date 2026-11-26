@@ -341,13 +341,13 @@ dialog::backdrop{backdrop-filter:none!important;background:#0009!important}
 .overview-map-control .overview-exit-label{fill:#fff9e7;stroke:none;font:700 14px 'Trebuchet MS',Arial,sans-serif;pointer-events:none}
 .overview-map-focus{fill:none;stroke:var(--focus);stroke-width:2;opacity:0;pointer-events:none}
 .overview-map-control:focus-visible .overview-map-focus{opacity:1}
-.overview-map-control:hover .overview-map-label-bg,.overview-map-control:focus-visible .overview-map-label-bg{fill:#f0cf78;stroke:#194b39;stroke-width:1}
-.overview-map-control:hover .overview-map-keyline,.overview-map-control:focus-visible .overview-map-keyline{stroke:#194b39}
-.overview-map-control:hover .overview-map-label,.overview-map-control:hover .overview-exit-label,.overview-map-control:focus-visible .overview-map-label,.overview-map-control:focus-visible .overview-exit-label{fill:#194b39}
+.overview-map-control:is(:hover,:focus-visible,.is-preview) .overview-map-label-bg{fill:#f0cf78;stroke:#194b39;stroke-width:1}
+.overview-map-control:is(:hover,:focus-visible,.is-preview) .overview-map-keyline{stroke:#194b39}
+.overview-map-control:is(:hover,:focus-visible,.is-preview) :is(.overview-map-label,.overview-exit-label){fill:#194b39}
 .overview-county-sign .overview-leader,.overview-exit-sign .overview-leader{stroke:#43725f;stroke-width:1.2;opacity:.75}
 .overview-county.is-preview{fill:#d0e0d5;stroke:#33765a;stroke-width:1.4}
 body.night .overview-map-control .overview-map-label-bg{fill:#164b3d;stroke:#b1d1b8}
-body.night .overview-map-control:hover .overview-map-label-bg,body.night .overview-map-control:focus-visible .overview-map-label-bg{fill:#f0cf78;stroke:#f0cf78}
+body.night .overview-map-control:is(:hover,:focus-visible,.is-preview) .overview-map-label-bg{fill:#f0cf78;stroke:#f0cf78}
 body.night .overview-county-sign .overview-leader,body.night .overview-exit-sign .overview-leader{stroke:#b1d1b8}
 body.night .overview-county.is-preview{fill:#355747;stroke:#a8d2b7;stroke-width:1.4}
 @media(max-width:680px){.overview-map-control .overview-map-label{font-size:14px}}
@@ -526,11 +526,11 @@ body.simple-mode[data-simple-view=atlas] #compareDock:not([hidden]){display:flex
 body.simple-mode{--control-green:#12523f;--control-cream:#fff9e7;--control-hover:#f0cf78;--control-ink:#194b39;--control-label:#12523f;--control-line:#628171}
 body.simple-mode.night{--control-green:#164b3d;--control-label:#b1d8c1;--control-line:#8caf9b}
 body.simple-mode button:not(.icon-button){border-radius:7px!important;font-family:'Trebuchet MS',Arial,sans-serif;font-weight:700}
-body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button){position:relative;border:1px solid var(--control-line);background:var(--white);color:var(--control-label);min-height:44px;font-size:14px;padding:11px 16px;outline-offset:3px}
-body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button)::after{content:'';position:absolute;inset:3px;border:1px solid currentColor;border-radius:3px;opacity:.35;pointer-events:none}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button,.simple-exit-neighbors button){position:relative;border:1px solid var(--control-line);background:var(--white);color:var(--control-label);min-height:44px;font-size:14px;padding:11px 16px;outline-offset:3px}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button,.simple-exit-neighbors button)::after{content:'';position:absolute;inset:3px;border:1px solid currentColor;border-radius:3px;opacity:.35;pointer-events:none}
 body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button[aria-pressed=true],.integrated-layers>button[aria-pressed=true]){background:var(--control-green);border-color:var(--control-green);color:var(--control-cream)}
 body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button[aria-pressed=true],.integrated-layers>button[aria-pressed=true])::after{opacity:1}
-body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button):is(:hover,:focus-visible):not(:disabled){background:var(--control-hover);border-color:var(--control-ink);color:var(--control-ink)}
+body.simple-mode :is(.simple-primary,.primary-button,.adoption-button,.simple-view-nav button,.simple-header-nav button,.overview-map-foot button,.overview-heading button,.simple-road-actions button,.simple-scene-foot button,.simple-demo-head button,.adoption-pet-controls button,.adoption-saved-actions>button:not(.text-button),.dialog-footer button,.integrated-layers>button,.super-families button,.view-switch button,.simple-exit-neighbors button):is(:hover,:focus-visible):not(:disabled){background:var(--control-hover);border-color:var(--control-ink);color:var(--control-ink)}
 body.simple-mode .simple-view-nav button.simple-gold{background:#fff1ce;color:#5a3e05;border-color:#b78421}
 body.simple-mode .simple-view-nav button.simple-gold[aria-pressed=true]{background:#efbb4b;color:#251d0a;border-color:#b78421}
 body.simple-mode.night .simple-view-nav button.simple-gold{background:#45351d;color:#f6d491;border-color:#95703a}
@@ -556,8 +556,8 @@ body.simple-mode .county-directory-stop strong{font:700 17px/1.15 'Trebuchet MS'
 body.simple-mode .county-directory-stop small{font:13px/1.4 Arial,sans-serif;margin-top:4px;color:var(--muted)}
 body.simple-mode .county-directory-stop .directory-range{display:block;min-width:77px;padding:7px 9px;background:var(--control-green);color:var(--control-cream);border:1px solid var(--control-green);outline:1px solid var(--control-cream);outline-offset:-4px;border-radius:5px;font:700 15px/1.2 'Trebuchet MS',Arial,sans-serif;text-align:center;white-space:nowrap}
 .county-directory-stop .directory-range>span{display:block;font-size:12px;font-weight:400;margin-bottom:1px}
-body.simple-mode .county-directory-stop:is(:hover,:focus-visible){background:var(--paper-2);border-color:var(--control-line)}
-body.simple-mode .county-directory-stop:is(:hover,:focus-visible) .directory-range{background:var(--control-hover);color:var(--control-ink);outline-color:var(--control-ink);border-color:var(--control-ink)}
+body.simple-mode .county-directory-stop:is(:hover,:focus-visible,.is-preview){background:var(--paper-2);border-color:var(--control-line)}
+body.simple-mode .county-directory-stop:is(:hover,:focus-visible,.is-preview) .directory-range{background:var(--control-hover);color:var(--control-ink);outline-color:var(--control-ink);border-color:var(--control-ink)}
 body.simple-mode .interchange-directory-row .directory-number{background:var(--control-green);color:var(--control-cream);outline:1px solid var(--control-cream);outline-offset:-4px;border-radius:5px;font-family:'Trebuchet MS',Arial,sans-serif;font-weight:700}
 
 /* Readable scope controls, including their count, at every screen size. */
@@ -602,6 +602,14 @@ body.night .theme-toggle .theme-sun{display:block}
  body.simple-mode .site-header .header-tools{margin-top:12px}
  body.simple-mode .simple-header-nav #themeToggle{min-width:126px}
 }
+
+/* Quiet ways to continue along the same road. */
+.simple-exit-neighbors{display:flex;justify-content:space-between;gap:12px;padding:12px 24px;border-top:1px solid var(--line)}
+body.simple-mode .simple-exit-neighbors button.simple-exit-step{display:flex;flex-direction:column;align-items:flex-start;gap:3px;flex:1;min-width:0;max-width:210px;text-align:left;padding:9px 14px}
+body.simple-mode .simple-exit-neighbors button.simple-exit-step:last-child{align-items:flex-end;text-align:right}
+.simple-exit-step span{font-size:14px;font-weight:400;line-height:1.2}
+.simple-exit-step strong{font-size:17px;line-height:1.2}
+@media(max-width:680px){.simple-exit-neighbors{padding:10px 14px;gap:10px}.simple-exit-step strong{font-size:16px}}
 </style></head>
 <body class="simple-mode">
 <script>(function(){let mode='system';try{mode=localStorage.getItem('parkway-theme')||'system';}catch(e){}if(!['system','light','dark'].includes(mode))mode='system';document.body.classList.toggle('night',mode==='dark'||mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
@@ -1389,6 +1397,13 @@ function overviewProjection(bounds,width,height,small,full=!state.section){
  }
  return p;
 }
+function refreshOverviewCountyPreview(){
+ const svg=$('overviewSVG'),controls=[...svg.querySelectorAll('[data-map-county]'),...$('overviewDirectory').querySelectorAll('[data-county]')];
+ const active=controls.find(control=>control.matches(':focus-visible'))||controls.find(control=>control.matches(':hover'));
+ const county=active?.dataset.mapCounty||active?.dataset.county;
+ for(const outline of svg.querySelectorAll('[data-county-outline]'))outline.classList.toggle('is-preview',outline.dataset.countyOutline===county);
+ for(const control of controls)control.classList.toggle('is-preview',(control.dataset.mapCounty||control.dataset.county)===county);
+}
 function drawOverview(){
  if(state.workspace!=='overview')return;
  const c=countyById.get(state.section),gs=scopedGroups(),rs=records.filter(r=>gs.includes(r.group));
@@ -1407,6 +1422,7 @@ function drawOverview(){
    const preview=sample?`<svg class="directory-shape" viewBox="0 0 60 44" aria-hidden="true"><path d="${xyPath(sample.source_xy,fit(sourceBounds(sample),60,44,5))}"/></svg>`:'';
    b.innerHTML=`${preview}<span class="directory-copy"><strong>${esc(county.name)}</strong><small>${county.groups.length} exit areas · ${Number(county.record_count)} drawings</small></span><span class="directory-range"><span>Exits</span>${esc(county.groups[0])}–${esc(county.groups.at(-1))}</span>`;
    b.addEventListener('click',()=>setSharedSection(county.id));directory.append(b);
+   for(const event of ['mouseenter','mouseleave','focus','blur'])b.addEventListener(event,refreshOverviewCountyPreview);
   }
  }else{
   for(const g of gs){
@@ -1443,8 +1459,7 @@ function drawOverview(){
      append(g,'rect',{x,y:y-labelH/2,width:labelW,height:labelH,rx:7,class:'overview-map-label-bg','aria-hidden':'true'});
      append(g,'rect',{x:x+4,y:y-labelH/2+4,width:labelW-8,height:labelH-8,rx:4,class:'overview-map-keyline','aria-hidden':'true'});
      append(g,'text',{x:x+labelW/2,y:y+5.5,'text-anchor':'middle',class:'overview-map-label','aria-hidden':'true'},county.name);
-     const preview=()=>svg.querySelector(`[data-county-outline="${county.id}"]`)?.classList.toggle('is-preview',g.matches(':hover,:focus-visible'));
-     for(const event of ['mouseenter','mouseleave','focus','blur'])g.addEventListener(event,preview);
+     for(const event of ['mouseenter','mouseleave','focus','blur'])g.addEventListener(event,refreshOverviewCountyPreview);
      const choose=()=>setSharedSection(county.id);g.addEventListener('click',choose);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
    }
  }
@@ -1473,6 +1488,7 @@ function drawOverview(){
  }
  append(svg,'text',{x:width-25,y:26,'text-anchor':'end',class:'overview-north','aria-hidden':'true'},'N ↑');
  $('overviewShapes').textContent=c?`Browse ${rs.length} ramp shapes`:`Browse all ${records.length} ramp shapes`;
+ refreshOverviewCountyPreview();
 }
 function openOverviewGroup(g){
  if(!DATA.groups[g])return;setGroup(g,{drawAtlas:false});state.selected=null;state.focus=false;switchWorkspace('explore',{scroll:true});
@@ -2717,7 +2733,7 @@ const experience=document.createElement('section');
 experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
 const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
 $('brandHome').setAttribute('aria-label','Return to the full Parkway');
-experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
+experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer><nav class="simple-exit-neighbors" aria-label="Nearby Parkway exits"><button class="simple-exit-step" id="simpleNorth" type="button"><span>North</span><strong></strong></button><button class="simple-exit-step" id="simpleSouth" type="button"><span>South</span><strong></strong></button></nav></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
 $('top').prepend(experience);
 const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
 landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><h2>Every exit has a shape.</h2><p>Take the Garden State Parkway’s ramps off the map and explore their shapes.</p><form class="simple-landing-search" id="simpleLandingSearchForm" role="search" aria-label="Find a Parkway exit"><label for="simpleLandingSearch">Find your exit</label><div class="simple-landing-search-row"><input id="simpleLandingSearch" class="simple-find-input" name="exit" type="search" autocomplete="off" enterkeyhint="search" placeholder="Exit, road, or county"><button class="simple-primary" type="submit">Find</button></div></form><button class="text-button simple-demo-link" id="simpleStart">Or explore Exit 135</button></div><section class="simple-demo" id="simpleDemo" aria-labelledby="simpleDemoTitle"><header class="simple-demo-head"><div><h3 id="simpleDemoTitle">Exit 135</h3><p>Central Avenue / Clark</p></div><button class="text-button" id="simpleDemoReplay" aria-controls="simpleDemoMap">Unfold ramps</button></header><div class="simple-demo-canvas"><span class="simple-demo-phase" id="simpleDemoPhase">On the map</span><span class="simple-demo-north" aria-hidden="true">N ↑</span><svg id="simpleDemoMap" viewBox="0 0 520 286" role="img" aria-labelledby="simpleDemoSvgTitle simpleDemoSvgDesc"></svg></div><p class="simple-demo-caption">The same ramps. Their bends stay the same.</p><span class="sr-only" role="status" id="simpleDemoStatus"></span></section></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
@@ -2912,6 +2928,22 @@ function paintSceneCopy(){
  $('simpleScaleNote').textContent=unfolded?'North up · enlarged to fit':'North stays up.';
  $('simpleNextHint').textContent=unfolded?'Pick a shape to take a closer look.':'Unfold this exit to see its ramps separately.';
  $('simpleNext').hidden=!hasUnfolded;$('simpleDiscover').hidden=!hasUnfolded;
+ const neighbors=adjacentSimpleGroups(group);
+ for(const direction of ['north','south']){
+  const button=$(direction==='north'?'simpleNorth':'simpleSouth'),id=neighbors[direction];
+  button.disabled=!id;button.querySelector('strong').textContent=id?groupLabel(id):'End of Parkway';
+  button.setAttribute('aria-label',id?`${direction==='north'?'North':'South'} to ${groupLabel(id)}, ${groupNames[id]}`:`${direction==='north'?'North':'South'} end of the Parkway`);
+ }
+}
+function adjacentSimpleGroups(id){
+ const index=groupOrder.indexOf(id);
+ return {north:index>0?groupOrder[index-1]:null,south:index>=0&&index<groupOrder.length-1?groupOrder[index+1]:null};
+}
+function stepSimpleGroup(direction){
+ const id=adjacentSimpleGroups(group)[direction];if(!id)return;
+ const unfold=unfolded;
+ if(state.section&&!sectionGroups(state.section).includes(id)){state.section='';state.filters.group='';}
+ showGroup(id,{focus:true,unfold});refreshSharedControls();
 }
 function animateUnfold(target){
  if(animation!==null)return;
@@ -2926,13 +2958,14 @@ function animateUnfold(target){
  }
  if(duration)animation=requestAnimationFrame(tick);else tick(start);
 }
-function showGroup(id,{focus=false,select=null}={}){
+function showGroup(id,{focus=false,select=null,unfold=false}={}){
  if(!DATA.groups[id])return;
  if(animation!==null){cancelAnimationFrame(animation);animation=null;}
  group=id;unfolded=false;progress=0;selected=null;state.group=id;state.selected=null;state.workspace='explore';
  setSimpleNavigation('explore');experience.hidden=false;for(const id of ['overview','atlas','superlatives','adoptionFamily','compareDialog'])$(id).hidden=true;
  $('simpleSelected').hidden=true;$('simpleAnnouncement').textContent='';drawScene();
- if(select&&byFID.get(select)?.group===id){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();selectRamp(select,{focus:false});}
+ const validSelection=select&&byFID.get(select)?.group===id;
+ if(unfold||validSelection){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();if(validSelection)selectRamp(select,{focus:false});}
  syncHash();
  if(focus){$('simpleExitHeading').tabIndex=-1;$('simpleExitHeading').focus({preventScroll:true});experience.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});}
 }
@@ -3002,6 +3035,8 @@ switchWorkspace=function(view,options={}){
  else showGroup(group,{focus:!!options.scroll});
 };
 $('simpleUnfold').addEventListener('click',()=>animateUnfold(!unfolded));
+$('simpleNorth').addEventListener('click',()=>stepSimpleGroup('north'));
+$('simpleSouth').addEventListener('click',()=>stepSimpleGroup('south'));
 $('simpleAnother').addEventListener('click',()=>{const available=picks.filter(id=>id!==group);showGroup(available[Math.floor(Math.random()*available.length)],{focus:true});});
 $('closeComparison').addEventListener('click',event=>{event.stopImmediatePropagation();switchWorkspace(comparisonOrigin,{scroll:true});if(comparisonOrigin==='explore')$('simpleUnfold').focus({preventScroll:true});},true);
 $('simpleFind').addEventListener('click',openFinder);$('simpleBrowseAll').addEventListener('click',openFinder);
