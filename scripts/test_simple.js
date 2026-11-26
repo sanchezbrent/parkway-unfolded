@@ -67,3 +67,21 @@ const still=demoHarness(true);still.run('maybeStartLandingDemo()');assert.equal(
 still.run('runLandingDemo(true)');assert.equal(still.env.landingDemo.progress,0);assert.equal(still.nodes.get('simpleDemoReplay').textContent,'Show unfolded');
 still.run('runLandingDemo(true)');assert.equal(still.env.landingDemo.progress,1);assert.equal(still.frames.size,0);assert.equal(still.nodes.get('simpleDemoReplay').textContent,'Show on map');
 console.log('Passed: opening demo plays once, replays, stops offscreen, and offers still states for reduced motion.');
+
+// The narrow map must leave room for signs without changing bends or separating layers.
+vm.runInContext(between(template,'function overviewProjection(','function drawOverview(){'),context);
+context.mapBounds=JSON.parse(read('data/county-data.json')).full_bounds;
+for(const width of [280,292,320,339,362,700])for(const full of [false,true]){
+ context.mapWidth=width;context.fullMap=full;
+ const result=vm.runInContext(`(()=>{const small=mapWidth<681,p=overviewProjection(mapBounds,mapWidth,430,small,fullMap),base=fit(mapBounds,mapWidth,430,{left:small?26:65,right:small?26:65,top:35,bottom:35}),source=DATA.corridor_mainlines.flatMap(l=>l.xy);return {scale:p.s,source,points:source.map(p),base:source.map(base)};})()`,context);
+ assert(result.scale>0);
+ const a=result.source[0],b=result.points[0];
+ result.points.forEach((point,i)=>{
+  assert(point.every(Number.isFinite));
+  assert(Math.abs(point[0]-b[0]-(result.source[i][0]-a[0])*result.scale)<1e-6);
+  assert(Math.abs(point[1]-b[1]+(result.source[i][1]-a[1])*result.scale)<1e-6);
+  if(full&&width<340){assert(point[0]>=110-1e-6&&point[0]<=width-110+1e-6);assert(point[1]>=0&&point[1]<=430);}
+  else assert.deepEqual(point,result.base[i]);
+ });
+}
+console.log('Passed: narrow map leaves a clear road corridor; its shared projection keeps every point north up at one uniform scale.');

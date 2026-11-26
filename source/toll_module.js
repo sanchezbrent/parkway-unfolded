@@ -72,7 +72,7 @@ const priorOverview=drawOverview;
 drawOverview=function(){
  priorOverview();if(state.workspace!=='overview')return;
  const c=countyById.get(state.section),width=Math.max(280,$('overviewMap').clientWidth),small=innerWidth<681,height=small?430:665,bounds=c?padBounds(c.bounds,.12,2200):COUNTY.full_bounds;
- const p=fit(bounds,width,height,{left:small?26:65,right:small?26:65,top:35,bottom:35});drawMarkers($('overviewSVG'),p,bounds,false);
+ const p=overviewProjection(bounds,width,height,small);drawMarkers($('overviewSVG'),p,bounds,false);
 };
 const priorShared=refreshSharedControls;
 refreshSharedControls=function(){priorShared();refresh();};

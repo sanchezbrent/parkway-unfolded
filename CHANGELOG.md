@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-26 — Parkway-inspired map labels
+
+- Give county labels bold lettering, green sign faces and cream borders.
+- Highlight the matching county on hover and keyboard focus.
+- Carry the sign styling into county-level exit numbers, with keyboard access.
+- Keep the road clear between sign columns on narrow phones, with traffic and toll layers aligned.
+- Preserve original map geometry and all road and county data.
+
 ## 2026-11-26 — A clearer exit view
 
 - Lead with the chosen exit and connecting road, removing the repeated introduction.
