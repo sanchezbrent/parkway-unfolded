@@ -33,7 +33,7 @@ function rateHTML(p){const v=price(p);return `<div class="toll-rate-pair"><div><
 function rampHTML(r){
  const m=pathTolls.get(r.fid),p=byPlaza.get(m?.ramp_plaza_id);
  if(!p)return '<div class="toll-ramp-heading">Ramp toll · 2026</div><p>No separate ramp toll is listed for this connection. You may still pass a toll on the Parkway.</p>';
- return `<div class="toll-ramp-heading">${esc(p.name)} ramp toll · 2026</div>${!p.cash_accepted?'<p class="toll-ez-only">E-ZPass only</p>':''}${rateHTML(p)}<p>${esc(profile().label)} · ${esc(codeNames[m.movement_code])}</p><button class="toll-text-link" data-toll-open="${p.id}">Toll prices &amp; details ↗</button>`;
+ return `<div class="toll-ramp-heading">${esc(p.name)} ramp toll · 2026</div>${!p.cash_accepted?'<p class="toll-ez-only">E-ZPass only</p>':''}${rateHTML(p)}<p>${esc(profile().label)} · ${esc(codeNames[m.movement_code])}</p><button class="toll-text-link" data-toll-open="${p.id}">Toll prices &amp; details</button>`;
 }
 function bindPlazaButtons(host){host.querySelectorAll('[data-toll-open]').forEach(b=>b.addEventListener('click',()=>openPlaza(b.dataset.tollOpen)));}
 function updateRampDetails(){

@@ -103,3 +103,25 @@ body.simple-mode[data-simple-view=overview] .header-tools:not(:has(#simpleFamily
  .simple-view-nav{padding-bottom:8px}
  .simple-view-nav button{font-size:14px;padding-inline:10px}
 }
+
+/* Each exit starts with its location; selected-ramp details follow the drawing. */
+.simple-location{display:block}
+.simple-exit{font:700 clamp(28px,3.2vw,36px)/1.15 'Trebuchet MS',Arial,sans-serif;letter-spacing:-.8px;white-space:normal;margin:0}
+.simple-exit-road{font-size:16px;line-height:1.45;max-width:650px;margin-top:7px}
+.simple-county{font-size:14px;margin-top:4px}
+.simple-scene-layout>.simple-selected,.simple-scene-layout>.simple-next{margin-top:0}
+.simple-scene-foot p,.simple-next p,.simple-next button,.simple-selected .simple-ramp-meta,.simple-road-info,.simple-road-info p{font-size:14px}
+.simple-road-actions button{font-size:14px;min-height:44px}
+@media(max-width:680px){
+ .simple-shell{padding-top:18px}
+ .simple-exit{font-size:30px}
+ .simple-exit-road{font-size:16px;max-width:none}
+ .simple-county{font-size:14px}
+ .simple-scene-head{gap:14px}
+ .simple-scene-foot p{max-width:none;flex:1;min-width:0}
+ .simple-scene-foot #simpleScaleNote{flex:0 0 95px;text-align:right;font-size:12px}
+ .simple-next{align-items:center}
+ .simple-next p{flex:1}
+ .simple-next button{min-height:44px;padding:4px 0}
+ .simple-road-info p{line-height:1.6}
+}

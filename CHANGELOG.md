@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-26 — A clearer exit view
+
+- Lead with the chosen exit and connecting road, removing the repeated introduction.
+- Place selected-ramp details directly below its drawing, above the shape guide.
+- Use plain labels for internal actions and improve supporting exit-view text sizes.
+- Preserve road geometry, unfolding, adoption, toll information and comparison.
+
 ## 2026-11-25 — Find an exit from the introduction
 
 - Put a visible exit search beside the unfolding example.

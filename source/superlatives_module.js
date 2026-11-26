@@ -270,7 +270,7 @@ function renderHero(animate=false){
  $('stageCaption').textContent=`${item.records.length>1?item.records.length+' road shapes':'Road shape'} · north up`;
  $('replayBtn').hidden=!!item.plaza;histogram(item);
  $('distributionTitle').textContent=c.id==='straightest'?`Extra distance among these ${currentTop.length} paths (%)`:`Across ${number(currentPool.length)} eligible ${item.plaza?'tariff entries':c.grain==='group'?'exit areas':'drawings'}`;
- $('openAtlasBtn').textContent=item.plaza?'Open toll details ↗':c.grain==='group'?'Explore this exit ↗':'Take a closer look ↗';
+ $('openAtlasBtn').textContent=item.plaza?'Open toll details':c.grain==='group'?'Explore this exit':'Take a closer look';
 }
 function badge(item){const p=item.plaza||item.records.map(r=>GSPTolls.lookup(r.fid)).find(Boolean);return p?`<span class="super-toll-badge" role="img" aria-label="${esc('Tolled movement: '+p.name)}" title="${esc('Tolled movement · '+p.name)}">${icon('toll')}</span>`:'';}
 function renderRankings(){

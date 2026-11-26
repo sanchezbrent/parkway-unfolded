@@ -415,7 +415,7 @@ function renderFamily(){
  }
  content.innerHTML=`<div class="adoption-family-grid${family.length===1?' adoption-family-single':''}">${family.map(member=>{
   const r=byFID.get(member.fid);
-  return `<article class="adoption-family-card"><button class="adoption-card-portrait" data-adoption-visit="${r.fid}" aria-label="Say hello to ${esc(member.name)}, exit ${esc(r.number)}">${characterMarkup(r,{decorative:true})}</button><div class="adoption-card-copy"><span class="adoption-eyebrow">Very good little road</span><h3>${esc(member.name)}</h3><p class="adoption-card-road"><strong>Exit ${esc(r.number)} · ${esc(movement(r))}</strong><br>${esc(publicRoad(r.road))}</p><div class="adoption-card-actions"><button class="adoption-button" data-adoption-visit="${r.fid}">Say hello ♡</button><button class="text-button" data-adoption-map="${r.fid}">Find on map ↗</button></div></div></article>`;
+  return `<article class="adoption-family-card"><button class="adoption-card-portrait" data-adoption-visit="${r.fid}" aria-label="Say hello to ${esc(member.name)}, exit ${esc(r.number)}">${characterMarkup(r,{decorative:true})}</button><div class="adoption-card-copy"><span class="adoption-eyebrow">Very good little road</span><h3>${esc(member.name)}</h3><p class="adoption-card-road"><strong>Exit ${esc(r.number)} · ${esc(movement(r))}</strong><br>${esc(publicRoad(r.road))}</p><div class="adoption-card-actions"><button class="adoption-button" data-adoption-visit="${r.fid}">Say hello ♡</button><button class="text-button" data-adoption-map="${r.fid}">Find on map</button></div></div></article>`;
  }).join('')}</div>`;
 }
 function stopZoom(){if(zoomFrame!==null)cancelAnimationFrame(zoomFrame);zoomFrame=null;$('adoptionShape').querySelector('.adoption-runner')?.remove();}
