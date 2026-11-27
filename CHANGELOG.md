@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-27 — Clearer selections and a next shape to explore
+
+- Name the selected road beneath the drawing and remove the extra pick-a-shape prompt after selection.
+- Replace the exit view's repeated shape guide with two ramps from other exits: one similar shape and one contrasting example.
+- Update suggestions when the selected ramp or exit changes, and open the suggested ramp already selected and unfolded.
+- Keep the gallery's optional shape guide and preserve every original road vertex, north-up orientation and all five datasets.
+
 ## 2026-11-27 — Share an exit or a ramp
 
 - Add Share this exit beside the unfolding control and Share this ramp beside selected-ramp details.
