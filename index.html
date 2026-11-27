@@ -628,6 +628,15 @@ body.simple-mode .simple-exit-neighbors button.simple-exit-step:last-child{align
  body.simple-mode .simple-selected-actions button:is(.simple-share,.adoption-button){padding-inline:12px;white-space:nowrap}
  body.simple-mode .simple-selected-actions .adoption-button{flex:1;width:auto;margin:0}
 }
+
+/* Two relevant stops, following the selected ramp's details. */
+.simple-scene-layout .simple-ramp-suggestions .simple-guide-examples{grid-template-columns:repeat(2,minmax(0,1fr))}
+.simple-ramp-suggestions .simple-guide-example span>span{display:block;overflow-wrap:anywhere}
+@media(max-width:680px){
+ .simple-scene-layout .simple-ramp-suggestions .simple-guide-example{padding:12px 8px}
+ .simple-scene-layout .simple-ramp-suggestions .simple-guide-example svg{height:68px;max-width:110px}
+ .simple-ramp-suggestions .simple-guide-example span>span{font-size:14px;line-height:1.4;margin-top:6px}
+}
 </style></head>
 <body class="simple-mode">
 <script>(function(){let mode='system';try{mode=localStorage.getItem('parkway-theme')||'system';}catch(e){}if(!['system','light','dark'].includes(mode))mode='system';document.body.classList.toggle('night',mode==='dark'||mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
@@ -2797,16 +2806,55 @@ const shapeGuideExamples=[
  {fid:5496,title:'Straight'}
 ];
 function shapeGuideHTML(id){
- return `<header><h3 id="${id}">Shape guide</h3><p>Explore an example exit.</p></header><div class="simple-guide-examples">${shapeGuideExamples.map(example=>{
-  const r=byFID.get(example.fid),project=fit(sourceBounds(r),110,90,12);
-  return `<button class="simple-guide-example" data-guide-fid="${Number(r.fid)}" aria-label="${esc(example.title)}. Explore ${esc(groupLabel(r.group))}, ${esc(movement(r))}, ${esc(publicRoad(r.road))}."><svg viewBox="0 0 110 90" aria-hidden="true"><path d="${xyPath(r.source_xy,project)}" data-source-fid="${Number(sourceFID(r))}" data-source-vertices="${r.source_xy.length}"/></svg><span><strong>${esc(example.title)}</strong><span>${esc(publicRoad(r.road))}</span><small>Explore Exit ${esc(r.number)}</small></span></button>`;
- }).join('')}</div><p class="simple-guide-note">North up. Each road enlarged to fit.</p>`;
+ return `<header><h3 id="${id}">Shape guide</h3><p>Explore an example exit.</p></header><div class="simple-guide-examples">${shapeGuideExamples.map(example=>shapeGuideButtonHTML(byFID.get(example.fid),example.title)).join('')}</div><p class="simple-guide-note">North up. Each road enlarged to fit.</p>`;
 }
-const guide=document.createElement('aside');guide.className='simple-shape-guide';guide.setAttribute('aria-labelledby','simpleGuideTitle');guide.innerHTML=shapeGuideHTML('simpleGuideTitle');
+function shapeGuideButtonHTML(r,title){
+ const project=fit(sourceBounds(r),110,90,12),exit=r.group==='12'?'Access 12':`Exit ${r.number}`;
+ return `<button class="simple-guide-example" type="button" data-guide-fid="${Number(r.fid)}" aria-label="${esc(title)}. Explore ${esc(exit)}, ${esc(movement(r))}, ${esc(publicRoad(r.road))}."><svg viewBox="0 0 110 90" aria-hidden="true"><path d="${xyPath(r.source_xy,project)}" data-source-fid="${Number(sourceFID(r))}" data-source-vertices="${r.source_xy.length}"/></svg><span><strong>${esc(title)}</strong><span>${esc(publicRoad(r.road))}</span><small>Explore ${esc(exit)}</small></span></button>`;
+}
+const guide=document.createElement('aside');guide.className='simple-shape-guide simple-ramp-suggestions';guide.setAttribute('aria-labelledby','simpleGuideTitle');
 const sceneFrame=document.createElement('div');sceneFrame.className='simple-scene-layout';const sceneElement=experience.querySelector('.simple-scene');sceneElement.before(sceneFrame);sceneFrame.append(sceneElement,$('simpleSelected'),$('simpleNext'),guide);
 const galleryGuide=document.createElement('details');galleryGuide.className='simple-gallery-guide';galleryGuide.innerHTML='<summary>Shape guide</summary><div class="simple-shape-guide" aria-labelledby="simpleGalleryGuideTitle">'+shapeGuideHTML('simpleGalleryGuideTitle')+'</div>';
 $('atlas').querySelector('.atlas-intro').after(galleryGuide);
-for(const host of [guide,galleryGuide])host.addEventListener('click',event=>{const button=event.target.closest('[data-guide-fid]');if(!button)return;const r=byFID.get(Number(button.dataset.guideFid));showGroup(r.group,{focus:true,select:r.fid});});
+for(const host of [guide,galleryGuide])host.addEventListener('click',event=>{const button=event.target.closest('[data-guide-fid]');if(!button)return;const r=byFID.get(Number(button.dataset.guideFid));if(state.section&&!sectionGroups(state.section).includes(r.group)){state.section='';state.filters.group='';}showGroup(r.group,{focus:true,select:r.fid});refreshSharedControls();});
+
+// Samples describe similarity only. Every preview still draws every source vertex.
+const discoveryProfiles=new Map();
+function discoveryProfile(r){
+ if(!discoveryProfiles.has(r.fid)){
+  const project=fit(sourceBounds(r),1,1,0);
+  discoveryProfiles.set(r.fid,Array.from({length:24},(_,i)=>project(sample(r,i/23).xy)));
+ }
+ return discoveryProfiles.get(r.fid);
+}
+function discoveryDistance(a,b){
+ const first=discoveryProfile(a),second=discoveryProfile(b);
+ let forward=0,reverse=0;
+ for(let i=0;i<first.length;i++){
+  const p=first[i],q=second[i],back=second[second.length-1-i];
+  forward+=(p[0]-q[0])**2+(p[1]-q[1])**2;reverse+=(p[0]-back[0])**2+(p[1]-back[1])**2;
+ }
+ return Math.min(forward,reverse)/first.length;
+}
+function discoverySuggestions(reference){
+ const sources=new Set(DATA.groups[reference.group].fids.map(fid=>sourceFID(byFID.get(fid))));
+ const available=r=>r.group!==reference.group&&!sources.has(sourceFID(r));
+ const curved=DATA.metrics_by_fid[reference.fid].path_to_chord_ratio>=1.4;
+ const examples=[...shapeGuideExamples].sort((a,b)=>{
+  const order=curved?['Straight','Hook','Loop']:['Loop','Hook','Straight'];return order.indexOf(a.title)-order.indexOf(b.title);
+ });
+ const contrast=examples.find(example=>available(byFID.get(example.fid))),different=byFID.get(contrast.fid);
+ const similar=records.filter(r=>available(r)&&r.group!==different.group).map(r=>({r,distance:discoveryDistance(reference,r)})).sort((a,b)=>a.distance-b.distance||a.r.fid-b.r.fid)[0].r;
+ return [{r:similar,title:'A similar shape'},{r:different,title:contrast.title==='Straight'?'Try a straight run':`Try a ${contrast.title.toLowerCase()}`}];
+}
+function renderRampSuggestions(){
+ const key=`${group}:${selected||''}`;if(guide.dataset.viewKey===key)return;
+ const current=DATA.groups[group].fids.map(fid=>byFID.get(fid)),reference=byFID.get(selected)||current.reduce((a,b)=>DATA.metrics_by_fid[b.fid].path_to_chord_ratio>DATA.metrics_by_fid[a.fid].path_to_chord_ratio?b:a);
+ const suggestions=discoverySuggestions(reference);
+ if(!selected)suggestions[0].title='Try another shape';
+ guide.innerHTML=`<header><h3 id="simpleGuideTitle">Keep exploring</h3><p>Two shapes from other exits.</p></header><div class="simple-guide-examples">${suggestions.map(({r,title})=>shapeGuideButtonHTML(r,title)).join('')}</div><p class="simple-guide-note">North up. Each road enlarged to fit.</p>`;
+ guide.dataset.viewKey=key;
+}
 
 // Historical summaries from NJTA's GSP History; no archive media is reproduced.
 const parkwayOddities=[
@@ -2948,10 +2996,12 @@ function paintSceneCopy(){
  $('simplePhase').textContent=unfolded?'The same roads, unfolded':'On the map';
  $('simpleUnfold').textContent=unfolded?'Back on the map':'Unfold this exit';$('simpleUnfold').disabled=false;$('simpleUnfold').setAttribute('aria-expanded',String(unfolded));
  $('simpleMap').removeAttribute('aria-busy');
- $('simpleSceneHint').textContent=unfolded?'Choose a ramp to view its details.':'The highlighted lines are the ramps.';
+ const ramp=unfolded?byFID.get(selected):null;
+ $('simpleSceneHint').textContent=ramp?`Selected: ${publicRoad(ramp.road)} · ${movement(ramp)}.`:unfolded?'Choose a ramp to view its details.':'The highlighted lines are the ramps.';
  $('simpleScaleNote').textContent=unfolded?'North up · enlarged to fit':'North stays up.';
  $('simpleNextHint').textContent=unfolded?'Pick a shape to take a closer look.':'Unfold this exit to see its ramps separately.';
- $('simpleNext').hidden=!hasUnfolded;$('simpleDiscover').hidden=!hasUnfolded;
+ $('simpleNext').hidden=!hasUnfolded||!!ramp;$('simpleDiscover').hidden=!hasUnfolded;
+ renderRampSuggestions();
  const neighbors=adjacentSimpleGroups(group);
  for(const direction of ['north','south']){
   const button=$(direction==='north'?'simpleNorth':'simpleSouth'),id=neighbors[direction];
@@ -2998,7 +3048,8 @@ function selectRamp(fid,{focus=true}={}){
  for(const entry of scene.ramps)entry.node.setAttribute('aria-pressed',String(entry.r.fid===fid));
  const selectedHost=$('simpleSelected'),plaza=window.GSPTolls?.lookup(fid),note=[branchScope(r),warningFor(r)].filter(Boolean).join(' ');
  selectedHost.innerHTML=`<div class="simple-selected-top"><div><span class="adoption-eyebrow">A closer look · Exit ${esc(r.number)}</span><h3 id="simpleSelectedTitle">${esc(publicRoad(r.road))}</h3><p class="simple-ramp-meta">${esc(movement(r))} · ${esc(groupCounties(r.group).join(' / '))}</p></div><div class="simple-selected-actions">${shareButtonHTML('ramp')}<button class="adoption-button" data-adoption-visit="${Number(fid)}">Adopt this ramp ♡</button></div></div><details class="simple-road-info"><summary>More about this road</summary><p>${fmt(r.length_ft)} feet of road. ${esc(note||'This line follows the original road map.')}</p><div class="traffic-detail">${trafficDetailHTML(r)}</div><p>${plaza?`A toll is listed for this connection at ${esc(plaza.name)}.`:'No ramp toll is listed for this drawing. Other tolls may apply along your journey.'}</p><div class="simple-road-actions">${plaza?'<button class="text-button" id="simpleToll">View 2026 toll information</button>':''}<button class="text-button" id="simpleCompare">Compare with another ramp</button></div></details>`;
- selectedHost.hidden=false;syncHash();
+ selectedHost.hidden=false;paintSceneCopy();syncHash();
+ $('simpleAnnouncement').textContent=`Selected ${publicRoad(r.road)}, ${movement(r).toLowerCase()}. Details follow the drawing.`;
  $('simpleToll')?.addEventListener('click',()=>window.GSPTolls.openPlaza(plaza.id));
  $('simpleCompare').addEventListener('click',()=>{state.compare=[fid,null];updateComparisonUI();switchWorkspace('compare',{scroll:true});});
  if(focus){$('simpleSelectedTitle').tabIndex=-1;$('simpleSelectedTitle').focus({preventScroll:true});selectedHost.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'nearest'});}
