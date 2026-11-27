@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-27 — Retrace your exploration with Back and Forward
+
+- Give each newly opened exit, workspace and county view a place in browser history.
+- Restore the selected ramp, map/unfolded view, county scope and scroll position when returning.
+- Update the current stop when selecting another ramp or folding the same exit, avoiding extra Back steps for each click.
+- Preserve gallery filters and Top 10s selections across navigation, and retain all original source data and geometry.
+
 ## 2026-11-27 — Clearer selections and a next shape to explore
 
 - Name the selected road beneath the drawing and remove the extra pick-a-shape prompt after selection.

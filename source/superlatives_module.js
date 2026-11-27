@@ -63,7 +63,7 @@ function syncHash(){
  for(const k of ['county','kind'])if(state[k]!=='all')p.set(k,state[k]);
  if(state.view!=='gallery')p.set('view',state.view);if(state.scale!=='fit')p.set('scale',state.scale);
  if(state.selected&&currentTop[0]&&state.selected!==currentTop[0].id)p.set('selected',state.selected);
- try{history.replaceState(null,'','#'+p.toString());}catch{}
+ try{if(window.GSPNavigation)window.GSPNavigation.sync(p);else history.replaceState(history.state,'','#'+p.toString());}catch{}
 }
 function makePool(c=getCategory()){
  const filtered=DATA.records.filter(r=>(state.county==='all'||r.counties.includes(state.county))&&(state.kind==='all'||r.kind===state.kind));
@@ -223,7 +223,7 @@ function syncHash(){
  for(const k of ['county','kind','view','scale']){const def=['county','kind'].includes(k)?'all':k==='view'?'gallery':'fit';if(state[k]!==def)p.set(k,state[k]);else p.delete(k);}
  if(atlasState.section)p.set('area',atlasState.section);else p.delete('area');
  p.set('profile',GSPTolls.profileID);p.set('basis',GSPTolls.basis);
- try{history.replaceState(null,'','#'+p.toString());}catch{}
+ try{if(window.GSPNavigation)window.GSPNavigation.sync(p);else history.replaceState(history.state,'','#'+p.toString());}catch{}
 }
 function makePool(c=getCategory()){
  const filtered=DATA.records.filter(r=>(state.county==='all'||r.counties.includes(state.county))&&(state.kind==='all'||r.kind===state.kind)&&(!c.tolled_only||GSPTolls.lookup(r.fid)));
@@ -321,7 +321,7 @@ document.addEventListener('tollpricingchange',()=>render(true));
 document.addEventListener('gspworkspace',()=>{if(atlasState.workspace==='superlatives')render();});
 new MutationObserver(()=>{if(atlasState.workspace==='superlatives')render();}).observe(document.body,{attributes:true,attributeFilter:['class']});
 let visualResizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(visualResizeFrame);visualResizeFrame=requestAnimationFrame(()=>{if(atlasState.workspace==='superlatives')renderHero();});});
-window.GSPSuperlatives={refresh:()=>render(),get categories(){return DATA.categories},get rows(){return currentTop},get pool(){return currentPool},get category(){return state.category},select:id=>{if(DATA.categories.some(c=>c.id===id)){state.category=id;render(true);}}};
+window.GSPSuperlatives={refresh:()=>render(),get categories(){return DATA.categories},get rows(){return currentTop},get pool(){return currentPool},get category(){return state.category},get navigationState(){return {category:state.category,kind:state.kind,view:state.view,scale:state.scale,selected:state.selected};},restoreNavigation:value=>{if(DATA.categories.some(c=>c.id===value.category))state.category=value.category;state.kind=['Exit','Entrance'].includes(value.kind)?value.kind:'all';state.view=value.view==='list'?'list':'gallery';state.scale=value.scale==='same'?'same':'fit';state.selected=value.selected;render();},select:id=>{if(DATA.categories.some(c=>c.id===id)){state.category=id;render(true);}}};
 render();
 
 })(state,DATA,setSharedSection,countyById);
