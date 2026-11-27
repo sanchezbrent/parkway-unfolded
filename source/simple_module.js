@@ -6,6 +6,7 @@ const openingQuery=new URLSearchParams((window.GSPInitialViewHash??location.hash
 let group=demoGroup,unfolded=false,progress=0,selected=null,hasUnfolded=false,animation=null,scene=null,activeDialogFocus=null,galleryOpened=false,comparisonOrigin='explore';
 const priorSwitch=switchWorkspace;
 let landingDemo=null,landingDemoFrame=null,landingDemoPlayed=false,landingDemoVisible=false,sharing=false;
+let navigationReady=false,navigationRestoring=false,navigationQueued=false,navigationQuery=null,navigationRestoreToken=0;
 function shareButtonHTML(kind){
  return `<button class="simple-share" type="button" data-simple-share aria-label="Share this ${kind}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4m-6.8 7 6.8 4"/></svg><span>Share<span class="simple-share-context"> this ${kind}</span></span></button>`;
 }
@@ -284,6 +285,7 @@ function animateUnfold(target){
 }
 function showGroup(id,{focus=false,select=null,unfold=false}={}){
  if(!DATA.groups[id])return;
+ rememberNavigationScroll();
  if(animation!==null){cancelAnimationFrame(animation);animation=null;}
  group=id;unfolded=false;progress=0;selected=null;state.group=id;state.selected=null;state.workspace='explore';
  setSimpleNavigation('explore');experience.hidden=false;for(const id of ['overview','atlas','superlatives','adoptionFamily','compareDialog'])$(id).hidden=true;
@@ -329,10 +331,75 @@ async function shareCurrentExit(){
   sharing=false;for(const button of experience.querySelectorAll('[data-simple-share]')){button.disabled=false;button.removeAttribute('aria-busy');}
  }
 }
-function syncHash(){
- if(['overview','atlas','superlatives'].includes(state.workspace)){const query=new URLSearchParams(location.hash.slice(1));for(const key of ['exit','view','ramp'])query.delete(key);query.set('workspace',state.workspace);if(state.section)query.set('area',state.section);else query.delete('area');history.replaceState(null,'','#'+query.toString());return;}
- history.replaceState(null,'','#'+exitViewQuery().toString());
+function navigationSnapshot(){
+ return {version:1,workspace:state.workspace,section:state.section,group,unfolded,selected,hasUnfolded,activeGroup:state.group,activeSelected:state.selected,collection:state.collection,atlasMorph:state.morphAnimation?.to??state.morph,filters:{...state.filters},compare:[...state.compare],compareScale:state.compareScale,comparisonOrigin,galleryOpened,rankings:window.GSPSuperlatives?.navigationState,scroll:[scrollX,scrollY]};
 }
+function commitNavigation(replace=false){
+ const entry=navigationSnapshot(),query=entry.workspace==='explore'?exitViewQuery():new URLSearchParams(navigationQuery||location.hash.slice(1));
+ navigationQuery=null;
+ if(entry.workspace!=='explore'){
+  for(const key of ['exit','ramp'])query.delete(key);
+  if(entry.workspace!=='superlatives'||!['gallery','list'].includes(query.get('view')))query.delete('view');
+  query.set('workspace',entry.workspace);
+ }
+ if(entry.section)query.set('area',entry.section);else query.delete('area');
+ entry.query=query.toString();entry.key=`${entry.workspace}:${entry.section}:${entry.workspace==='explore'?entry.group:''}`;
+ const current=history.state?.parkwayNavigation,method=replace||current?.key===entry.key?'replaceState':'pushState';
+ history[method]({parkwayNavigation:entry},'','#'+entry.query);
+}
+function syncHash(query){
+ if(navigationRestoring)return;
+ if(query)navigationQuery=new URLSearchParams(query);
+ if(!navigationReady||navigationQueued)return;
+ navigationQueued=true;
+ queueMicrotask(()=>{navigationQueued=false;if(navigationReady&&!navigationRestoring)commitNavigation();});
+}
+function rememberNavigationScroll(){
+ const entry=history.state?.parkwayNavigation;
+ if(!navigationReady||navigationRestoring||!entry)return;
+ history.replaceState({parkwayNavigation:{...entry,scroll:[scrollX,scrollY]}},'',location.href);
+}
+function restoreNavigation(saved,query=new URLSearchParams(location.hash.slice(1)),{focus=true}={}){
+ const entry=saved?.version===1&&saved.query===query.toString()?saved:null,token=++navigationRestoreToken;
+ navigationRestoring=true;navigationQuery=null;
+ for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();
+ document.body.classList.remove('modal-open');$('tollTooltip').hidden=true;
+ const requested=entry?.workspace||query.get('workspace'),exit=entry?.group||query.get('exit');
+ const view=['overview','atlas','superlatives','family','compare'].includes(requested)?requested:DATA.groups[exit]?'explore':'overview';
+ const area=entry?.section??query.get('area');state.section=countyById.has(area)?area:'';
+ state.filters={group:'',direction:'',kind:'',...(entry?.filters||{})};
+ if(state.filters.group&&!DATA.groups[state.filters.group])state.filters.group='';
+ state.collection=['all','featured','signature'].includes(entry?.collection)?entry.collection:'all';
+ state.morph=entry?.atlasMorph===0?0:1;state.morphAnimation=null;
+ state.compare=(entry?.compare||[null,null]).slice(0,2).map(fid=>byFID.has(fid)?fid:null);
+ state.compareScale=entry?.compareScale==='same'?'same':'fit';
+ comparisonOrigin=entry?.comparisonOrigin==='atlas'?'atlas':'explore';galleryOpened=entry?.galleryOpened??false;
+ group=DATA.groups[exit]?exit:demoGroup;unfolded=entry?.unfolded??query.get('view')==='unfolded';
+ const fid=entry?.selected??Number(query.get('ramp'));selected=unfolded&&byFID.get(fid)?.group===group?fid:null;
+ hasUnfolded=entry?.hasUnfolded??unfolded;progress=unfolded?1:0;
+ if(view==='explore')showGroup(group,{unfold:unfolded,select:selected});
+ else{
+  state.group=DATA.groups[entry?.activeGroup]?entry.activeGroup:group;
+  state.selected=byFID.has(entry?.activeSelected)?entry.activeSelected:null;
+  switchWorkspace(view);
+  if(view==='superlatives')window.GSPSuperlatives?.restoreNavigation(entry?.rankings||Object.fromEntries(query));
+ }
+ refreshSharedControls();
+ requestAnimationFrame(()=>{
+  if(token!==navigationRestoreToken)return;
+  const host=view==='explore'?experience:view==='family'?$('adoptionFamily'):view==='compare'?$('compareDialog'):$(view);
+  const target=view==='explore'?$(selected?'simpleSelectedTitle':'simpleExitHeading'):host.querySelector('h2');
+  if(target&&focus){target.tabIndex=-1;target.focus({preventScroll:true});}
+  const position=entry?.scroll||[0,0];window.scrollTo({left:position[0],top:position[1],behavior:'instant'});
+  navigationRestoring=false;navigationQuery=query;commitNavigation(true);
+ });
+}
+window.GSPNavigation={sync:syncHash};
+if(skip)skip.addEventListener('click',event=>{const target=document.getElementById(skip.hash.slice(1));if(!target)return;event.preventDefault();target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({behavior:'instant',block:'start'});rememberNavigationScroll();});
+window.addEventListener('popstate',event=>restoreNavigation(event.state?.parkwayNavigation));
+window.addEventListener('hashchange',()=>{const query=new URLSearchParams(location.hash.slice(1));if(!navigationRestoring&&(query.has('exit')||query.has('workspace')))restoreNavigation(history.state?.parkwayNavigation,query);});
+let navigationScrollTimer;window.addEventListener('scroll',()=>{clearTimeout(navigationScrollTimer);navigationScrollTimer=setTimeout(rememberNavigationScroll,120);},{passive:true});
+history.scrollRestoration='manual';
 function refreshFamilyLink(){
  const count=Number($('adoptionNavCount').textContent)||0;
  $('simpleFamily').hidden=count===0;$('simpleFamily').textContent=`My ramps${count?' · '+count:''}`;
@@ -372,11 +439,12 @@ function renderPicks(){
  $('simplePicks').innerHTML=picks.map(pickHTML).join('');
 }
 switchWorkspace=function(view,options={}){
+ rememberNavigationScroll();
  if(['overview','atlas','superlatives','family','compare'].includes(view)){
   if(view==='compare')comparisonOrigin=state.workspace==='atlas'?'atlas':'explore';
   if(animation!==null){cancelAnimationFrame(animation);animation=null;progress=unfolded?1:0;}
   setSimpleNavigation(view);experience.hidden=true;
-  if(view==='atlas'){if(!galleryOpened){state.collection='featured';galleryOpened=true;}state.morph=1;}
+  if(view==='atlas'){if(!galleryOpened){state.collection='featured';galleryOpened=true;}if(!navigationRestoring)state.morph=1;}
   priorSwitch(view,{scroll:false});syncHash();
   if(options.scroll)(['family','compare'].includes(view)?$(view==='family'?'adoptionFamily':'compareDialog'):$('simpleLanding')).scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
  }else if(view==='explore')showGroup(state.group,{focus:!!options.scroll,select:state.selected});
@@ -395,7 +463,8 @@ $('simpleBack').addEventListener('click',()=>{if(document.body.dataset.simpleVie
 $('simpleStart').addEventListener('click',()=>showGroup(demoGroup,{focus:true}));
 $('simpleLandingSearchForm').addEventListener('submit',submitLandingSearch);
 landing.querySelector('.simple-view-nav').addEventListener('click',event=>{const button=event.target.closest('[data-simple-workspace]');if(button)switchWorkspace(button.dataset.simpleWorkspace,{scroll:true});});
-const priorSection=setSharedSection;setSharedSection=function(id){priorSection(id);syncHash();};
+for(const host of [$('atlas'),$('compareDialog')])for(const event of ['click','change'])host.addEventListener(event,()=>syncHash());
+const priorSection=setSharedSection;setSharedSection=function(id){rememberNavigationScroll();priorSection(id);syncHash();};
 $('simpleAboutButton').addEventListener('click',()=>openSimpleDialog(about));
 $('simpleSearch').addEventListener('input',renderFind);
 $('simpleSearch').addEventListener('keydown',event=>{if(event.key==='Enter'){const rows=$('simpleFindList').querySelectorAll('[data-simple-group]');if(rows.length===1){event.preventDefault();rows[0].click();}}});
@@ -408,7 +477,6 @@ for(const host of [$('simplePicks'),$('simpleFindList')])host.addEventListener('
 new MutationObserver(refreshFamilyLink).observe($('adoptionNavCount'),{childList:true,subtree:true,characterData:true});
 let resizeFrame=null,lastCanvasWidth=$('simpleCanvas').clientWidth;new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(Math.abs(width-lastCanvasWidth)<.5)return;lastCanvasWidth=width;if(resizeFrame!==null)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;if(document.body.dataset.simpleView==='explore')drawScene();});}).observe($('simpleCanvas'));
 refreshFamilyLink();renderPicks();buildLandingDemo();
-const firstGroup=DATA.groups[openingQuery.get('exit')]?openingQuery.get('exit'):demoGroup;
-if(openingQuery.has('exit'))showGroup(firstGroup);else switchWorkspace(['atlas','superlatives'].includes(openingQuery.get('workspace'))?openingQuery.get('workspace'):'overview');
-if(openingQuery.has('exit')&&openingQuery.get('view')==='unfolded'){unfolded=true;hasUnfolded=true;progress=1;paintScene(1);paintSceneCopy();const firstRamp=Number(openingQuery.get('ramp'));if(byFID.get(firstRamp)?.group===firstGroup)selectRamp(firstRamp,{focus:false});syncHash();}
+const openingEntry=history.state?.parkwayNavigation;
+restoreNavigation(openingEntry,openingQuery,{focus:false});navigationReady=true;
 })();
