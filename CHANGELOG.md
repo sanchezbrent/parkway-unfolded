@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-27 — Share an exit or a ramp
+
+- Add Share this exit beside the unfolding control and Share this ramp beside selected-ramp details.
+- Preserve the exit, map/unfolded view and selected ramp in the shared link.
+- Use the device share menu when available, otherwise copy the link with clear confirmation.
+- Offer a selectable link when automatic copying is unavailable; leave canceled sharing alone.
+- Retain all original road geometry and source data.
+
 ## 2026-11-26 — Follow the Parkway and connect the county views
 
 - Add north/south controls below each exit drawing, following the original exit order.

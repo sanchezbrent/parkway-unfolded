@@ -5,12 +5,15 @@ const demoGroup='135',picks=['135','138','82','105','100','91'];
 const openingQuery=new URLSearchParams((window.GSPInitialViewHash??location.hash).slice(1));
 let group=demoGroup,unfolded=false,progress=0,selected=null,hasUnfolded=false,animation=null,scene=null,activeDialogFocus=null,galleryOpened=false,comparisonOrigin='explore';
 const priorSwitch=switchWorkspace;
-let landingDemo=null,landingDemoFrame=null,landingDemoPlayed=false,landingDemoVisible=false;
+let landingDemo=null,landingDemoFrame=null,landingDemoPlayed=false,landingDemoVisible=false,sharing=false;
+function shareButtonHTML(kind){
+ return `<button class="simple-share" type="button" data-simple-share aria-label="Share this ${kind}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4m-6.8 7 6.8 4"/></svg><span>Share<span class="simple-share-context"> this ${kind}</span></span></button>`;
+}
 const experience=document.createElement('section');
 experience.id='simpleExperience';experience.className='wrap';experience.tabIndex=-1;
 const skip=document.querySelector('.skip-link');if(skip){skip.href='#simpleLanding';skip.textContent='Skip to the Parkway';}
 $('brandHome').setAttribute('aria-label','Return to the full Parkway');
-experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer><nav class="simple-exit-neighbors" aria-label="Nearby Parkway exits"><button class="simple-exit-step" id="simpleNorth" type="button"><span>North</span><strong></strong></button><button class="simple-exit-step" id="simpleSouth" type="button"><span>South</span><strong></strong></button></nav></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
+experience.innerHTML=`<div class="simple-shell"><section class="simple-scene" aria-labelledby="simpleExitHeading"><header class="simple-scene-head"><div class="simple-location"><h2 class="simple-exit" id="simpleExitHeading"></h2><p class="simple-exit-road"><span id="simpleExitRoad"></span><span class="simple-county" id="simpleCounty"></span></p></div><div class="simple-scene-actions"><button class="simple-primary" id="simpleUnfold" aria-controls="simpleMap" aria-expanded="false">Unfold this exit</button>${shareButtonHTML('exit')}</div></header><div class="simple-canvas" id="simpleCanvas"><span class="simple-map-note" id="simplePhase">On the map</span><span class="simple-north">N ↑</span><svg class="simple-map" id="simpleMap" role="group"></svg></div><footer class="simple-scene-foot"><p id="simpleSceneHint">The highlighted lines are the ramps.</p><span id="simpleScaleNote">North stays up.</span></footer><nav class="simple-exit-neighbors" aria-label="Nearby Parkway exits"><button class="simple-exit-step" id="simpleNorth" type="button"><span>North</span><strong></strong></button><button class="simple-exit-step" id="simpleSouth" type="button"><span>South</span><strong></strong></button></nav></section><div class="simple-next" id="simpleNext" hidden><p id="simpleNextHint">Pick a shape to take a closer look.</p><button class="text-button" id="simpleAnother">Try another exit</button></div><section class="simple-selected" id="simpleSelected" aria-labelledby="simpleSelectedTitle" hidden></section><details class="simple-discover" id="simpleDiscover" hidden><summary>Explore other exits</summary><div class="simple-picks" id="simplePicks"></div><button class="text-button simple-browse-all" id="simpleBrowseAll">Find any Parkway exit</button></details><p class="sr-only" role="status" aria-live="polite" id="simpleAnnouncement"></p></div>`;
 $('top').prepend(experience);
 const landing=document.createElement('section');landing.id='simpleLanding';landing.className='wrap';
 landing.innerHTML=`<div class="simple-landing-hero"><div class="simple-landing-copy"><h2>Every exit has a shape.</h2><p>Take the Garden State Parkway’s ramps off the map and explore their shapes.</p><form class="simple-landing-search" id="simpleLandingSearchForm" role="search" aria-label="Find a Parkway exit"><label for="simpleLandingSearch">Find your exit</label><div class="simple-landing-search-row"><input id="simpleLandingSearch" class="simple-find-input" name="exit" type="search" autocomplete="off" enterkeyhint="search" placeholder="Exit, road, or county"><button class="simple-primary" type="submit">Find</button></div></form><button class="text-button simple-demo-link" id="simpleStart">Or explore Exit 135</button></div><section class="simple-demo" id="simpleDemo" aria-labelledby="simpleDemoTitle"><header class="simple-demo-head"><div><h3 id="simpleDemoTitle">Exit 135</h3><p>Central Avenue / Clark</p></div><button class="text-button" id="simpleDemoReplay" aria-controls="simpleDemoMap">Unfold ramps</button></header><div class="simple-demo-canvas"><span class="simple-demo-phase" id="simpleDemoPhase">On the map</span><span class="simple-demo-north" aria-hidden="true">N ↑</span><svg id="simpleDemoMap" viewBox="0 0 520 286" role="img" aria-labelledby="simpleDemoSvgTitle simpleDemoSvgDesc"></svg></div><p class="simple-demo-caption">The same ramps. Their bends stay the same.</p><span class="sr-only" role="status" id="simpleDemoStatus"></span></section></div><nav class="simple-view-nav" aria-label="Ways to explore"><button data-simple-workspace="overview" aria-pressed="true">Parkway map</button><button data-simple-workspace="atlas" aria-pressed="false">Ramp shapes</button><button data-simple-workspace="superlatives" aria-pressed="false" class="simple-gold">Top 10s</button></nav>`;
@@ -40,6 +43,9 @@ const theme=document.querySelector('.theme-control');if(theme)about.querySelecto
 const finder=document.createElement('dialog');finder.id='simpleFinder';finder.className='simple-dialog';finder.setAttribute('aria-labelledby','simpleFindTitle');
 finder.innerHTML=`<header class="simple-dialog-head"><h2 id="simpleFindTitle">Find your exit</h2><button class="icon-button" data-simple-close="simpleFinder" aria-label="Close exit search">✕</button></header><div class="simple-dialog-body"><label class="simple-find-label" for="simpleSearch">Exit number, connecting road or county</label><input class="simple-find-input" id="simpleSearch" type="search" autocomplete="off" placeholder="Try 135, Route 37, or Ocean…" aria-controls="simpleFindList"><p class="simple-find-count" id="simpleFindCount" role="status"></p></div><div class="simple-find-list" id="simpleFindList"></div>`;
 document.body.append(finder);
+const shareDialog=document.createElement('dialog');shareDialog.id='simpleShareDialog';shareDialog.className='simple-dialog simple-share-dialog';shareDialog.setAttribute('aria-labelledby','simpleShareTitle');
+shareDialog.innerHTML='<header class="simple-dialog-head"><h2 id="simpleShareTitle">Share this view</h2><button class="icon-button" data-simple-close="simpleShareDialog" aria-label="Close sharing">✕</button></header><div class="simple-dialog-body"><p>Copy this link to open the same view.</p><label for="simpleShareURL">Link to this view</label><input class="simple-find-input" id="simpleShareURL" type="url" readonly spellcheck="false"><button class="simple-share" type="button" id="simpleSelectShareURL">Select link</button><p class="simple-share-help">Select the link, then use your device’s Copy command.</p></div>';
+document.body.append(shareDialog);
 const footer=document.querySelector('.site-footer');
 footer.innerHTML='<p>Real road shapes · NJDOT, August 2025</p><nav aria-label="Project information"><button class="text-button" id="simpleAboutButton">About &amp; sources</button><a href="https://github.com/sanchezbrent/parkway-unfolded" target="_blank" rel="noopener">Project on GitHub</a></nav>';
 
@@ -250,17 +256,40 @@ function selectRamp(fid,{focus=true}={}){
  const r=byFID.get(fid);if(!r)return;selected=fid;state.selected=fid;
  for(const entry of scene.ramps)entry.node.setAttribute('aria-pressed',String(entry.r.fid===fid));
  const selectedHost=$('simpleSelected'),plaza=window.GSPTolls?.lookup(fid),note=[branchScope(r),warningFor(r)].filter(Boolean).join(' ');
- selectedHost.innerHTML=`<div class="simple-selected-top"><div><span class="adoption-eyebrow">A closer look · Exit ${esc(r.number)}</span><h3 id="simpleSelectedTitle">${esc(publicRoad(r.road))}</h3><p class="simple-ramp-meta">${esc(movement(r))} · ${esc(groupCounties(r.group).join(' / '))}</p></div><button class="adoption-button" data-adoption-visit="${Number(fid)}">Adopt this ramp ♡</button></div><details class="simple-road-info"><summary>More about this road</summary><p>${fmt(r.length_ft)} feet of road. ${esc(note||'This line follows the original road map.')}</p><div class="traffic-detail">${trafficDetailHTML(r)}</div><p>${plaza?`A toll is listed for this connection at ${esc(plaza.name)}.`:'No ramp toll is listed for this drawing. Other tolls may apply along your journey.'}</p><div class="simple-road-actions">${plaza?'<button class="text-button" id="simpleToll">View 2026 toll information</button>':''}<button class="text-button" id="simpleCompare">Compare with another ramp</button></div></details>`;
+ selectedHost.innerHTML=`<div class="simple-selected-top"><div><span class="adoption-eyebrow">A closer look · Exit ${esc(r.number)}</span><h3 id="simpleSelectedTitle">${esc(publicRoad(r.road))}</h3><p class="simple-ramp-meta">${esc(movement(r))} · ${esc(groupCounties(r.group).join(' / '))}</p></div><div class="simple-selected-actions">${shareButtonHTML('ramp')}<button class="adoption-button" data-adoption-visit="${Number(fid)}">Adopt this ramp ♡</button></div></div><details class="simple-road-info"><summary>More about this road</summary><p>${fmt(r.length_ft)} feet of road. ${esc(note||'This line follows the original road map.')}</p><div class="traffic-detail">${trafficDetailHTML(r)}</div><p>${plaza?`A toll is listed for this connection at ${esc(plaza.name)}.`:'No ramp toll is listed for this drawing. Other tolls may apply along your journey.'}</p><div class="simple-road-actions">${plaza?'<button class="text-button" id="simpleToll">View 2026 toll information</button>':''}<button class="text-button" id="simpleCompare">Compare with another ramp</button></div></details>`;
  selectedHost.hidden=false;syncHash();
  $('simpleToll')?.addEventListener('click',()=>window.GSPTolls.openPlaza(plaza.id));
  $('simpleCompare').addEventListener('click',()=>{state.compare=[fid,null];updateComparisonUI();switchWorkspace('compare',{scroll:true});});
  if(focus){$('simpleSelectedTitle').tabIndex=-1;$('simpleSelectedTitle').focus({preventScroll:true});selectedHost.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'nearest'});}
 }
-function syncHash(){
- if(['overview','atlas','superlatives'].includes(state.workspace)){const query=new URLSearchParams(location.hash.slice(1));for(const key of ['exit','view','ramp'])query.delete(key);query.set('workspace',state.workspace);if(state.section)query.set('area',state.section);else query.delete('area');history.replaceState(null,'','#'+query.toString());return;}
+function exitViewQuery(){
  const query=new URLSearchParams({exit:group,view:unfolded?'unfolded':'map'});
  if(selected)query.set('ramp',String(selected));
- history.replaceState(null,'','#'+query.toString());
+ return query;
+}
+function exitShareData(){
+ const url=new URL(location.href);url.hash=exitViewQuery().toString();
+ const ramp=selected?byFID.get(selected):null,label=ramp?`${group==='12'?'Access':'Exit'} ${ramp.number}`:groupLabel(group);
+ return {url:url.href,title:`${label} · Parkway Unfolded`,text:ramp?`${publicRoad(ramp.road)} · ${movement(ramp)} at ${label} on the Garden State Parkway.`:`Explore ${label} on the Garden State Parkway.`};
+}
+function selectShareLink(){const input=$('simpleShareURL');input.focus();input.select();}
+async function shareCurrentExit(){
+ if(sharing)return;
+ const data=exitShareData();sharing=true;
+ for(const button of experience.querySelectorAll('[data-simple-share]')){button.disabled=true;button.setAttribute('aria-busy','true');}
+ try{
+  if(typeof navigator.share==='function'){
+   try{await navigator.share(data);return;}catch(error){if(error?.name==='AbortError')return;}
+  }
+  try{await navigator.clipboard.writeText(data.url);toast('Link copied.');}
+  catch(error){$('simpleShareURL').value=data.url;openSimpleDialog(shareDialog);selectShareLink();}
+ }finally{
+  sharing=false;for(const button of experience.querySelectorAll('[data-simple-share]')){button.disabled=false;button.removeAttribute('aria-busy');}
+ }
+}
+function syncHash(){
+ if(['overview','atlas','superlatives'].includes(state.workspace)){const query=new URLSearchParams(location.hash.slice(1));for(const key of ['exit','view','ramp'])query.delete(key);query.set('workspace',state.workspace);if(state.section)query.set('area',state.section);else query.delete('area');history.replaceState(null,'','#'+query.toString());return;}
+ history.replaceState(null,'','#'+exitViewQuery().toString());
 }
 function refreshFamilyLink(){
  const count=Number($('adoptionNavCount').textContent)||0;
@@ -312,6 +341,8 @@ switchWorkspace=function(view,options={}){
  else showGroup(group,{focus:!!options.scroll});
 };
 $('simpleUnfold').addEventListener('click',()=>animateUnfold(!unfolded));
+experience.addEventListener('click',event=>{if(event.target.closest('[data-simple-share]'))shareCurrentExit();});
+$('simpleSelectShareURL').addEventListener('click',selectShareLink);
 $('simpleNorth').addEventListener('click',()=>stepSimpleGroup('north'));
 $('simpleSouth').addEventListener('click',()=>stepSimpleGroup('south'));
 $('simpleAnother').addEventListener('click',()=>{const available=picks.filter(id=>id!==group);showGroup(available[Math.floor(Math.random()*available.length)],{focus:true});});
@@ -326,7 +357,7 @@ const priorSection=setSharedSection;setSharedSection=function(id){priorSection(i
 $('simpleAboutButton').addEventListener('click',()=>openSimpleDialog(about));
 $('simpleSearch').addEventListener('input',renderFind);
 $('simpleSearch').addEventListener('keydown',event=>{if(event.key==='Enter'){const rows=$('simpleFindList').querySelectorAll('[data-simple-group]');if(rows.length===1){event.preventDefault();rows[0].click();}}});
-for(const dialog of [about,finder]){
+for(const dialog of [about,finder,shareDialog]){
  dialog.addEventListener('cancel',event=>{event.preventDefault();closeSimpleDialog(dialog);});
  dialog.querySelector('[data-simple-close]').addEventListener('click',()=>closeSimpleDialog(dialog));
  dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeSimpleDialog(dialog);});
