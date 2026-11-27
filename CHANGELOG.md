@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-27 — Find exits with familiar search wording
+
+- Accept “Exit 135,” lettered numbers such as 100B, and county names with “County.”
+- Match connecting-road names and common Route / Rt. / NJ abbreviations against the original ramp records.
+- Explain when a lettered exit belongs to a shared exit area, retaining all source data and geometry.
+
 ## 2026-11-27 — Retrace your exploration with Back and Forward
 
 - Give each newly opened exit, workspace and county view a place in browser history.

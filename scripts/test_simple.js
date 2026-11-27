@@ -85,3 +85,29 @@ for(const width of [280,292,320,339,362,700])for(const full of [false,true]){
  });
 }
 console.log('Passed: narrow map leaves a clear road corridor; its shared projection keeps every point north up at one uniform scale.');
+
+// First-visit searches use familiar labels and the source's lettered exit numbers.
+const counties=JSON.parse(read('data/county-data.json'));
+Object.assign(context,{groupOrder:data.group_order,groupNames:data.group_names,byFID:new Map(data.records.map(r=>[r.fid,r])),groupCounties:id=>counties.by_group[id].counties,esc:value=>String(value)});
+vm.runInContext(template.split('\n').find(line=>line.startsWith('function normalSearch(')),context);
+vm.runInContext(between(moduleSource,'function exitSearchQuery(','function renderFind('),context);
+const find=query=>Array.from(context.findExitGroups(query));
+assert.deepEqual(find('Exit 135'),['135']);
+assert.deepEqual(find('  EXIT135  '),['135']);
+for(const number of ['100A','100B','100C'])assert.deepEqual(find(number),['100']);
+assert.deepEqual(find('exit 155b'),['155B']);
+assert.deepEqual(find('Access 12'),['12']);
+assert.deepEqual(find('Ocean County'),find('Ocean'));
+assert.deepEqual(find('County Ocean'),find('Ocean'));
+assert.deepEqual(find('Rt. 37'),find('Route 37'));
+assert.deepEqual(find('NJ 37'),find('Route 37'));
+assert(find('Route 37').includes('82'));
+assert(find('Route 33').includes('100'));
+assert.deepEqual(find('Clark'),['135']);
+assert.deepEqual(find('999'),[]);
+assert.deepEqual(find('not a Parkway road'),[]);
+assert.deepEqual(find('  '),data.group_order);
+for(const record of data.records)assert(find(record.number).includes(record.group),`Missing exit ${record.number}`);
+assert(context.findExitRowHTML('100','Exit 100B').includes('Includes Exit 100B'));
+assert(!context.findExitRowHTML('135','135').includes('Includes Exit'));
+console.log('Passed: exit prefixes, lettered numbers, county wording and road abbreviations find the original exit areas.');

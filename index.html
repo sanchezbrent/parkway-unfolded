@@ -3162,15 +3162,34 @@ function closeSimpleDialog(dialog){
  dialog.close();if(!document.querySelector('dialog[open]'))document.body.classList.remove('modal-open');
  if(activeDialogFocus?.isConnected)activeDialogFocus.focus({preventScroll:true});
 }
+function exitSearchQuery(query){
+ return normalSearch(query).replace(/\bcount(?:y|ies)\b/g,'').replace(/\s+/g,' ').trim();
+}
 function findExitGroups(query){
- const q=query.trim().toLowerCase();
- return groupOrder.filter(id=>`${id} ${groupNames[id]} ${groupCounties(id).join(' ')}`.toLowerCase().includes(q));
+ const q=exitSearchQuery(query);
+ if(!q)return groupOrder;
+ if(/^\d+[a-z]?$/.test(q)){
+  const numbered=groupOrder.map(id=>({id,numbers:[id,...(DATA.groups[id].source_numbers||[])].map(number=>String(number).toLowerCase())}));
+  const exact=numbered.filter(area=>area.numbers.includes(q));
+  return (exact.length?exact:numbered.filter(area=>area.numbers.some(number=>number.startsWith(q)))).map(area=>area.id);
+ }
+ const tokens=q.split(' ');
+ return groupOrder.filter(id=>{
+  const area=DATA.groups[id];
+  const roads=area.fids.map(fid=>byFID.get(fid).road);
+  const text=exitSearchQuery([id,groupNames[id],...groupCounties(id),...roads].join(' '));
+  return tokens.every(token=>text.includes(token));
+ });
+}
+function findExitRowHTML(id,query){
+ const q=exitSearchQuery(query),suffix=/^\d+[a-z]$/.test(q)&&id.toLowerCase()!==q?`Includes Exit ${esc(q.toUpperCase())} · `:'';
+ return `<button class="simple-find-row" data-simple-group="${esc(id)}"><strong>${esc(id)}</strong><span>${esc(groupNames[id])}<small>${suffix}${esc(groupCounties(id).join(' / '))}${groupCounties(id).length>1?' counties':' County'}</small></span></button>`;
 }
 function renderFind(){
  const q=$('simpleSearch').value.trim();
  const matches=findExitGroups(q);
  $('simpleFindCount').textContent=q?`${matches.length} ${matches.length===1?'exit area':'exit areas'} found`:'All Parkway exits, north to south.';
- $('simpleFindList').innerHTML=matches.length?matches.map(id=>`<button class="simple-find-row" data-simple-group="${esc(id)}"><strong>${esc(id)}</strong><span>${esc(groupNames[id])}<small>${esc(groupCounties(id).join(' / '))}${groupCounties(id).length>1?' counties':' County'}</small></span></button>`).join(''):'<p class="simple-find-empty">No exits found. Try another number, road or county.</p>';
+ $('simpleFindList').innerHTML=matches.length?matches.map(id=>findExitRowHTML(id,q)).join(''):'<p class="simple-find-empty">No exits found. Try another number, road or county.</p>';
 }
 function openFinder(query){
  if(typeof query==='string')$('simpleSearch').value=query;
