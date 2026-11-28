@@ -23,7 +23,7 @@ for(const r of data.records){
   const markup=context.portraitMarkup(r,name);
   assert(markup.includes(`data-source-vertices="${r.source_xy.length}"`));
   assert(markup.includes('width="1080" height="1350"'));
-  assert(!markup.includes('github.io'));
+  assert(!/\b(?:href|src)\s*=/.test(markup),'Portrait must be self-contained, without links or external images');
   const road=markup.match(/class="portrait-road" d="([^"]+)"/)[1];assert.equal(road,g.d);
   const textArea=markup.slice(markup.indexOf('</metadata>'));
   assert(!textArea.includes('NaN'));
