@@ -219,6 +219,10 @@ body.simple-mode .simple-exit-neighbors button.simple-exit-step:last-child{align
 .simple-selected-actions{flex-wrap:wrap}
 .simple-share{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
 .simple-share svg{width:18px;height:18px;flex-shrink:0}
+.simple-selected-top{flex-wrap:wrap;gap:16px 24px}
+.simple-selected-top>div:first-child{min-width:0}
+.simple-selected-actions{max-width:100%}
+.adoption-detail-invite #detailPortrait{margin-left:8px}
 .simple-share-dialog label{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
 .simple-share-dialog .simple-dialog-body>p{font-size:16px;line-height:1.5}
 .simple-share-dialog .simple-share{margin-top:12px}
@@ -230,6 +234,27 @@ body.simple-mode .simple-exit-neighbors button.simple-exit-step:last-child{align
  .simple-selected-actions{margin-top:16px;gap:8px}
  body.simple-mode .simple-selected-actions button:is(.simple-share,.adoption-button){padding-inline:12px;white-space:nowrap}
  body.simple-mode .simple-selected-actions .adoption-button{flex:1;width:auto;margin:0}
+}
+
+/* The export preview is secondary, with a fixed light portrait in either theme. */
+.ramp-portrait-dialog{width:min(830px,calc(100vw - 32px));max-width:830px}
+.ramp-portrait-dialog .simple-dialog-head{position:sticky;top:0;background:var(--paper);z-index:1}
+.ramp-portrait-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:24px;padding:22px;align-items:start}
+.ramp-portrait-preview{min-width:0;border:1px solid var(--line);background:#fffdf7}
+.ramp-portrait-preview>svg{display:block;width:100%;height:auto}
+.ramp-portrait-options>p{font-size:16px;line-height:1.5;margin:0 0 18px}
+.ramp-portrait-nickname{display:flex;align-items:start;gap:10px;font-size:14px;line-height:1.5;margin-bottom:20px;cursor:pointer}
+.ramp-portrait-nickname input{width:18px;height:18px;margin:2px 0;accent-color:var(--control-green);flex-shrink:0}
+.ramp-portrait-options .simple-primary{width:100%;white-space:normal}
+.ramp-portrait-options>.ramp-portrait-status{font-size:14px;line-height:1.5;margin:12px 0 0;color:var(--muted)}
+@media(max-width:680px){
+ .simple-selected-actions .simple-save-image{flex:0 1 auto}
+ .simple-selected-actions .adoption-button{flex-basis:100%!important}
+ .ramp-portrait-layout{grid-template-columns:minmax(0,1fr);gap:16px;padding:16px}
+ .ramp-portrait-preview{max-width:300px;width:100%;margin:auto}
+ .ramp-portrait-options>p{margin-bottom:12px}
+ .ramp-portrait-nickname{margin-bottom:12px;min-height:32px}
+ .adoption-detail-invite #detailPortrait{margin:8px 0 0}
 }
 
 /* Two relevant stops, following the selected ramp's details. */

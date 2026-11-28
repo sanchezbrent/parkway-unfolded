@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-28 — Save a ramp portrait
+
+- Add Save image to selected-ramp details and adopted ramps, with a preview before downloading.
+- Offer a plain road portrait or an adopted version with its saved nickname and decorative eyes.
+- Export a 1080 × 1350 PNG with the real exit, connecting road, county, project wordmark and NJDOT source credit.
+- Keep the same light portrait in both page themes, offer an SVG fallback when PNG export is unavailable, and retain all original road vertices and source data.
+
 ## 2026-11-27 — Find exits with familiar search wording
 
 - Accept “Exit 135,” lettered numbers such as 100B, and county names with “County.”

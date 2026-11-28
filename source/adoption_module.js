@@ -515,6 +515,8 @@ $('adoptionForm').addEventListener('submit',event=>{
  input.value=name;const member=memberFor(current.fid);if(member)member.name=name;else family.push({fid:current.fid,name});
  saveFamily();updateAdoptedStatus();$('adoptionLiveName').textContent=name;$('adoptionFeedback').hidden=false;$('adoptionFeedback').textContent=`${name} is home. It’s taking this very well.`;
 });
+$('adoptionPortrait').addEventListener('click',()=>window.GSPPortrait.open(current.fid,{nickname:memberFor(current.fid)?.name||''}));
+$('detailPortrait').addEventListener('click',()=>window.GSPPortrait.open(state.detailIDs[state.detailIndex]));
 $('adoptionCertificate').addEventListener('click',downloadCertificate);
 $('adoptionRelease').addEventListener('click',()=>{const name=memberFor(current.fid)?.name;family=family.filter(item=>item.fid!==current.fid);saveFamily();updateAdoptedStatus();$('adoptionSave').focus();$('adoptionFeedback').hidden=false;$('adoptionFeedback').textContent=`${name} is back on the Parkway. You can adopt it again any time.`;});
 $('adoptionOnMap').addEventListener('click',()=>findOnMap(current.fid));
@@ -536,6 +538,6 @@ window.addEventListener('storage',event=>{if(event.key!==STORAGE_KEY)return;fami
 function pauseHiddenEyes(){document.documentElement.classList.toggle('adoption-eyes-paused',document.hidden);}
 document.addEventListener('visibilitychange',pauseHiddenEyes);
 pauseHiddenEyes();
-window.GSPAdoption={renderFamily,refreshSelection,refreshDetail};
+window.GSPAdoption={renderFamily,refreshSelection,refreshDetail,nicknameFor:fid=>memberFor(Number(fid))?.name||''};
 refreshAll();
 })();
